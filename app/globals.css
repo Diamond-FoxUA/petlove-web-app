@@ -4,6 +4,7 @@
   --color-white: #FFFFFF;
   --color-main: #F6B83D;
   --color-secondary: #FFF4DF;
+  --color-background: #F9F9F9;
   --color-red: #F43F5E;
   --color-red-lighter: #F43F5E1A;
   --color-blue: #54ADFF;
@@ -30,6 +31,14 @@ html {
 
 body {
   min-height: 100dvh;
+  background-color: var(--color-background);
+  color: #262626;
+}
+
+.container {
+  margin: 0 auto;
+  max-width: 375px;
+  padding: 0 20px;
 }
 
 img,
