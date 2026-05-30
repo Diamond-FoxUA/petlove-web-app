@@ -1,3 +1,17 @@
+:root {
+  --color-black: #262626;
+  --color-gray: #26262626;
+  --color-white: #FFFFFF;
+  --color-main: #F6B83D;
+  --color-secondary: #FFF4DF;
+  --color-red: #F43F5E;
+  --color-red-lighter: #F43F5E1A;
+  --color-blue: #54ADFF;
+  --color-blue-lighter: #54ADFF1A;
+  --color-success: #08AA83;
+  --color-error: #EF2447;
+}
+
 *,
 *::after,
 *::before {
