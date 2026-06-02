@@ -4,7 +4,7 @@ import Header from "@/app/components/Header/Header";
 import "./globals.css";
 
 const manropeSans = Manrope({
-  variable: "--font-geist-sans",
+  variable: "--font-manrope-sans",
   subsets: ["latin"],
 });
 

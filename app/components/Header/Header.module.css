@@ -1,0 +1,33 @@
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-top-left-radius: 1.875rem;
+  border-top-right-radius: 1.875rem;
+
+  padding: 1.125rem 1.25rem;
+
+  background-color: var(--color-main);
+}
+
+.logoLink {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  padding: 0.625rem 0 0.625rem 0;
+}
+
+.burgerBtn {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  border: 1px solid transparent;
+  background-color: transparent;
+  stroke: white;
+}
+
+.burgerBtn:active {
+  transform: scale(0.90);
+}

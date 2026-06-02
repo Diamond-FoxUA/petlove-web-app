@@ -1,16 +1,16 @@
 :root {
   --color-black: #262626;
-  --color-gray: #26262626;
-  --color-white: #FFFFFF;
-  --color-main: #F6B83D;
-  --color-secondary: #FFF4DF;
-  --color-background: #F9F9F9;
-  --color-red: #F43F5E;
-  --color-red-lighter: #F43F5E1A;
-  --color-blue: #54ADFF;
-  --color-blue-lighter: #54ADFF1A;
-  --color-success: #08AA83;
-  --color-error: #EF2447;
+  --color-gray: #ffffff66;
+  --color-white: #ffffff;
+  --color-main: #f6b83d;
+  --color-secondary: #fff4df;
+  --color-background: #f9f9f9;
+  --color-red: #f43f5e;
+  --color-red-lighter: #f43f5e1a;
+  --color-blue: #54adff;
+  --color-blue-lighter: #54adff1a;
+  --color-success: #08aa83;
+  --color-error: #ef2447;
 }
 
 *,
@@ -30,15 +30,18 @@ html {
 }
 
 body {
-  min-height: 100dvh;
-  background-color: var(--color-background);
+  font-family: var(--font-manrope-sans), sans-serif;
   color: #262626;
+  background-color: var(--color-background);
+  margin-top: 0.625rem;
+  margin-bottom: 0.625rem;
+  min-height: 100dvh;
 }
 
 .container {
   margin: 0 auto;
-  max-width: 375px;
-  padding: 0 20px;
+  max-width: 23.4375rem;
+  padding: 0 1.25rem;
 }
 
 img,
@@ -47,4 +50,14 @@ svg,
 video {
   display: block;
   max-width: 100%;
+  object-fit: cover;
+  object-position: center;
+}
+
+a {
+  text-decoration: none;
+}
+
+ul li {
+  list-style: none;
 }

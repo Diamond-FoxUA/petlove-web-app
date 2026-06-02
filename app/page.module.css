@@ -1,0 +1,36 @@
+.heroTextContainer {
+  background-color: var(--color-main);
+  padding: 2.5rem 1.25rem 3.125rem 1.25rem;
+  border-bottom-left-radius: 1.875rem;
+  border-bottom-right-radius: 1.875rem;
+}
+
+.heroTextContainer h1 {
+  font-weight: 600;
+  font-size: 3.125rem;
+  line-height: 96%;
+  letter-spacing: -0.03em;
+  color: var(--color-white);
+  max-width: 18rem;
+
+  margin-bottom: 1.5rem;
+}
+
+.accent {
+  color: var(--color-gray);
+}
+
+.heroTextContainer p {
+  font-weight: 400;
+  font-size: 0.875rem;
+  line-height: 129%;
+  letter-spacing: -0.02em;
+  color: var(--color-white);
+}
+
+.heroPicture,
+.heroImage {
+  border-radius: 1.875rem;
+  width: 20.9375rem;
+  height: 25.125rem;
+}
