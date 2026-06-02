@@ -61,3 +61,30 @@
     height: 31rem;
   }
 }
+
+@media screen and (min-width:1280px) {
+  .heroTextContainer {
+    padding: 4.3125rem 4rem 2rem 4rem;
+
+    display: flex;
+    justify-content: space-between;
+    align-items: end;
+    gap: 4.5625rem;
+  }
+
+  .heroTextContainer h1 {
+    max-width: 47.5rem;
+    font-size: 5.625rem;
+    margin-bottom: 0;
+  } 
+
+  .heroTextContainer p {
+    margin: 0;
+  }
+
+  .heroPicture,
+  .heroImage {
+    width: 76rem;
+    height: 24rem;
+  }
+}
