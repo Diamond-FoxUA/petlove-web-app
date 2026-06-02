@@ -34,3 +34,30 @@
   width: 20.9375rem;
   height: 25.125rem;
 }
+
+@media screen and (min-width: 768px) {
+  .heroTextContainer {
+    padding: 4.3125rem 2rem 2.75rem 2rem;
+    border-bottom-left-radius: 3.75rem;
+    border-bottom-right-radius: 3.75rem;
+  }
+
+  .heroTextContainer h1 {
+    max-width: 40rem;
+    font-size: 5rem;
+    margin-bottom: 2rem;
+  }
+
+  .heroTextContainer p {
+    max-width: 15.9375rem;
+    margin-left: auto;
+    font-size: 1.125rem;
+  }
+
+  .heroPicture,
+  .heroImage {
+    border-radius: 3.75rem;
+    width: 44rem;
+    height: 31rem;
+  }
+}

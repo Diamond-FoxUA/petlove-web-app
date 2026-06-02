@@ -61,3 +61,14 @@ a {
 ul li {
   list-style: none;
 }
+
+@media screen and (min-width: 768px) {
+  body {
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+  }
+  .container {
+    max-width: 768px;
+    padding: 0 2rem;
+  }
+}
