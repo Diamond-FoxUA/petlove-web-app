@@ -22,6 +22,11 @@
   justify-content: center;
 
   padding: 0.625rem 0 0.625rem 0;
+  transition: transform 300ms ease;
+}
+
+.logoLink:active {
+  transform: scale(0.9);
 }
 
 .burgerBtn {
@@ -32,6 +37,8 @@
   border: 1px solid transparent;
   background-color: transparent;
   stroke: white;
+
+  transition: transform 300ms ease;
 }
 
 .burgerBtn:active {
@@ -40,8 +47,18 @@
 
 @media screen and (min-width: 768px) {
   .header {
-    padding: 27px 32px;
+    padding: 1.6875rem 2rem;
     border-top-left-radius: 3.75rem;
     border-top-right-radius: 3.75rem;
+  }
+}
+
+@media screen and (min-width: 1280px) {
+  .header {
+    padding: 1.6875rem 4rem;
+  }
+
+  .burgerBtn {
+    display: none;
   }
 }
