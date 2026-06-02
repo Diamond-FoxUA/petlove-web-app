@@ -1,0 +1,76 @@
+.default {
+  border: none;
+  border-radius: 30px;
+  padding: 15px 35px;
+  font-weight: 600;
+  font-size: 0.875rem;
+  line-height: 129%;
+  letter-spacing: -0.03em;
+  text-transform: uppercase;
+
+  cursor: pointer;
+  transition:
+    color 300ms ease-in,
+    background-color 300ms ease-in,
+}
+
+.default:active {
+  opacity: 0.7;
+}
+
+.primary {
+  color: var(--color-white);
+  background-color: var(--color-main);
+}
+
+.primary:hover,
+.primary:focus {
+  background-color: var(--color-main-darker);
+}
+
+.secondary {
+  color: var(--color-main);
+  background-color: var(--color-secondary);
+}
+.secondary:hover,
+.secondary:focus {
+  background-color: var(--color-secondary-darker);
+}
+
+.bordered {
+  background-color: var(--color-main);
+  border: 1px solid var(--color-gray);
+}
+
+.bordered:hover,
+.bordered:focus {
+  color: var(--color-main);
+  background-color: var(--color-secondary);
+}
+
+.disabled,
+.disabled:hover,
+.disabled:focus,
+.disabled:active {
+  background-color: gray;
+  opacity: 0.7;
+}
+
+.circle {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  width: 48px;
+  height: 48px;
+  padding: 0;
+
+  background-color: var(--color-secondary);
+  fill: transparent;
+  stroke: var(--color-main);
+}
+
+.circle:hover,
+.circle:focus {
+  background-color: var(--color-secondary-darker);
+}
