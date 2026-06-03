@@ -61,6 +61,8 @@
   background-color: transparent;
   border: 1px solid var(--color-black-lighter);
   transition: border-color 300ms ease;
+  padding: 0;
+  width: 119px;
 }
 
 .nav:hover,
@@ -78,12 +80,13 @@
 
 @media screen and (min-width: 768px) {
   .default {
-    font-size: 1.125rem;
+    font-size: 16px;
   }
 
   .bordered,
   .nav {
     font-size: 1rem;
     padding: 0.9375rem 1.25rem;
+    width: fit-content;
   }
 }
