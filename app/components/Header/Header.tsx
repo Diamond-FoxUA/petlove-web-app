@@ -8,6 +8,7 @@ import Icon from "../Icon/Icon";
 import MobileMenu from "../MobileMenu/MobileMenu";
 import Nav from "../Nav/Nav";
 import AuthNav from "@/app/features/auth/components/AuthNav/AuthNav";
+import UserNav from "@/app/features/auth/components/UserNav/UserNav";
 
 export default function Header() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -15,6 +16,8 @@ export default function Header() {
   const backgroundClass = pathname === "/" ? css.homeBg : css.innerBg;
   const navVariant = pathname === "/" ? "bordered" : "nav";
   const authVariant = pathname === "/" ? "bordered" : "primary";
+
+  const isAuth = true;
 
   return (
     <header className="container">
@@ -24,10 +27,9 @@ export default function Header() {
         </Link>
         <div className={css.navContainer}>
           <Nav variant={navVariant} />
-          <AuthNav variant={authVariant} />
+          {isAuth ? <AuthNav variant={authVariant} /> : <UserNav />}
         </div>
-        {/*
-        <UserNav /> */}
+
         <button
           className={css.burgerBtn}
           onClick={() => setIsMenuOpen(true)}

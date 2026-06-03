@@ -9,7 +9,7 @@ type AuthNavProps = {
 
 export default function AuthNav({ variant }: AuthNavProps) {
   return (
-    <nav className={css.nav}>
+    <nav aria-label="Authentication" className={css.nav}>
       <ul className={css.list}>
         <li className={css.item}>
           <LinkButton variant={variant} href="/login" className={css.button}>

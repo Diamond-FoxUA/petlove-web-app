@@ -12,7 +12,7 @@ export default function Nav({ variant }: NavProps) {
   const pathname = usePathname();
 
   return (
-    <nav>
+    <nav aria-label="Main">
       <ul className={css.list}>
         <li>
           <LinkButton

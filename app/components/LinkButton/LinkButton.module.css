@@ -75,3 +75,15 @@
 .isActiveAlt {
   border-color: var(--color-white);
 }
+
+@media screen and (min-width: 768px) {
+  .default {
+    font-size: 1.125rem;
+  }
+
+  .bordered,
+  .nav {
+    font-size: 1rem;
+    padding: 0.9375rem 1.25rem;
+  }
+}

@@ -13,7 +13,12 @@
 }
 
 .innerBg {
-  background-color: var(--color-white);
+  background-color: var(--color-background);
+  border-radius: 1.875rem;
+}
+
+.innerBg .burgerBtn {
+  stroke: var(--color-black);
 }
 
 .logoLink {
@@ -57,6 +62,10 @@
     padding: 1.6875rem 2rem;
     border-top-left-radius: 3.75rem;
     border-top-right-radius: 3.75rem;
+  }
+
+  .innerBg {
+    border-radius: 3.75rem;
   }
 
   .burgerIcon {

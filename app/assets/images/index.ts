@@ -4,10 +4,14 @@ import heroTab1x from "@/app/assets/images/tab/hero-bg-tab.jpg";
 import heroTab2x from "@/app/assets/images/tab/hero-bg-tab@2x.jpg";
 import heroMob1x from "@/app/assets/images/mob/hero-bg-mob.jpg";
 import heroMob2x from "@/app/assets/images/mob/hero-bg-mob@2x.jpg";
+
 import logoTab from "@/app/assets/logo/logo-tab.svg";
 import logoTabAlt from "@/app/assets/logo/logo-tab-alt.svg";
 import logoMob from "@/app/assets/logo/logo-mob.svg";
 import logoMobAlt from "@/app/assets/logo/logo-mob-alt.svg";
+
+import notFound1x from "@/app/assets/images/mob/cat-404-mob.png";
+import notFound2x from "@/app/assets/images/mob/cat-404-mob@2x.png";
 
 export const HERO_IMAGES = {
   desk: { src1x: heroDesk1x.src, src2x: heroDesk2x.src },
@@ -20,4 +24,9 @@ export const LOGO_ICONS = {
   tabAlt: { src: logoTabAlt.src },
   mob: { src: logoMob.src },
   mobAlt: { src: logoMobAlt.src },
+};
+
+export const NOTFOUND_CAT_IMG = {
+  one: { src: notFound1x.src },
+  two: { src: notFound2x.src },
 };

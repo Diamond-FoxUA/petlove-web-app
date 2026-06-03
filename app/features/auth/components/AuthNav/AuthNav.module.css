@@ -20,4 +20,8 @@
   .button {
     width: fit-content;
   }
+
+  .button {
+    padding: 0.9375rem 2.1875rem;
+  }
 }

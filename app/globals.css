@@ -3,6 +3,7 @@
   --color-black-lighter: #26262626;
   --color-gray: #ffffff66;
   --color-white: #ffffff;
+  --color-background-black: #ffffff1a;
   --color-main: #f6b83d;
   --color-main-darker: #f9b020;
   --color-secondary: #fff4df;
@@ -30,6 +31,7 @@
 
 html {
   color-scheme: dark light;
+  height: 100%;
 }
 
 body {
@@ -39,6 +41,7 @@ body {
   margin-top: 0.625rem;
   margin-bottom: 0.625rem;
   min-height: 100dvh;
+  height: 100%;
 }
 
 .container {
