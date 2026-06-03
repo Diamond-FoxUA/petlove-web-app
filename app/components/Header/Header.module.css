@@ -73,4 +73,8 @@
   .burgerBtn {
     display: none;
   }
+
+  .navContainer {
+    display: block;
+  }
 }

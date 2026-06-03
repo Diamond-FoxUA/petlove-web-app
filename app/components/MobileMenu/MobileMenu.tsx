@@ -58,10 +58,10 @@ export default function MobileMenu({ isOpen, onClose }: MobileMenuProps) {
       </button>
 
       <div className={css.contentContainer}>
-        <Nav />
+        <Nav variant="nav"/>
         {/* Non Auth users */}
         <div>
-          <AuthNav />
+          <AuthNav variant="primary"/>
         </div>
       </div>
     </div>,

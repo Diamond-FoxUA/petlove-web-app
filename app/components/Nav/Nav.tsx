@@ -2,24 +2,42 @@ import css from "./Nav.module.css";
 import LinkButton from "../LinkButton/LinkButton";
 import { usePathname } from "next/navigation";
 
-export default function Nav() {
+type Variant = "primary" | "secondary" | "bordered" | "nav";
+
+type NavProps = {
+  variant?: Variant;
+}
+
+export default function Nav({ variant }: NavProps) {
   const pathname = usePathname();
 
   return (
     <nav>
       <ul className={css.list}>
         <li>
-          <LinkButton href="/news" isActive={pathname === "/news"}>
+          <LinkButton
+            variant={variant}
+            href="/news"
+            isActive={pathname === "/news"}
+          >
             News
           </LinkButton>
         </li>
         <li>
-          <LinkButton href="/friends" isActive={pathname === "/friends"}>
+          <LinkButton
+            variant={variant}
+            href="/friends"
+            isActive={pathname === "/friends"}
+          >
             Find pet
           </LinkButton>
         </li>
         <li>
-          <LinkButton href="/notices" isActive={pathname === "/notives"}>
+          <LinkButton
+            variant={variant}
+            href="/notices"
+            isActive={pathname === "/notices"}
+          >
             Our friends
           </LinkButton>
         </li>

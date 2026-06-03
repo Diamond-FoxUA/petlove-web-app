@@ -1,15 +1,25 @@
-import ActionButton from "@/app/components/ActionButton/ActionButton";
 import css from "./AuthNav.module.css";
+import LinkButton from "@/app/components/LinkButton/LinkButton";
 
-export default function AuthNav() {
+type Variant = "primary" | "secondary" | "bordered" | "nav";
+
+type AuthNavProps = {
+  variant?: Variant;
+};
+
+export default function AuthNav({ variant }: AuthNavProps) {
   return (
     <nav className={css.nav}>
       <ul className={css.list}>
         <li className={css.item}>
-          <ActionButton type="button" className={css.button}>Log in</ActionButton>
+          <LinkButton variant={variant} href="/login" className={css.button}>
+            Log in
+          </LinkButton>
         </li>
         <li className={css.item}>
-          <ActionButton type="button" variant="secondary" className={css.button}>Registration</ActionButton>
+          <LinkButton variant="secondary" href="/register" className={css.button}>
+            Registration
+          </LinkButton>
         </li>
       </ul>
     </nav>

@@ -4,3 +4,14 @@
   align-items: center;
   gap: 0.625rem;
 }
+
+@media screen and (min-width: 1280px) {
+  .list {
+    flex-direction: row;
+  }
+
+  .btn {
+    color: var(--color-white);
+    border-color: var(--color-white);
+  }
+}

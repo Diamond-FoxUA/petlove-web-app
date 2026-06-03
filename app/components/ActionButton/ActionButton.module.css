@@ -5,13 +5,12 @@
 
   height: 3.125rem;
   border: none;
-  border-radius: 30px;
-  padding: 15px 35px;
+  border-radius: 1.875rem;
+  padding: 0.9375rem 2.1875rem;
   font-weight: 600;
   font-size: 0.875rem;
   line-height: 129%;
   letter-spacing: -0.03em;
-  text-transform: uppercase;
 
   cursor: pointer;
   transition:
@@ -26,6 +25,7 @@
 .primary {
   color: var(--color-white);
   background-color: var(--color-main);
+  text-transform: uppercase;
 }
 
 .primary:hover,
@@ -45,6 +45,8 @@
 .bordered {
   background-color: var(--color-main);
   border: 1px solid var(--color-gray);
+  text-transform: uppercase;
+  color: var(--color-white);
 }
 
 .bordered:hover,

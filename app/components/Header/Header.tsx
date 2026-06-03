@@ -7,11 +7,13 @@ import Logo from "../Logo/Logo";
 import Icon from "../Icon/Icon";
 import MobileMenu from "../MobileMenu/MobileMenu";
 import Nav from "../Nav/Nav";
+import AuthNav from "@/app/features/auth/components/AuthNav/AuthNav";
 
 export default function Header() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const pathname = usePathname();
   const backgroundClass = pathname === "/" ? css.homeBg : css.innerBg;
+  const navVariant = pathname === "/" ? "bordered" : "nav";
 
   return (
     <header className="container">
@@ -20,10 +22,10 @@ export default function Header() {
           <Logo />
         </Link>
         <div className={css.navContainer}>
-          <Nav />
+          <Nav variant={navVariant} />
         </div>
+        {/* <AuthNav variant={loginBtnVariant} /> */}
         {/*
-        <AuthNav />
         <UserNav /> */}
         <button
           className={css.burgerBtn}
