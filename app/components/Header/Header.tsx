@@ -14,6 +14,7 @@ export default function Header() {
   const pathname = usePathname();
   const backgroundClass = pathname === "/" ? css.homeBg : css.innerBg;
   const navVariant = pathname === "/" ? "bordered" : "nav";
+  const authVariant = pathname === "/" ? "bordered" : "primary";
 
   return (
     <header className="container">
@@ -23,8 +24,8 @@ export default function Header() {
         </Link>
         <div className={css.navContainer}>
           <Nav variant={navVariant} />
+          <AuthNav variant={authVariant} />
         </div>
-        {/* <AuthNav variant={loginBtnVariant} /> */}
         {/*
         <UserNav /> */}
         <button

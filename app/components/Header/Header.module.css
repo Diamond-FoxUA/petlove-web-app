@@ -75,6 +75,12 @@
   }
 
   .navContainer {
-    display: block;
+    display: flex;
+    gap: 6.875rem;
+  }
+
+  .navContainer > :last-child {
+    text-transform: uppercase;
+    font-weight: 600;
   }
 }
