@@ -6,6 +6,7 @@ import Link from "next/link";
 import Logo from "../Logo/Logo";
 import Icon from "../Icon/Icon";
 import MobileMenu from "../MobileMenu/MobileMenu";
+import Nav from "../Nav/Nav";
 
 export default function Header() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -18,7 +19,10 @@ export default function Header() {
         <Link href="/" className={css.logoLink}>
           <Logo />
         </Link>
-        {/* <Nav />
+        <div className={css.navContainer}>
+          <Nav />
+        </div>
+        {/*
         <AuthNav />
         <UserNav /> */}
         <button
@@ -26,7 +30,7 @@ export default function Header() {
           onClick={() => setIsMenuOpen(true)}
           type="button"
         >
-          <Icon iconName="icon-menu" size={32} />
+          <Icon iconName="icon-menu" className={css.burgerIcon} />
         </button>
 
         <MobileMenu isOpen={isMenuOpen} onClose={() => setIsMenuOpen(false)} />

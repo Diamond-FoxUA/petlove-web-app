@@ -18,7 +18,7 @@ export default function Home() {
       </div>
       <picture className={css.heroPicture}>
         <source
-          media="(min-width: 1200px)"
+          media="(min-width: 1280px)"
           srcSet={`${desk.src1x} 1x, ${desk.src2x} 2x`}
         />
         <source

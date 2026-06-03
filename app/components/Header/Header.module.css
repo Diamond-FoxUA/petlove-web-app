@@ -37,12 +37,19 @@
   border: 1px solid transparent;
   background-color: transparent;
   stroke: white;
-
-  transition: transform 300ms ease;
 }
 
 .burgerBtn:active {
   transform: scale(0.9);
+}
+
+.burgerIcon {
+  width: 2rem;
+  height: 2rem;
+}
+
+.navContainer {
+  display: none;
 }
 
 @media screen and (min-width: 768px) {
@@ -50,6 +57,11 @@
     padding: 1.6875rem 2rem;
     border-top-left-radius: 3.75rem;
     border-top-right-radius: 3.75rem;
+  }
+
+  .burgerIcon {
+    width: 2.25rem;
+    height: 2.25rem;
   }
 }
 
