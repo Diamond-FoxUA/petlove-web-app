@@ -1,11 +1,10 @@
 import Image from "next/image";
 import css from "./not-found.module.css";
-import catImg from "@/app/assets/images/mob/cat-404-mob.png";
 import LinkButton from "./components/LinkButton/LinkButton";
 import { NOTFOUND_CAT_IMG } from "./assets/images";
 
 export default function NotFound() {
-  const { one, two } = NOTFOUND_CAT_IMG;
+  const { mob, tab, desk } = NOTFOUND_CAT_IMG;
 
   return (
     <section className={`container ${css.container}`}>
@@ -14,12 +13,19 @@ export default function NotFound() {
           4
           <span>
             <picture className={css.picture}>
-              <source srcSet={`${one} 1x, ${two} 2x`}/>
+              <source
+                media="(min-width:1280px)"
+                srcSet={`${desk.src1x} 1x, ${desk.src2x} 2x`}
+              />
+              <source
+                media="(min-width: 768px)"
+                srcSet={`${tab.src1x} 1x, ${tab.src2x} 2x`}
+              />
               <Image
                 className={css.image}
                 width={116}
                 height={117}
-                src={catImg.src}
+                src={mob.src1x}
                 alt="a fluffy orange cat"
               />
             </picture>

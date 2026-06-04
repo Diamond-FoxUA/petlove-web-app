@@ -10,8 +10,12 @@ import logoTabAlt from "@/app/assets/logo/logo-tab-alt.svg";
 import logoMob from "@/app/assets/logo/logo-mob.svg";
 import logoMobAlt from "@/app/assets/logo/logo-mob-alt.svg";
 
-import notFound1x from "@/app/assets/images/mob/cat-404-mob.png";
-import notFound2x from "@/app/assets/images/mob/cat-404-mob@2x.png";
+import notFoundMob1x from "@/app/assets/images/mob/cat-404-mob.png";
+import notFoundMob2x from "@/app/assets/images/mob/cat-404-mob@2x.png";
+import notFoundTab1x from "@/app/assets/images/tab/cat-404-tab.png";
+import notFoundTab2x from "@/app/assets/images/tab/cat-404-tab@2x.png";
+import notFoundDesk1x from "@/app/assets/images/desk/cat-404-desk.png";
+import notFoundDesk2x from "@/app/assets/images/desk/cat-404-desk@2x.png";
 
 export const HERO_IMAGES = {
   desk: { src1x: heroDesk1x.src, src2x: heroDesk2x.src },
@@ -27,6 +31,7 @@ export const LOGO_ICONS = {
 };
 
 export const NOTFOUND_CAT_IMG = {
-  one: { src: notFound1x.src },
-  two: { src: notFound2x.src },
+  mob: { src1x: notFoundMob1x.src, src2x: notFoundMob2x.src },
+  tab: { src1x: notFoundTab1x.src, src2x: notFoundTab2x.src },
+  desk: { src1x: notFoundDesk1x.src, src2x: notFoundDesk2x.src },
 };

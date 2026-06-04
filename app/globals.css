@@ -38,8 +38,8 @@ body {
   font-family: var(--font-manrope-sans), sans-serif;
   color: #262626;
   background-color: var(--color-background);
-  margin-top: 0.625rem;
-  margin-bottom: 0.625rem;
+  padding-top: 0.625rem;
+  padding-bottom: 0.625rem;
   min-height: 100dvh;
   height: 100%;
 }
@@ -70,8 +70,8 @@ ul li {
 
 @media screen and (min-width: 768px) {
   body {
-    margin-top: 1rem;
-    margin-bottom: 1rem;
+    padding-top: 1rem;
+    padding-bottom: 1rem;
   }
   .container {
     max-width: 768px;
