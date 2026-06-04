@@ -27,6 +27,7 @@ export default function NotFound() {
                 height={117}
                 src={mob.src1x}
                 alt="a fluffy orange cat"
+                loading="eager"
               />
             </picture>
           </span>
