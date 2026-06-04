@@ -4,17 +4,17 @@
   align-items: center;
   border-top-left-radius: 1.875rem;
   border-top-right-radius: 1.875rem;
-
-  padding: 1.125rem 1.25rem;
 }
 
 .homeBg {
+  padding: 1.125rem 1.25rem;
   background-color: var(--color-main);
 }
 
 .innerBg {
   background-color: var(--color-background);
   border-radius: 1.875rem;
+  padding: 1.125rem 0;
 }
 
 .innerBg .burgerBtn {
@@ -59,13 +59,16 @@
 
 @media screen and (min-width: 768px) {
   .header {
-    padding: 1.6875rem 2rem;
     border-top-left-radius: 3.75rem;
     border-top-right-radius: 3.75rem;
   }
 
   .innerBg {
     border-radius: 3.75rem;
+  }
+
+  .homeBg {
+    padding: 1.6875rem 2rem;
   }
 
   .burgerIcon {

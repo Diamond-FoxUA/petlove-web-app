@@ -56,25 +56,38 @@
   background-color: var(--color-secondary);
 }
 
-.nav {
-  color: var(--color-black);
+.nav,
+.navAlt {
   background-color: transparent;
-  border: 1px solid var(--color-black-lighter);
   transition: border-color 300ms ease;
   padding: 0;
   width: 119px;
+  border: 1px solid transparent;
+}
+
+.nav {
+  color: var(--color-black);
+  border-color: var(--color-black-lighter);
+}
+
+.navAlt {
+  color: var(--color-white);
+  border-color: var(--color-gray-lighter);
 }
 
 .nav:hover,
-.nav:focus {
-  border-color: var(--color-main);
-}
-
+.nav:focus,
 .isActive {
   border-color: var(--color-main);
 }
 
-.isActiveAlt {
+.navAlt:hover,
+.navAlt:focus {
+  border-color: var(--color-gray-light);
+}
+
+.isActiveAlt,
+.isActiveNav {
   border-color: var(--color-white);
 }
 
@@ -84,7 +97,8 @@
   }
 
   .bordered,
-  .nav {
+  .nav,
+  .navAlt {
     font-size: 1rem;
     padding: 0.9375rem 1.25rem;
     width: fit-content;

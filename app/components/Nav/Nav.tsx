@@ -2,7 +2,7 @@ import css from "./Nav.module.css";
 import LinkButton from "../LinkButton/LinkButton";
 import { usePathname } from "next/navigation";
 
-type Variant = "primary" | "secondary" | "bordered" | "nav";
+type Variant = "primary" | "secondary" | "bordered" | "nav" | "navAlt";
 
 type NavProps = {
   variant?: Variant;

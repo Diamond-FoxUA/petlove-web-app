@@ -14,7 +14,7 @@ export default function Header() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const pathname = usePathname();
   const backgroundClass = pathname === "/" ? css.homeBg : css.innerBg;
-  const navVariant = pathname === "/" ? "bordered" : "nav";
+  const navVariant = pathname === "/" ? "navAlt" : "nav";
   const authVariant = pathname === "/" ? "bordered" : "primary";
 
   const isAuth = true;

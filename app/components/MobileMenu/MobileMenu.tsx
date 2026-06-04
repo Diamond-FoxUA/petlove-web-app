@@ -2,6 +2,7 @@
 
 import { useSyncExternalStore, useRef, useEffect } from "react";
 import { createPortal } from "react-dom";
+import { usePathname } from "next/navigation";
 import css from "./MobileMenu.module.css";
 import Icon from "../Icon/Icon";
 import Nav from "../Nav/Nav";
@@ -17,6 +18,10 @@ const getClientSnapshot = () => true;
 const getServerSnapshot = () => false;
 
 export default function MobileMenu({ isOpen, onClose }: MobileMenuProps) {
+  const accentPath = ["/register", "/login", "/news", "/notices", "/friends"];
+  const pathname = usePathname();
+  const accentClass = accentPath.includes(pathname);
+
   const isMounted = useSyncExternalStore(
     subscribe,
     getClientSnapshot,
@@ -46,7 +51,7 @@ export default function MobileMenu({ isOpen, onClose }: MobileMenuProps) {
   return createPortal(
     <div
       ref={wrapperRef}
-      className={`${css.wrapper} ${isOpen ? css.isOpen : ""}`}
+      className={`${css.wrapper} ${isOpen ? css.isOpen : ""} ${accentClass ? css.accentBg : css.whiteBg}`}
     >
       <button
         type="button"
@@ -58,10 +63,10 @@ export default function MobileMenu({ isOpen, onClose }: MobileMenuProps) {
       </button>
 
       <div className={css.contentContainer}>
-        <Nav variant="nav"/>
+        <Nav variant={accentClass ? "navAlt" : "nav"} />
         {/* Non Auth users */}
         <div>
-          <AuthNav variant="primary"/>
+          <AuthNav variant={accentClass ? "bordered" : "primary"} />
         </div>
       </div>
     </div>,
