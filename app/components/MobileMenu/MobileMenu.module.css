@@ -15,9 +15,14 @@
   background-color: var(--color-main);
 }
 
+.accentBg .closeBtn {
+  stroke: var(--color-white);
+}
+
 .whiteBg {
   background-color: var(--color-white);
 }
+
 
 .isOpen {
   transform: translateX(0);
