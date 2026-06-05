@@ -1,4 +1,3 @@
-// import styles from "./page.module.css";
 import { HERO_IMAGES } from "./assets/images";
 import css from "./page.module.css";
 
