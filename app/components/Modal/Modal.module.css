@@ -19,7 +19,7 @@
   text-align: end;
 
   min-width: 21rem;
-  padding: 40px 40px 28px 40px;
+  padding: 2.5rem 2.5rem 1.75rem 2.5rem;
   background-color: var(--color-background);
   border-radius: 1.25rem;
 }
@@ -33,8 +33,8 @@
   justify-content: center;
   align-items: center;
 
-  width: 24px;
-  height: 24px;
+  width: 1.5rem;
+  height: 1.5rem;
   background-color: transparent;
   border: none;
 
@@ -53,12 +53,12 @@
 
 .closeIcon {
   stroke: var(--color-black);
-  width: 24px;
-  height: 24px;
+  width: 1.5rem;
+  height: 1.5rem;
 }
 
 @media screen and (min-width: 768px) {
   .modal {
-    padding: 60px 60px 60px 60px;
+    padding: 3.75rem 3.75rem 3.75rem 3.75rem;
   }
 }
