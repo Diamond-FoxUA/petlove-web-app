@@ -1,0 +1,137 @@
+.background {
+  position: relative;
+
+  background-color: var(--color-main);
+  border-radius: 1.875rem;
+  overflow: hidden;
+}
+
+.backgroundElement {
+  position: absolute;
+  left: 5%;
+  top: 10%;
+
+  width: 94.5%;
+  height: 94.5%;
+
+  fill: var(--color-background-black);
+}
+
+.picture {
+  width: 100%;
+}
+
+.image {
+  position: relative;
+  z-index: 2;
+}
+
+.infoCard {
+  display: none;
+}
+
+@media screen and (min-width: 768px) {
+  .background {
+    height: 18.875rem;
+    border-radius: 3.75rem;
+  }
+
+  .image {
+    margin-left: 15.625rem;
+    width: 22.75rem;
+    height: 18.875rem;
+  }
+
+  .backgroundElement {
+    top: 20%;
+    width: 130%;
+    height: 130%;
+  }
+
+  .infoCard {
+    position: absolute;
+    left: 2rem;
+    bottom: 1.875rem;
+    z-index: 3;
+
+    display: flex;
+    gap: 0.5rem;
+
+    max-width: 18.375rem;
+    padding: 1.1875rem 1rem;
+    border-radius: 1.25rem;
+    background-color: var(--color-background);
+  }
+
+  .cardAvatar {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    font-size: 32px;
+    width: 3.75rem;
+    height: 3.75rem;
+    border-radius: 100%;
+    background-color: var(--color-secondary);
+  }
+
+  .topText {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 8px;
+  }
+
+  .heading {
+    font-weight: 600;
+    font-size: 1rem;
+    line-height: 125%;
+    letter-spacing: -0.03em;
+    color: var(--color-main);
+  }
+
+  .bDay {
+    font-weight: 400;
+    font-size: 12px;
+    line-height: 117%;
+    letter-spacing: -0.02em;
+    color: var(--color-black);
+  }
+
+  .accent {
+    color: rgba(38, 38, 38, 0.5);
+    margin-right: 4px;
+  }
+
+  .paragraph {
+    font-weight: 400;
+    font-size: 0.75rem;
+    line-height: 117%;
+    letter-spacing: -0.02em;
+    color: #262626cc;
+
+    max-width: 194px;
+  }
+}
+
+@media screen and (min-width: 1280px) {
+  .background {
+    width: 592px;
+    height: 654px;
+  }
+
+  .image {
+    margin: 0;
+    width: 540px;
+    height: 640px;
+    transform: translate(5%, 2.5%);
+  }
+
+  .backgroundElement {
+    top: 4%;
+    width: 90%;
+    height: 100%;
+  }
+}
+
+/* TODO: fix .backgroundElement, add 1280px infoCard, add alt appearence for AddPet page*/
