@@ -46,7 +46,7 @@
 
 .bordered {
   background-color: var(--color-main);
-  border: 1px solid var(--color-gray);
+  border: 0.0625rem solid var(--color-gray);
   color: var(--color-white);
 }
 
@@ -61,8 +61,8 @@
   background-color: transparent;
   transition: border-color 300ms ease;
   padding: 0;
-  width: 119px;
-  border: 1px solid transparent;
+  width: 7.4375rem;
+  border: 0.0625rem solid transparent;
 }
 
 .nav {
@@ -93,7 +93,7 @@
 
 @media screen and (min-width: 768px) {
   .default {
-    font-size: 16px;
+    font-size: 1rem;
   }
 
   .bordered,
@@ -101,6 +101,13 @@
   .navAlt {
     font-size: 1rem;
     padding: 0.9375rem 1.25rem;
+  }
+}
+
+@media screen and (min-width: 1280px) {
+  .bordered,
+  .nav,
+  .navAlt {
     width: fit-content;
   }
 }
