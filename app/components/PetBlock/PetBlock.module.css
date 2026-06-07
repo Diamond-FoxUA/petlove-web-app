@@ -8,11 +8,11 @@
 
 .backgroundElement {
   position: absolute;
-  left: 5%;
-  top: 10%;
+  left: 2.5%;
+  top: 14%;
 
-  width: 94.5%;
-  height: 94.5%;
+  width: 125%;
+  height: 125%;
 
   fill: var(--color-background-black);
 }
@@ -30,6 +30,28 @@
   display: none;
 }
 
+.altStyle {
+  height: 13.3125rem;
+}
+
+.altStyle > .picture > .image {
+  position: absolute;
+  top: -8%;
+  left: 0;
+
+  width: 18.5625rem / 2;
+  height: 15.5rem;
+
+  transform: scale(0.88);
+}
+
+.altStyle > .backgroundElement {
+  left: 2.5%;
+  top: 18%;
+  width: 165%;
+  height: 165%;
+}
+
 @media screen and (min-width: 768px) {
   .background {
     height: 18.875rem;
@@ -43,9 +65,9 @@
   }
 
   .backgroundElement {
-    top: 20%;
-    width: 130%;
-    height: 130%;
+    top: 16%;
+    width: 200%;
+    height: 200%;
   }
 
   .infoCard {
@@ -68,7 +90,7 @@
     justify-content: center;
     align-items: center;
 
-    font-size: 32px;
+    font-size: 2rem;
     width: 3.75rem;
     height: 3.75rem;
     border-radius: 100%;
@@ -79,7 +101,7 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    margin-bottom: 8px;
+    margin-bottom: 0.5rem;
   }
 
   .heading {
@@ -92,7 +114,7 @@
 
   .bDay {
     font-weight: 400;
-    font-size: 12px;
+    font-size: 0.75rem;
     line-height: 117%;
     letter-spacing: -0.02em;
     color: var(--color-black);
@@ -100,7 +122,7 @@
 
   .accent {
     color: rgba(38, 38, 38, 0.5);
-    margin-right: 4px;
+    margin-right: 0.25rem;
   }
 
   .paragraph {
@@ -110,28 +132,70 @@
     letter-spacing: -0.02em;
     color: #262626cc;
 
-    max-width: 194px;
+    max-width: 12.125rem;
+  }
+
+  .altStyle {
+    height: 15.5rem;
+  }
+
+  .altStyle > .picture > .image {
+    top: 0;
+    left: -4%;
+
+    width: 18.5625rem;
+    height: 15.5rem;
+
+    transform: scale(1.025);
+  }
+
+  .altStyle > .backgroundElement {
+    left: 5%;
+    top: 19%;
+    width: 230%;
+    height: 230%;
   }
 }
 
 @media screen and (min-width: 1280px) {
   .background {
-    width: 592px;
-    height: 654px;
+    width: 37rem;
+    height: 40.875rem;
   }
 
   .image {
     margin: 0;
-    width: 540px;
-    height: 640px;
+    width: 33.75rem;
+    height: 40rem;
     transform: translate(5%, 2.5%);
   }
 
   .backgroundElement {
     top: 4%;
+    left: 5.5%;
+    width: 90%;
+    height: 100%;
+  }
+
+  .infoCard {
+    left: 3.8rem;
+    bottom: 6.06rem;
+  }
+
+  .altStyle > .picture > .image {
+    width: 512px;
+    height: auto;
+
+    top: 1%;
+    left: 6.5%;
+
+    transform: scale(1);
+  }
+
+  .altStyle > .backgroundElement {
+    top: 4%;
+    left: 5.5%;
     width: 90%;
     height: 100%;
   }
 }
-
-/* TODO: fix .backgroundElement, add 1280px infoCard, add alt appearence for AddPet page*/
