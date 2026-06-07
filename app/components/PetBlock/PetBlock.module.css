@@ -24,6 +24,8 @@
 .image {
   position: relative;
   z-index: 2;
+  width: 20.875rem;
+  height: 17.5rem;
 }
 
 .infoCard {
@@ -50,6 +52,11 @@
   top: 18%;
   width: 165%;
   height: 165%;
+}
+
+.tabletOnly,
+.desktopOnly {
+  display: none;
 }
 
 @media screen and (min-width: 768px) {
@@ -155,6 +162,14 @@
     width: 230%;
     height: 230%;
   }
+
+  .mobileOnly {
+    display: none;
+  }
+
+  .tabletOnly {
+    display: block;
+  }
 }
 
 @media screen and (min-width: 1280px) {
@@ -197,5 +212,13 @@
     left: 5.5%;
     width: 90%;
     height: 100%;
+  }
+
+  .tabletOnly {
+    display: none;
+  }
+
+  .desktopOnly {
+    display: block;
   }
 }

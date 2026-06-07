@@ -1,16 +1,17 @@
 import css from "./PetBlock.module.css";
 import Icon from "../Icon/Icon";
+import Image from "next/image";
+import type { StaticImageData } from "next/image";
 
-type ImageSrcs = {
-  src1x: string;
-  src2x: string;
+type ImageSrc = {
+  src: StaticImageData;
 };
 
 type PetBlockProps = {
   alt: string;
-  mob: ImageSrcs;
-  tab: ImageSrcs;
-  desk: ImageSrcs;
+  mob: ImageSrc;
+  tab: ImageSrc;
+  desk: ImageSrc;
   isRegister?: boolean;
 };
 
@@ -45,24 +46,29 @@ export default function PetBlock({
           </div>
         </div>
       )}
-      <picture className={css.picture}>
-        <source
-          media="(min-width:1280px)"
-          srcSet={`${desk.src1x} 1x, ${desk.src2x} 2x`}
-        />
-        <source
-          media="(min-width:768px)"
-          srcSet={`${tab.src1x} 1x, ${tab.src2x} 2x`}
-        />
-        <img
-          width={334}
-          height={280}
-          className={css.image}
-          srcSet={`${mob.src1x} 1x, ${mob.src2x} 2x`}
+      <div className={css.picture}>
+        {/* mobile */}
+        <Image
+          className={`${css.image} ${css.mobileOnly}`}
+          src={mob.src}
           alt={alt}
-          loading="eager"
+          priority
         />
-      </picture>
+        {/* tablet */}
+        <Image
+          className={`${css.image} ${css.tabletOnly}`}
+          src={tab.src}
+          alt={alt}
+          priority
+        />
+        {/* desktop */}
+        <Image
+          className={`${css.image} ${css.desktopOnly}`}
+          src={desk.src}
+          alt={alt}
+          priority
+        />
+      </div>
     </div>
   );
 }

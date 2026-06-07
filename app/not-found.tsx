@@ -12,24 +12,29 @@ export default function NotFound() {
         <h1 className={css.heading}>
           4
           <span>
-            <picture className={css.picture}>
-              <source
-                media="(min-width:1280px)"
-                srcSet={`${desk.src1x} 1x, ${desk.src2x} 2x`}
-              />
-              <source
-                media="(min-width: 768px)"
-                srcSet={`${tab.src1x} 1x, ${tab.src2x} 2x`}
-              />
+            <div className={css.picture}>
+              {/* mobile */}
               <Image
-                className={css.image}
-                width={116}
-                height={117}
-                src={mob.src1x}
-                alt="a fluffy orange cat"
-                loading="eager"
+                className={`${css.image} ${css.mobileOnly}`}
+                src={mob.src}
+                alt="A fluffy orange cat."
+                priority
               />
-            </picture>
+              {/* tablet */}
+              <Image
+                className={`${css.image} ${css.tabletOnly}`}
+                src={tab.src}
+                alt="A fluffy orange cat."
+                priority
+              />
+              {/* desktop */}
+              <Image
+                className={`${css.image} ${css.desktopOnly}`}
+                src={desk.src}
+                alt="A fluffy orange cat."
+                priority
+              />
+            </div>
           </span>
           4
         </h1>

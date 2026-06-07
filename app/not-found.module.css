@@ -25,6 +25,8 @@
 .image {
   border-radius: 62.5rem;
   background-color: var(--color-background-black);
+  width: 7.25rem;
+  height: 7.3125rem;
 }
 
 .paragraph {
@@ -39,6 +41,11 @@
   text-transform: none;
 }
 
+.tabletOnly,
+.desktopOnly {
+  display: none;
+}
+
 @media screen and (min-width: 768px) {
   .wrapper {
     min-height: 85dvh;
@@ -51,8 +58,8 @@
 
   .picture,
   .image {
-    width: 280px;
-    height: 280px;
+    width: 17.5rem;
+    height: 17.5rem;
   }
 
   .paragraph {
@@ -62,14 +69,30 @@
   .button {
     margin-top: 1.25rem;
   }
+
+  .mobileOnly {
+    display: none;
+  }
+
+  .tabletOnly {
+    display: block;
+  }
 }
 
 @media screen and (min-width: 1280px) {
   .container {
-    max-width: 1216px;
+    max-width: 76rem;
   }
 
   .wrapper {
     min-height: 79dvh;
+  }
+
+  .tabletOnly {
+    display: none;
+  }
+
+  .desktopOnly {
+    display: block;
   }
 }
