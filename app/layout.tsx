@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Manrope } from "next/font/google";
-import Header from "@/app/components/Header/Header";
+import Header from "@/app/shared/components/Header/Header";
+import { Toaster } from "sonner";
 import "./globals.css";
 
 const manropeSans = Manrope({
@@ -49,6 +50,7 @@ export default function RootLayout({
   return (
     <html lang="en" className={`${manropeSans.variable}`}>
       <body>
+        <Toaster position="top-center" />
         <Header />
         <main>{children}</main>
       </body>

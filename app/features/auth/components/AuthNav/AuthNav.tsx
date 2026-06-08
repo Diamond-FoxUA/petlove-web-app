@@ -1,5 +1,5 @@
 import css from "./AuthNav.module.css";
-import LinkButton from "@/app/components/LinkButton/LinkButton";
+import LinkButton from "@/app/shared/components/LinkButton/LinkButton";
 
 type Variant = "primary" | "secondary" | "bordered" | "nav";
 

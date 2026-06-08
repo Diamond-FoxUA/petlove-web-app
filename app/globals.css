@@ -1,6 +1,7 @@
 :root {
   --color-black: #262626;
   --color-black-lighter: #26262626;
+  --color-black-placeholder: #26262680;
   --color-gray: #ffffff66;
   --color-gray-lighter: #ffffff80;
   --color-white: #ffffff;
@@ -69,6 +70,19 @@ a {
 ul li {
   list-style: none;
 }
+
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border-width: 0;
+}
+
 
 @media screen and (min-width: 768px) {
   body {

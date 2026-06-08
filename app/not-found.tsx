@@ -1,6 +1,6 @@
 import Image from "next/image";
 import css from "./not-found.module.css";
-import LinkButton from "./components/LinkButton/LinkButton";
+import LinkButton from "./shared/components/LinkButton/LinkButton";
 import { NOTFOUND_CAT_IMG } from "./assets/images";
 
 export default function NotFound() {

@@ -1,0 +1,46 @@
+.wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+}
+
+.formWrapper {
+  padding: 1.6875rem 1.25rem;
+  background-color: var(--color-white);
+  border-radius: 1.875rem;
+}
+
+.formContainer {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+
+  max-width: 424px;
+  margin: 0 auto;
+}
+
+@media screen and (min-width: 768px) {
+  .formWrapper {
+    padding-top: 30px;
+    border-radius: 3.75rem;
+  }
+}
+
+@media screen and (min-width: 1280px) {
+  .wrapper {
+    flex-direction: row;
+    gap: 2.25rem;
+  }
+
+  .formWrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 592px;
+  }
+  
+  .formContainer {
+    flex-grow: 1;
+    gap: 1rem;
+  }
+}
