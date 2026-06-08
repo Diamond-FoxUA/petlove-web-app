@@ -26,8 +26,9 @@ export type User = {
 };
 
 export const register = async (formData: registrationFormData) => {
-  const { confirmPassword, ...data } = formData;
-  const res = await nextServer.post<User>("users/signup", data);
+  const data = { ...formData };
+  delete (data as Partial<registrationFormData>).confirmPassword;
 
+  const res = await nextServer.post<User>("users/signup", data);
   return res.data;
 };
