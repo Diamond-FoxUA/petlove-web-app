@@ -2,6 +2,7 @@
   width: 76px;
   height: 20px;
 
+  cursor: pointer;
   transition: transform 300ms ease-in;
 }
 
