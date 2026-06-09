@@ -3,11 +3,11 @@
 import { Provider } from "react-redux";
 import { store } from "../redux/store";
 import { useEffect, type ReactNode } from "react";
-import { refreshCurrentUser } from "@/app/features/auth/model/authSlice";
+import { getCurrentUserFull } from "@/app/features/auth/model/authSlice";
 
 const AuthInitializer = ({ children }: { children: ReactNode }) => {
   useEffect(() => {
-    store.dispatch(refreshCurrentUser());
+    store.dispatch(getCurrentUserFull());
   }, []);
 
   return <>{children}</>;

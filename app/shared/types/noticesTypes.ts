@@ -1,4 +1,4 @@
-export type Notice = {
+export interface Notice {
   id: string;
   species: string;
   category: string;
@@ -13,4 +13,16 @@ export type Notice = {
   user: string;
   popularity: number;
   updatedAt: string;
-};
+}
+
+export interface Pet {
+  id: string;
+  name: string;
+  title: string;
+  imgURL: string;
+  species: string;
+  birthday: string;
+  sex: string;
+  createdAt: string;
+  updatedAt: string;
+}

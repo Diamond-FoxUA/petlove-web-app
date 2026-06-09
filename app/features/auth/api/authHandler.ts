@@ -1,6 +1,6 @@
 import { nextServer } from "@/app/shared/api/nextServer";
 import { registrationFormData } from "../schemas/registrationSchema";
-import type { User } from "../types/authTypes";
+import type { User, UserFull } from "../types/authTypes";
 
 export const register = async (formData: registrationFormData) => {
   const data = { ...formData };
@@ -12,6 +12,11 @@ export const register = async (formData: registrationFormData) => {
 
 export const getCurrentUser = async (): Promise<User> => {
   const res = await nextServer.get<User>("/users/current");
+  return res.data;
+};
+
+export const getCurrentUserFull = async (): Promise<UserFull> => {
+  const res = await nextServer.get<UserFull>("/users/current/full");
   return res.data;
 };
 

@@ -1,10 +1,13 @@
 import { createSlice, createAsyncThunk, PayloadAction } from "@reduxjs/toolkit";
-import type { User } from "../types/authTypes";
+import type { UserFull } from "../types/authTypes";
 import type { ApiError } from "@/app/api/api";
-import { getCurrentUser, signoutUser as signout } from "../api/authHandler";
+import {
+  signoutUser as signout,
+  getCurrentUserFull as getCurrentFull,
+} from "../api/authHandler";
 
 interface AuthState {
-  user: User | null;
+  user: UserFull | null;
   isAuthenticated: boolean;
   isLoading: boolean;
   error: string | null;
@@ -17,16 +20,16 @@ const initialState: AuthState = {
   error: null,
 };
 
-export const refreshCurrentUser = createAsyncThunk(
-  "auth/refresh",
+export const getCurrentUserFull = createAsyncThunk(
+  "auth/current/full",
   async (_, thunkAPI) => {
     try {
-      return await getCurrentUser();
+      return await getCurrentFull();
     } catch (error) {
       const axiosError = error as ApiError;
 
       return thunkAPI.rejectWithValue(
-        axiosError.response?.data?.error || "Failed refreshing session",
+        axiosError.response?.data?.error || "Failed getting current full user",
       );
     }
   },
@@ -51,7 +54,7 @@ const authSlice = createSlice({
   name: "auth",
   initialState,
   reducers: {
-    setCredentials: (state, action: PayloadAction<User>) => {
+    setCredentials: (state, action: PayloadAction<UserFull>) => {
       state.user = action.payload;
       state.isAuthenticated = true;
       state.isLoading = false;
@@ -64,19 +67,19 @@ const authSlice = createSlice({
   },
   extraReducers: (builder) => {
     builder
-      .addCase(refreshCurrentUser.pending, (state) => {
+      .addCase(getCurrentUserFull.pending, (state) => {
         state.isLoading = true;
         state.error = null;
       })
       .addCase(
-        refreshCurrentUser.fulfilled,
-        (state, action: PayloadAction<User>) => {
+        getCurrentUserFull.fulfilled,
+        (state, action: PayloadAction<UserFull>) => {
           state.user = action.payload;
           state.isAuthenticated = true;
           state.isLoading = false;
         },
       )
-      .addCase(refreshCurrentUser.rejected, (state, action) => {
+      .addCase(getCurrentUserFull.rejected, (state, action) => {
         state.user = null;
         state.isAuthenticated = false;
         state.isLoading = false;
