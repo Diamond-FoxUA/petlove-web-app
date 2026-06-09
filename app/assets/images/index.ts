@@ -11,6 +11,15 @@ import logoTabAlt from "@/app/assets/logo/logo-tab-alt.svg";
 import logoMob from "@/app/assets/logo/logo-mob.svg";
 import logoMobAlt from "@/app/assets/logo/logo-mob-alt.svg";
 
+import logoTabLoader from "@/app/assets/logo/logo-tab-loader.svg";
+import logoMobLoader from "@/app/assets/logo/logo-mob-loader.svg";
+
+// Loader image imports
+
+import loaderMob from "@/app/assets/images/mob/loading-bg-mob@2x.jpg";
+import loaderTab from "@/app/assets/images/tab/loading-bg-tab@2x.jpg";
+import loaderDesk from "@/app/assets/images/desk/loading-bg-desk@2x.jpg";
+
 // Not Found page image imports
 
 import notFoundMob from "@/app/assets/images/mob/cat-404-mob@2x.png";
@@ -43,6 +52,15 @@ export const LOGO_ICONS = {
   tabAlt: { src: logoTabAlt.src },
   mob: { src: logoMob.src },
   mobAlt: { src: logoMobAlt.src },
+
+  loaderTab: { src: logoTabLoader.src },
+  loaderMob: { src: logoMobLoader.src },
+};
+
+export const LOADER_IMAGES = {
+  desk: { src: loaderDesk.src },
+  tab: { src: loaderTab.src },
+  mob: { src: loaderMob.src },
 };
 
 export const NOTFOUND_CAT_IMG = {
