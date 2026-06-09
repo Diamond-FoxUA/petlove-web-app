@@ -32,21 +32,119 @@
 
   display: block;
   width: 100%;
-  padding: 0.75rem;
+  padding: 0.75rem 3.5rem 0.75rem 0.75rem;
+
   background-color: transparent;
   border: 1px solid var(--color-black-lighter);
   border-radius: 1.875rem;
   outline: none;
 
-  transition: border-color 300ms ease;
-}
-
-.input::placeholder {
-  color: var(--color-black-placeholder);
+  transition:
+    border-color 300ms ease,
+    background-color 300ms ease;
 }
 
 .input:focus {
   border-color: var(--color-main);
+}
+
+.floatingPlaceholder {
+  position: absolute;
+  left: 0.75rem;
+  top: 50%;
+  transform: translateY(-50%);
+
+  font-size: 0.875rem;
+  letter-spacing: -0.03em;
+  color: var(--color-black-placeholder);
+
+  pointer-events: none;
+  transition:
+    opacity 150ms ease,
+    visibility 150ms ease;
+  opacity: 1;
+  visibility: visible;
+}
+
+.input:not(:placeholder-shown) ~ .floatingPlaceholder {
+  opacity: 0;
+  visibility: hidden;
+}
+
+.input:not(:placeholder-shown):not(.inputError) {
+  border-color: var(--color-success);
+}
+
+.input:not(:placeholder-shown):not(.inputError):focus {
+  border-color: var(--color-success);
+}
+
+.inputError,
+.inputError:focus {
+  border-color: var(--color-error);
+}
+
+.inputIconContainer {
+  position: absolute;
+  top: 50%;
+  right: 0.75rem;
+  transform: translateY(-50%);
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.hideInputbtn {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 1.125rem;
+  height: 1.125rem;
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+}
+
+.hideInputbtn:hover .inputIcon {
+  stroke: var(--color-main-darker);
+}
+
+.inputIcon {
+  width: 1.125rem;
+  height: 1.125rem;
+  stroke: var(--color-main);
+  fill: transparent;
+  transition: stroke 300ms ease;
+}
+
+.iconError,
+.iconSuccess {
+  display: none;
+  width: 22px;
+  height: 22px;
+
+  fill: transparent;
+}
+
+.input:not(:placeholder-shown):not(.inputError)
+  ~ .inputIconContainer
+  .iconSuccess {
+  display: block;
+  stroke: var(--color-success);
+}
+
+.inputError ~ .inputIconContainer .iconError {
+  display: block;
+  stroke: var(--color-error);
+}
+
+.errorMessage {
+  color: var(--color-error);
+  font-size: 0.625rem;
+  line-height: 120%;
+  letter-spacing: -0.03em;
+  margin-top: 0.125rem;
+  margin-left: 12px;
 }
 
 .submitBtn {
@@ -66,82 +164,6 @@
   color: var(--color-main);
   font-weight: 600;
   text-decoration: underline;
-}
-
-.inputIconContainer {
-  position: absolute;
-  top: 50%;
-  right: 0.75rem;
-
-  transform: translateY(-50%);
-}
-
-.hideInputbtn {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-
-  width: 1.125rem;
-  height: 1.125rem;
-  background-color: transparent;
-  border: none;
-
-  cursor: pointer;
-}
-
-.hideInputbtn:hover {
-  .inputIcon {
-    stroke: var(--color-main-darker);
-  }
-}
-
-.inputIcon {
-  width: 1.125rem;
-  height: 1.125rem;
-  stroke: var(--color-main);
-  fill: transparent;
-
-  transition: stroke 300ms ease;
-}
-
-.errorMessage {
-  color: var(--color-error);
-  font-size: 0.625rem;
-  line-height: 120%;
-  letter-spacing: -0.03em;
-
-  margin-top: 0.125rem;
-  margin-left: 12px;
-}
-
-.inputError,
-.inputError:focus {
-  border-color: var(--color-error) !important;
-}
-
-.inputSuccess,
-.inputSuccess:focus {
-  border-color: var(--color-success) !important;
-}
-
-.statusIcon {
-  fill: transparent;
-  width: 22px;
-  height: 22px;
-}
-
-.inputIconContainer {
-  display: flex;
-  align-items: center;
-  gap: 0.75rem;
-}
-
-.statusIconError {
-  stroke: var(--color-error);
-}
-
-.statusIconSuccess {
-  stroke: var(--color-success);
 }
 
 @media screen and (min-width: 768px) {

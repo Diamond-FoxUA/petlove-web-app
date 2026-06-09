@@ -9,7 +9,7 @@ import css from "./RegistrationForm.module.css";
 import ActionButton from "@/app/shared/components/ActionButton/ActionButton";
 import Link from "next/link";
 import Icon from "@/app/shared/components/Icon/Icon";
-import { ChangeEvent, useState } from "react";
+import { useState } from "react";
 import { register as registerUser } from "../../server/registerHandler";
 import { useRouter } from "next/navigation";
 import { ApiError } from "@/app/api/api";
@@ -19,12 +19,12 @@ export default function RegistrationForm() {
   const {
     register,
     handleSubmit,
-    watch,
     formState: { errors, isSubmitting },
     reset,
   } = useForm<registrationFormData>({
     resolver: yupResolver(registrationSchema),
-    mode: "onChange",
+    mode: "all",
+    reValidateMode: "onChange",
     defaultValues: {
       name: "",
       email: "",
@@ -32,49 +32,6 @@ export default function RegistrationForm() {
       confirmPassword: "",
     },
   });
-
-  const formValues = watch();
-
-  const [interactedFields, setInteractedFields] = useState<
-    Record<string, boolean>
-  >({});
-
-  const handleFieldInteraction = (fieldName: keyof registrationFormData) => {
-    if (!interactedFields[fieldName]) {
-      setInteractedFields((prev) => ({ ...prev, [fieldName]: true }));
-    }
-  };
-
-  const getInputClass = (fieldName: keyof registrationFormData) => {
-    if (errors[fieldName]) {
-      return `${css.input} ${css.inputError}`;
-    }
-    if (formValues[fieldName] && formValues[fieldName].length > 0) {
-      return `${css.input} ${css.inputSuccess}`;
-    }
-    return css.input;
-  };
-
-  const renderInputIcon = (fieldName: keyof registrationFormData) => {
-    if (!interactedFields[fieldName]) return null;
-
-    const hasError = !!errors[fieldName];
-    if (hasError) {
-      return (
-        <Icon
-          iconName="icon-cross"
-          className={`${css.statusIcon} ${css.statusIconError}`}
-        />
-      );
-    } else {
-      return (
-        <Icon
-          iconName="icon-check"
-          className={`${css.statusIcon} ${css.statusIconSuccess}`}
-        />
-      );
-    }
-  };
 
   const router = useRouter();
 
@@ -87,7 +44,6 @@ export default function RegistrationForm() {
       if (res) {
         router.push("/profile");
         reset();
-        setInteractedFields({});
       } else {
         toast.error("Invalid email or password.");
       }
@@ -99,17 +55,6 @@ export default function RegistrationForm() {
 
       toast.error(errorMessage);
     }
-  };
-
-  const registerWithInteraction = (fieldName: keyof registrationFormData) => {
-    const registered = register(fieldName);
-    return {
-      ...registered,
-      onChange: (e: ChangeEvent<HTMLInputElement>) => {
-        handleFieldInteraction(fieldName);
-        return registered.onChange(e);
-      },
-    };
   };
 
   return (
@@ -124,54 +69,80 @@ export default function RegistrationForm() {
               Name
             </label>
             <input
-              className={getInputClass("name")}
+              className={`${css.input} ${errors.name ? css.inputError : ""}`}
               id="name"
-              {...registerWithInteraction("name")}
+              {...register("name")}
               type="text"
-              placeholder="Name"
+              placeholder=" "
             />
+            <span className={css.floatingPlaceholder}>Name</span>
             <div className={css.inputIconContainer}>
-              {renderInputIcon("name")}
+              <Icon
+                iconName="icon-cross"
+                className={`${css.statusIcon} ${css.iconError}`}
+              />
+              <Icon
+                iconName="icon-check"
+                className={`${css.statusIcon} ${css.iconSuccess}`}
+              />
             </div>
           </div>
           {errors.name && (
             <span className={css.errorMessage}>{errors.name?.message}</span>
           )}
         </div>
+
         <div>
           <div className={css.inputContainer}>
             <label className="sr-only" htmlFor="email">
               Email
             </label>
             <input
-              className={getInputClass("email")}
+              className={`${css.input} ${errors.email ? css.inputError : ""}`}
               type="email"
               id="email"
-              {...registerWithInteraction("email")}
-              placeholder="Email"
+              {...register("email")}
+              placeholder=" "
             />
+            <span className={css.floatingPlaceholder}>Email</span>
             <div className={css.inputIconContainer}>
-              {renderInputIcon("email")}
+              <Icon
+                iconName="icon-cross"
+                className={`${css.statusIcon} ${css.iconError}`}
+              />
+              <Icon
+                iconName="icon-check"
+                className={`${css.statusIcon} ${css.iconSuccess}`}
+              />
             </div>
           </div>
           {errors.email && (
             <span className={css.errorMessage}>{errors.email?.message}</span>
           )}
         </div>
+
         <div>
           <div className={css.inputContainer}>
             <label className="sr-only" htmlFor="password">
               Password
             </label>
             <input
-              className={getInputClass("password")}
+              className={`${css.input} ${errors.password ? css.inputError : ""}`}
               type={showPassword ? "text" : "password"}
               id="password"
-              {...registerWithInteraction("password")}
-              placeholder="Password"
+              {...register("password")}
+              placeholder=" "
             />
+            <span className={css.floatingPlaceholder}>Password</span>
             <div className={css.inputIconContainer}>
-              {renderInputIcon("password")}
+              <Icon
+                iconName="icon-cross"
+                className={`${css.statusIcon} ${css.iconError}`}
+              />
+              <Icon
+                iconName="icon-check"
+                className={`${css.statusIcon} ${css.iconSuccess}`}
+              />
               <button
                 type="button"
                 className={css.hideInputbtn}
@@ -188,20 +159,29 @@ export default function RegistrationForm() {
             <span className={css.errorMessage}>{errors.password?.message}</span>
           )}
         </div>
+
         <div>
           <div className={css.inputContainer}>
             <label className="sr-only" htmlFor="confirmPassword">
               Confirm Password
             </label>
             <input
-              className={getInputClass("confirmPassword")}
+              className={`${css.input} ${errors.confirmPassword ? css.inputError : ""}`}
               type={showConfirmPassword ? "text" : "password"}
               id="confirmPassword"
-              placeholder="Confirm password"
-              {...registerWithInteraction("confirmPassword")}
+              placeholder=" "
+              {...register("confirmPassword")}
             />
+            <span className={css.floatingPlaceholder}>Confirm password</span>
             <div className={css.inputIconContainer}>
-              {renderInputIcon("confirmPassword")}
+              <Icon
+                iconName="icon-cross"
+                className={`${css.statusIcon} ${css.iconError}`}
+              />
+              <Icon
+                iconName="icon-check"
+                className={`${css.statusIcon} ${css.iconSuccess}`}
+              />
               <button
                 type="button"
                 className={css.hideInputbtn}
@@ -221,6 +201,7 @@ export default function RegistrationForm() {
           )}
         </div>
       </div>
+
       <ActionButton
         type="submit"
         className={css.submitBtn}

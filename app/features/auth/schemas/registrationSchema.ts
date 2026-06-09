@@ -1,7 +1,7 @@
 import * as Yup from "yup";
 
 export const registrationSchema = Yup.object({
-  name: Yup.string().required("Name is required."),
+  name: Yup.string().trim().required("Name is required."),
   email: Yup.string()
     .matches(
       /^[\w-]+(\.[\w-]+)*@([\w-]+\.)+[a-zA-Z]{2,7}$/,
