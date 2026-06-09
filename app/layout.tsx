@@ -1,8 +1,10 @@
 import type { Metadata } from "next";
 import { Manrope } from "next/font/google";
+import "./globals.css";
+
+import { ReduxProvider } from "./shared/providers/ReduxProvider";
 import Header from "@/app/shared/components/Header/Header";
 import { Toaster } from "sonner";
-import "./globals.css";
 
 const manropeSans = Manrope({
   variable: "--font-manrope-sans",
@@ -50,9 +52,11 @@ export default function RootLayout({
   return (
     <html lang="en" className={`${manropeSans.variable}`}>
       <body>
-        <Toaster position="top-center" />
-        <Header />
-        <main>{children}</main>
+        <ReduxProvider>
+          <Toaster position="top-center" />
+          <Header />
+          <main>{children}</main>
+        </ReduxProvider>
       </body>
     </html>
   );
