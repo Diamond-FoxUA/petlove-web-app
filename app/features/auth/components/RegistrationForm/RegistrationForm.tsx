@@ -10,7 +10,7 @@ import ActionButton from "@/app/shared/components/ActionButton/ActionButton";
 import Link from "next/link";
 import Icon from "@/app/shared/components/Icon/Icon";
 import { useState } from "react";
-import { register as registerUser } from "../../api/registerHandler";
+import { register as registerUser } from "../../api/authHandler";
 import { useRouter } from "next/navigation";
 import { ApiError } from "@/app/api/api";
 import { toast } from "sonner";

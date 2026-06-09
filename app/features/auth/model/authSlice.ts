@@ -1,7 +1,7 @@
 import { createSlice, createAsyncThunk, PayloadAction } from "@reduxjs/toolkit";
-import { getCurrentUser } from "../api/getCurrentUser";
 import type { User } from "../types/authTypes";
 import type { ApiError } from "@/app/api/api";
+import { getCurrentUser, signoutUser as signout } from "../api/authHandler";
 
 interface AuthState {
   user: User | null;
@@ -27,6 +27,21 @@ export const refreshCurrentUser = createAsyncThunk(
 
       return thunkAPI.rejectWithValue(
         axiosError.response?.data?.error || "Failed refreshing session",
+      );
+    }
+  },
+);
+
+export const signoutUser = createAsyncThunk(
+  "auth/signout",
+  async (_, thunkAPI) => {
+    try {
+      return await signout();
+    } catch (error) {
+      const axiosError = error as ApiError;
+
+      return thunkAPI.rejectWithValue(
+        axiosError.response?.data?.error || "Failed signing out user",
       );
     }
   },
@@ -66,6 +81,11 @@ const authSlice = createSlice({
         state.isAuthenticated = false;
         state.isLoading = false;
         state.error = action.payload as string;
+      })
+      .addCase(signoutUser.fulfilled, (state) => {
+        state.user = null;
+        state.isAuthenticated = false;
+        state.isLoading = false;
       });
   },
 });
