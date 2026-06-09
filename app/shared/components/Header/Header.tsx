@@ -10,6 +10,8 @@ import Nav from "../Nav/Nav";
 import AuthNav from "@/app/features/auth/components/AuthNav/AuthNav";
 import UserNav from "@/app/features/auth/components/UserNav/UserNav";
 
+import { useAppSelector } from "../../redux/hooks";
+
 export default function Header() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const pathname = usePathname();
@@ -17,7 +19,7 @@ export default function Header() {
   const navVariant = pathname === "/" ? "navAlt" : "nav";
   const authVariant = pathname === "/" ? "bordered" : "primary";
 
-  const isAuth = true;
+  const { isAuthenticated } = useAppSelector((state) => state.auth);
 
   return (
     <header className="container">
@@ -27,7 +29,7 @@ export default function Header() {
         </Link>
         <div className={css.navContainer}>
           <Nav variant={navVariant} />
-          {isAuth ? <AuthNav variant={authVariant} /> : <UserNav />}
+          {isAuthenticated ? <AuthNav variant={authVariant} /> : <UserNav />}
         </div>
 
         <button

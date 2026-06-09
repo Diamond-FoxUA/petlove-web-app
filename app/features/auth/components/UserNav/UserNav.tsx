@@ -1,14 +1,30 @@
+"use client";
+import { useState } from "react";
+
+import UserBar from "../UserBar/UserBar";
+import LogoutBtn from "../LogoutBtn/LogoutBtn";
+import ModalApproveAction from "../ModalApproveAction/ModalApproveAction";
+import css from "./UserNav.module.css";
+
 export default function UserNav() {
+  const [isModalOpen, setIsModalOpen] = useState(false);
+
   return (
-    <nav aria-label="User">
-      <ul>
-        <li>
-          {/* <UserBar /> */}
-        </li>
-        <li>
-          {/* <LogOutBtn /> */}
-        </li>
-      </ul>
-    </nav>
+    <>
+      <nav aria-label="User">
+        <ul className={css.list}>
+          <li>
+            <UserBar />
+          </li>
+          <li>
+            <LogoutBtn handleLogout={() => setIsModalOpen(true)} />
+          </li>
+        </ul>
+      </nav>
+
+      {isModalOpen && (
+        <ModalApproveAction onClose={() => setIsModalOpen(false)} />
+      )}
+    </>
   );
 }

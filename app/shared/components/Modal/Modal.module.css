@@ -19,9 +19,9 @@
   text-align: end;
 
   min-width: 21rem;
-  padding: 2.5rem 2.5rem 1.75rem 2.5rem;
+  padding: 2.5rem 1.75rem;
   background-color: var(--color-background);
-  border-radius: 1.25rem;
+  border-radius: 1.875rem;
 }
 
 .closeBtn {
@@ -59,6 +59,7 @@
 
 @media screen and (min-width: 768px) {
   .modal {
-    padding: 3.75rem 3.75rem 3.75rem 3.75rem;
+    padding: 5rem;
+    width: 28rem;
   }
 }
