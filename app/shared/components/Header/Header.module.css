@@ -1,7 +1,11 @@
+.displayNone {
+  display: none;
+}
+
 .header {
   display: flex;
-  justify-content: space-between;
   align-items: center;
+  justify-content: space-between;
   border-top-left-radius: 1.875rem;
   border-top-right-radius: 1.875rem;
 }
@@ -94,5 +98,9 @@
   .navContainer > :last-child {
     text-transform: uppercase;
     font-weight: 600;
+  }
+
+  .displayNone {
+    display: block;
   }
 }

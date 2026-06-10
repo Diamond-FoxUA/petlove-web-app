@@ -35,10 +35,16 @@ export default function Header() {
         <Link href="/" className={css.logoLink}>
           <Logo />
         </Link>
-        <div className={css.navContainer}>
-          <Nav variant={navVariant} />
-          {!isAuthenticated ? <AuthNav variant={authVariant} /> : <UserNav />}
-        </div>
+
+        <Nav
+          variant={navVariant}
+          className={navVariant === "navAlt" ? css.displayNone : ""}
+        />
+        {!isAuthenticated ? (
+          <AuthNav variant={authVariant} />
+        ) : (
+          <UserNav className={navVariant === "navAlt" ? css.displayNone : ""} />
+        )}
 
         <button
           className={css.burgerBtn}
