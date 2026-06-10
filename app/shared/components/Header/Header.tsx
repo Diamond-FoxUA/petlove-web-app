@@ -37,7 +37,7 @@ export default function Header() {
         </Link>
         <div className={css.navContainer}>
           <Nav variant={navVariant} />
-          {isAuthenticated ? <AuthNav variant={authVariant} /> : <UserNav />}
+          {!isAuthenticated ? <AuthNav variant={authVariant} /> : <UserNav />}
         </div>
 
         <button

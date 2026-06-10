@@ -1,5 +1,5 @@
 import { nextServer } from "@/app/shared/api/nextServer";
-import { registrationFormData } from "../schemas/registrationSchema";
+import { loginFormData, registrationFormData } from "../schemas/authSchema";
 import type { User, UserFull } from "../types/authTypes";
 
 export const register = async (formData: registrationFormData) => {
@@ -7,6 +7,11 @@ export const register = async (formData: registrationFormData) => {
   delete (data as Partial<registrationFormData>).confirmPassword;
 
   const res = await nextServer.post<User>("users/signup", data);
+  return res.data;
+};
+
+export const login = async (data: loginFormData) => {
+  const res = await nextServer.post<User>("users/signin", data);
   return res.data;
 };
 
