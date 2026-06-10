@@ -7,6 +7,8 @@ import css from "./MobileMenu.module.css";
 import Icon from "../Icon/Icon";
 import Nav from "../Nav/Nav";
 import AuthNav from "@/app/features/auth/components/AuthNav/AuthNav";
+import { useAppSelector } from "../../redux/hooks";
+import UserNav from "@/app/features/auth/components/UserNav/UserNav";
 
 interface MobileMenuProps {
   isOpen: boolean;
@@ -18,6 +20,8 @@ const getClientSnapshot = () => true;
 const getServerSnapshot = () => false;
 
 export default function MobileMenu({ isOpen, onClose }: MobileMenuProps) {
+  const { isAuthenticated } = useAppSelector((state) => state.auth);
+
   const accentPath = ["/register", "/login", "/news", "/notices", "/friends"];
   const pathname = usePathname();
   const accentClass = accentPath.includes(pathname);
@@ -66,10 +70,21 @@ export default function MobileMenu({ isOpen, onClose }: MobileMenuProps) {
         <Nav variant={accentClass ? "navAlt" : "nav"} />
         {/* Non Auth users */}
         <div>
-          <AuthNav variant={accentClass ? "bordered" : "primary"} />
+          {!isAuthenticated ? (
+            <AuthNav variant={accentClass ? "bordered" : "primary"} />
+          ) : (
+            <UserNav />
+          )}
         </div>
       </div>
     </div>,
     document.body,
   );
 }
+// const { isAuthenticated, isLoading } = useAppSelector((state) => state.auth);
+
+// {!isAuthenticated ? (
+//           <AuthNav variant={authVariant} />
+//         ) : (
+//           <UserNav className={navVariant === "navAlt" ? css.displayNone : ""} />
+//         )}
