@@ -10,7 +10,7 @@ export default function LogoutBtn({ handleLogout }: LogoutBtnProps) {
 
   return (
     <ActionButton
-      variant={pathname === "/" ? "bordered" : "primary"}
+      variant={pathname === "/" ? "primary" : "bordered"}
       onClick={handleLogout}
     >
       Log out
