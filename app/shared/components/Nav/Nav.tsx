@@ -6,13 +6,14 @@ type Variant = "primary" | "secondary" | "bordered" | "nav" | "navAlt";
 
 type NavProps = {
   variant?: Variant;
-}
+  className?: string;
+};
 
-export default function Nav({ variant }: NavProps) {
+export default function Nav({ variant, className }: NavProps) {
   const pathname = usePathname();
 
   return (
-    <nav aria-label="Main">
+    <nav aria-label="Main" className={className ? className : ""}>
       <ul className={css.list}>
         <li>
           <LinkButton

@@ -6,12 +6,12 @@ import LogoutBtn from "../LogoutBtn/LogoutBtn";
 import ModalApproveAction from "../ModalApproveAction/ModalApproveAction";
 import css from "./UserNav.module.css";
 
-export default function UserNav() {
+export default function UserNav({ className }: { className?: string }) {
   const [isModalOpen, setIsModalOpen] = useState(false);
 
   return (
     <>
-      <nav aria-label="User">
+      <nav aria-label="User" className={className ? className : ""}>
         <ul className={css.list}>
           <li>
             <UserBar />
