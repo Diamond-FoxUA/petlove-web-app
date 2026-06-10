@@ -1,4 +1,4 @@
-import axios, { AxiosError } from "axios";
+import axios, { type AxiosError } from "axios";
 
 export type ApiError = AxiosError<{ error: string }>;
 
