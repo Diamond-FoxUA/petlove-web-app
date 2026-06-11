@@ -31,7 +31,7 @@ export default function NotFound() {
           4
         </h1>
         <p className={css.paragraph}>Ooops! This page not found :(</p>
-        <LinkButton className={css.button} variant="secondary" href="/">
+        <LinkButton className={css.button} color="secondary" href="/">
           To home page
         </LinkButton>
       </div>
