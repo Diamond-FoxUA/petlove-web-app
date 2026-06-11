@@ -82,9 +82,9 @@ export const LOADER_IMAGES = {
 };
 
 export const NOTFOUND_CAT_IMG = {
-  desk: { src1x: notFoundDesk1x.src, src2x: notFoundDesk2x },
-  tab: { src1x: notFoundTab1x.src, src2x: notFoundTab2x },
-  mob: { src1x: notFoundMob1x.src, src2x: notFoundMob2x },
+  desk: { src1x: notFoundDesk1x.src, src2x: notFoundDesk2x.src },
+  tab: { src1x: notFoundTab1x.src, src2x: notFoundTab2x.src },
+  mob: { src1x: notFoundMob1x.src, src2x: notFoundMob2x.src },
 };
 
 export const PETBLOCK_IMAGES = {
