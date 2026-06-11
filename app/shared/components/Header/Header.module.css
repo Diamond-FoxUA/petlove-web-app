@@ -1,18 +1,9 @@
-.displayNone,
-.header nav {
-  display: none;
-}
-
 .header {
   display: flex;
-  align-items: center;
   justify-content: space-between;
+  align-items: center;
   border-top-left-radius: 1.875rem;
   border-top-right-radius: 1.875rem;
-}
-
-.header [aria-label="Authentication"] a:first-child {
-  display: none;
 }
 
 .homeBg {
@@ -91,11 +82,6 @@
     padding: 1.6875rem 4rem;
   }
 
-  .header [aria-label="Authentication"] a:first-child,
-  .header nav {
-  display: block;
-}
-
   .burgerBtn {
     display: none;
   }
@@ -108,9 +94,5 @@
   .navContainer > :last-child {
     text-transform: uppercase;
     font-weight: 600;
-  }
-
-  .displayNone {
-    display: block;
   }
 }

@@ -2,7 +2,7 @@ import css from "./Nav.module.css";
 import LinkButton from "../LinkButton/LinkButton";
 import { usePathname } from "next/navigation";
 
-type Variant = "primary" | "secondary" | "bordered" | "nav" | "navAlt";
+type Variant = "bordered" | "borderedAlt";
 
 type NavProps = {
   variant?: Variant;
@@ -17,7 +17,7 @@ export default function Nav({ variant, className }: NavProps) {
       <ul className={css.list}>
         <li>
           <LinkButton
-            variant={variant}
+            color={variant}
             href="/news"
             isActive={pathname === "/news"}
           >
@@ -26,7 +26,7 @@ export default function Nav({ variant, className }: NavProps) {
         </li>
         <li>
           <LinkButton
-            variant={variant}
+            color={variant}
             href="/friends"
             isActive={pathname === "/friends"}
           >
@@ -35,7 +35,7 @@ export default function Nav({ variant, className }: NavProps) {
         </li>
         <li>
           <LinkButton
-            variant={variant}
+            color={variant}
             href="/notices"
             isActive={pathname === "/notices"}
           >

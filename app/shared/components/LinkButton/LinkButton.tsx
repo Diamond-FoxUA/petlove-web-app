@@ -2,13 +2,15 @@ import Link from "next/link";
 import { ReactNode } from "react";
 import css from "./LinkButton.module.css";
 
-type Variant = "primary" | "secondary" | "bordered" | "nav" | "navAlt";
+type ButtonColor = "primary" | "secondary" | "bordered" | "borderedAlt" | "gray";
+type ButtonStyle = "auth" | "modal";
 
 type LinkButtonProps = {
   children: ReactNode;
   href: string;
   isActive?: boolean;
-  variant?: Variant;
+  color?: ButtonColor;
+  btnStyle?: ButtonStyle;
   className?: string;
 };
 
@@ -16,17 +18,22 @@ export default function LinkButton({
   children,
   href,
   isActive,
-  variant = "primary",
+  color = "primary",
+  btnStyle,
   className,
 }: LinkButtonProps) {
-  const btnClass = [css.default, css[variant], className]
+  const btnClass = [
+    css.default,
+    css[color],
+    btnStyle ? css[btnStyle] : "",
+    className,
+  ]
     .filter(Boolean)
     .join(" ");
-    const isActiveColor = variant === "navAlt" ? css.isActiveAlt : css.isActive;
-  const activeClass = variant === "primary" || "nav" ? isActiveColor : css.isActiveAlt;
+
 
   return (
-    <Link className={`${btnClass} ${isActive ? activeClass : ""}`} href={href}>
+    <Link className={`${btnClass} ${isActive ? css.active : ""}`} href={href}>
       {children}
     </Link>
   );

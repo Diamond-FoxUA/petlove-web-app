@@ -1,7 +1,7 @@
 import css from "./AuthNav.module.css";
 import LinkButton from "@/app/shared/components/LinkButton/LinkButton";
 
-type Variant = "primary" | "secondary" | "bordered" | "nav";
+type Variant = "primary" | "secondary" | "bordered" | "borderedAlt";
 
 type AuthNavProps = {
   variant?: Variant;
@@ -12,12 +12,12 @@ export default function AuthNav({ variant }: AuthNavProps) {
     <nav aria-label="Authentication" className={css.nav}>
       <ul className={css.list}>
         <li className={css.item}>
-          <LinkButton variant={variant} href="/login" className={css.button}>
+          <LinkButton color={variant ? variant : "primary"} btnStyle="auth" href="/login" className={css.button}>
             Log in
           </LinkButton>
         </li>
         <li className={css.item}>
-          <LinkButton variant="secondary" href="/register" className={css.button}>
+          <LinkButton color="secondary" btnStyle="auth" href="/register" className={css.button}>
             Registration
           </LinkButton>
         </li>

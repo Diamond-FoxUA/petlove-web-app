@@ -21,7 +21,7 @@ export default function Header() {
   const pathname = usePathname();
 
   const backgroundClass = pathname === "/" ? css.homeBg : css.innerBg;
-  const navVariant = pathname === "/" ? "navAlt" : "nav";
+  const navVariant = pathname === "/" ? "bordered" : "borderedAlt";
   const authVariant = pathname === "/" ? "bordered" : "primary";
 
   const { isAuthenticated, isLoading } = useAppSelector((state) => state.auth);
@@ -35,16 +35,9 @@ export default function Header() {
         <Link href="/" className={css.logoLink}>
           <Logo />
         </Link>
-
-        <Nav
-          variant={navVariant}
-          className={navVariant === "navAlt" ? css.displayNone : ""}
-        />
-        {!isAuthenticated ? (
-          <AuthNav variant={authVariant} />
-        ) : (
-          <UserNav className={navVariant === "navAlt" ? css.displayNone : ""} />
-        )}
+        
+        <Nav variant={navVariant} />
+        {!isAuthenticated ? <AuthNav variant={authVariant} /> : <UserNav />}
 
         <button
           className={css.burgerBtn}
