@@ -50,7 +50,9 @@
 .borderedAlt {
   max-height: 3.125rem;
   height: 3.125rem;
-  transition: border-color 300ms ease;
+  transition:
+    border-color 300ms ease,
+    opacity 300ms ease;
 }
 
 .bordered {
