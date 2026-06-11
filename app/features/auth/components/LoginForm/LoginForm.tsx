@@ -42,6 +42,9 @@ export default function LoginForm() {
       if (res) {
         router.push("/profile");
         reset();
+        setTimeout(() => {
+          window.location.reload();
+        }, 100);
       } else {
         toast.error("Invalid email or password.");
       }

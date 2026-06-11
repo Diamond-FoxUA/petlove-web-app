@@ -8,7 +8,7 @@ export async function GET() {
     const token = cookieStore.get("accessToken")?.value;
 
     if (!token) {
-      return NextResponse.json({ error: "Unauthorized", status: 401 });
+      return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
     }
 
     const apiRes = await api.get("/users/current", {
@@ -17,7 +17,7 @@ export async function GET() {
       },
     });
 
-    return NextResponse.json(apiRes.data);
+    return NextResponse.json(apiRes);
   } catch (error) {
     console.error("Proxy current user error:", error);
     const axiosError = error as ApiError;

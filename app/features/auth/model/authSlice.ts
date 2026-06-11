@@ -24,7 +24,14 @@ export const getCurrentUserFull = createAsyncThunk(
   "auth/current/full",
   async (_, thunkAPI) => {
     try {
-      return await getCurrentFull();
+      const res = await getCurrentFull();
+
+      if (res && typeof res === "object" && "error" in res) {
+        const errorData = res as unknown as { error: string };
+        return thunkAPI.rejectWithValue(errorData.error || "Unauthorized");
+      }
+
+      return res;
     } catch (error) {
       const axiosError = error as ApiError;
 
