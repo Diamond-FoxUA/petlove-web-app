@@ -12,32 +12,36 @@ type NavProps = {
 export default function Nav({ variant, className }: NavProps) {
   const pathname = usePathname();
 
+  const checkActive = (path: string) => {
+    return pathname === path || pathname.startsWith(`${path}/`);
+  };
+
   return (
-    <nav aria-label="Main" className={className ? className : ""}>
+    <nav aria-label="Main" className={className || ""}>
       <ul className={css.list}>
         <li>
-          <LinkButton
-            color={variant}
-            href="/news"
-            isActive={pathname === "/news"}
+          <LinkButton 
+            color={variant} 
+            href="/news" 
+            isActive={checkActive("/news")}
           >
             News
           </LinkButton>
         </li>
         <li>
-          <LinkButton
-            color={variant}
-            href="/friends"
-            isActive={pathname === "/friends"}
+          <LinkButton 
+            color={variant} 
+            href="/friends" 
+            isActive={checkActive("/friends")}
           >
             Find pet
           </LinkButton>
         </li>
         <li>
-          <LinkButton
-            color={variant}
-            href="/notices"
-            isActive={pathname === "/notices"}
+          <LinkButton 
+            color={variant} 
+            href="/notices" 
+            isActive={checkActive("/notices")}
           >
             Our friends
           </LinkButton>

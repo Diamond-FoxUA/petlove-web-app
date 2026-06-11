@@ -116,6 +116,7 @@ export default function LoginForm() {
                 className={`${css.statusIcon} ${css.iconSuccess}`}
               />
               <button
+                tabIndex={-1}
                 type="button"
                 className={css.hideInputbtn}
                 onClick={() => setShowPassword((prev) => !prev)}

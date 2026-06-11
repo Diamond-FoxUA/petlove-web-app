@@ -1,6 +1,6 @@
 "use client";
 import { usePathname } from "next/navigation";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 import css from "./Header.module.css";
 import useLoader from "../../hooks/useLoader";
@@ -27,6 +27,17 @@ export default function Header() {
   const { isAuthenticated, isLoading } = useAppSelector((state) => state.auth);
 
   const showLoader = useLoader(isLoading);
+
+  useEffect(() => {
+    const timerId = setTimeout(() => {
+      setIsMenuOpen(false);
+    }, 100);
+    
+    return () => {
+      clearTimeout(timerId);
+    }
+  }, [pathname]);
+
   if (showLoader) return <Loader />;
 
   return (

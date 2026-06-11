@@ -3,20 +3,20 @@
   justify-content: center;
   align-items: center;
 
-  min-width: 119px;
+  min-width: 7.4375rem;
   width: fit-content;
-  max-height: 42px;
-  padding: 15px 20px;
+  max-height: 2.625rem;
+  padding: 0.9375rem 1.25rem;
 
   border: 1px solid transparent;
-  border-radius: 30px;
+  border-radius: 1.875rem;
 
   cursor: pointer;
 
   color: var(--color-white);
   background-color: var(--color-black-lighter);
   font-weight: 400;
-  font-size: 14px;
+  font-size: 0.875rem;
   line-height: 129%;
   letter-spacing: -0.03em;
 
@@ -34,8 +34,7 @@
   background-color: var(--color-main);
   color: var(--color-white);
 }
-.primary:hover,
-.primary:focus {
+.primary:hover {
   background-color: var(--color-main-darker);
 }
 
@@ -43,26 +42,23 @@
   color: var(--color-main);
   background-color: var(--color-secondary);
 }
-.secondary:hover,
-.secondary:focus {
+.secondary:hover {
   background-color: var(--color-secondary-darker);
 }
 
 .bordered,
 .borderedAlt {
-  max-height: 50px;
-  height: 50px;
+  max-height: 3.125rem;
+  height: 3.125rem;
+  transition: border-color 300ms ease;
 }
 
 .bordered {
   color: var(--color-white);
   background-color: transparent;
   border-color: var(--color-gray);
-
-  transition: border-color 300ms ease;
 }
 .bordered:hover,
-.bordered:focus,
 .active {
   border-color: var(--color-white);
 }
@@ -74,7 +70,6 @@
 }
 
 .borderedAlt:hover,
-.borderedAlt:focus,
 .activeAlt {
   border-color: var(--color-main);
 }
@@ -83,8 +78,7 @@
   color: var(--color-black);
   background-color: var(--color-modalBtn-black);
 }
-.gray:hover,
-.gray:focus {
+.gray:hover {
   background-color: var(--color-black-lighter);
 }
 
@@ -93,39 +87,39 @@
 .auth {
   text-transform: uppercase;
   font-weight: 600;
-  font-size: 16px;
+  font-size: 1rem;
   line-height: 125%;
   letter-spacing: -0.03em;
 }
 
 .modal {
   font-weight: 600;
-  font-size: 14px;
+  font-size: 0.875rem;
   line-height: 129%;
   letter-spacing: -0.03em;
 
-  max-height: 42px;
+  max-height: 2.625rem;
   width: 100%;
-  max-width: 137px;
+  max-width: 8.5625rem;
 }
 
 @media screen and (min-width: 768px) {
   .default,
   .modal {
-    font-size: 16px;
+    font-size: 1rem;
     line-height: 125%;
-    max-height: 48px;
+    max-height: 3rem;
   }
 
   .auth {
-    max-height: 50px;
+    max-height: 3.125rem;
   }
 }
 
 @media screen and (min-width: 1280px) {
   .bordered,
   .borderedAlt {
-    min-width: 80px;
-    max-height: 50px;
+    min-width: 5rem;
+    max-height: 3.125rem;
   }
 }

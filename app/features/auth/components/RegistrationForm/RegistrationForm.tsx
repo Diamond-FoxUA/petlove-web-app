@@ -144,6 +144,7 @@ export default function RegistrationForm() {
                 className={`${css.statusIcon} ${css.iconSuccess}`}
               />
               <button
+                tabIndex={-1}
                 type="button"
                 className={css.hideInputbtn}
                 onClick={() => setShowPassword((prev) => !prev)}
@@ -183,6 +184,7 @@ export default function RegistrationForm() {
                 className={`${css.statusIcon} ${css.iconSuccess}`}
               />
               <button
+                tabIndex={-1}
                 type="button"
                 className={css.hideInputbtn}
                 onClick={() => setShowConfirmPassword((prev) => !prev)}

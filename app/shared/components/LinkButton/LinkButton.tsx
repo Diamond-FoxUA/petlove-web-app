@@ -30,10 +30,11 @@ export default function LinkButton({
   ]
     .filter(Boolean)
     .join(" ");
-
+  
+  const activeClass = color === "bordered" ? css.active : css.activeAlt;
 
   return (
-    <Link className={`${btnClass} ${isActive ? css.active : ""}`} href={href}>
+    <Link className={`${btnClass} ${isActive ? activeClass : ""}`} href={href}>
       {children}
     </Link>
   );

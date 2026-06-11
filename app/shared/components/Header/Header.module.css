@@ -1,6 +1,5 @@
 .header {
   display: flex;
-  justify-content: space-between;
   align-items: center;
   border-top-left-radius: 1.875rem;
   border-top-right-radius: 1.875rem;
@@ -28,6 +27,8 @@
 
   padding: 0.625rem 0 0.625rem 0;
   transition: transform 300ms ease;
+
+  margin-right: auto;
 }
 
 .logoLink:active {
@@ -42,6 +43,8 @@
   border: 1px solid transparent;
   background-color: transparent;
   stroke: white;
+
+  margin-left: 0.75rem;
 }
 
 .burgerBtn:active {
@@ -53,7 +56,13 @@
   height: 2rem;
 }
 
-.navContainer {
+.header nav[aria-label="Main"],
+.header nav[aria-label="Authentication"] {
+  display: none;
+}
+
+.header nav[aria-label="User"] button,
+.header nav[aria-label="User"] span {
   display: none;
 }
 
@@ -70,29 +79,44 @@
   .homeBg {
     padding: 1.6875rem 2rem;
   }
+  .homeBg nav[aria-label="User"] span {
+    color: var(--color-white);
+  }
 
   .burgerIcon {
     width: 2.25rem;
     height: 2.25rem;
   }
+
+  .header nav[aria-label="User"] button,
+  .header nav[aria-label="User"] span {
+    display: block;
+  }
+  .header nav[aria-label="User"] button {
+    min-width: 8.5rem;
+  }
+
+  .burgerBtn {
+    margin-left: 1rem;
+  }
 }
 
 @media screen and (min-width: 1280px) {
   .header {
+    justify-content: space-between;
     padding: 1.6875rem 4rem;
+  }
+
+  .logoLink {
+    margin-right: 0;
   }
 
   .burgerBtn {
     display: none;
   }
 
-  .navContainer {
+  .header nav[aria-label="Main"],
+  .header nav[aria-label="Authentication"] {
     display: flex;
-    gap: 6.875rem;
-  }
-
-  .navContainer > :last-child {
-    text-transform: uppercase;
-    font-weight: 600;
   }
 }

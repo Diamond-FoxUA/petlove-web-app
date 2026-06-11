@@ -3,10 +3,13 @@
 import { useSyncExternalStore, useRef, useEffect } from "react";
 import { createPortal } from "react-dom";
 import { usePathname } from "next/navigation";
+
 import css from "./MobileMenu.module.css";
 import Icon from "../Icon/Icon";
 import Nav from "../Nav/Nav";
 import AuthNav from "@/app/features/auth/components/AuthNav/AuthNav";
+import UserNav from "@/app/features/auth/components/UserNav/UserNav";
+import { useAppSelector } from "../../redux/hooks";
 
 interface MobileMenuProps {
   isOpen: boolean;
@@ -21,6 +24,8 @@ export default function MobileMenu({ isOpen, onClose }: MobileMenuProps) {
   const accentPath = ["/register", "/login", "/news", "/notices", "/friends"];
   const pathname = usePathname();
   const accentClass = accentPath.includes(pathname);
+
+  const { isAuthenticated } = useAppSelector((state) => state.auth);
 
   const isMounted = useSyncExternalStore(
     subscribe,
@@ -64,10 +69,7 @@ export default function MobileMenu({ isOpen, onClose }: MobileMenuProps) {
 
       <div className={css.contentContainer}>
         <Nav variant={accentClass ? "bordered" : "borderedAlt"} />
-        {/* Non Auth users */}
-        <div>
-          <AuthNav variant={accentClass ? "bordered" : "primary"} />
-        </div>
+        {!isAuthenticated ? <AuthNav /> : <UserNav />}
       </div>
     </div>,
     document.body,
