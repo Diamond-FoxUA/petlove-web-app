@@ -15,16 +15,15 @@
   border-radius: 50%;
   background-color: var(--color-secondary);
 
-  transition: transform 300ms ease;
+  transition: background-color 300ms ease;
 }
 
-.profileLink:hover,
-.profileLink:focus {
-  transform: scale(1.1);
+.profileLink:hover {
+  background-color: var(--color-secondary-darker);
 }
 
 .profileLink:active {
-  transform: scale(0.9);
+  opacity: .7;
 }
 
 .iconUser {

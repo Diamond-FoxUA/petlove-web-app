@@ -56,8 +56,7 @@
   background-color: transparent;
   border-color: var(--color-gray);
 }
-.bordered:hover,
-.bordered {
+.bordered:hover {
   color: var(--color-main);
   background-color: var(--color-secondary);
 }

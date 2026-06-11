@@ -119,4 +119,7 @@
   .header nav[aria-label="Authentication"] {
     display: flex;
   }
+  .header nav[aria-label="User"] ul button {
+    min-width: 119px;
+  }
 }
