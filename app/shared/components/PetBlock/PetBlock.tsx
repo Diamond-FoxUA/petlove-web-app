@@ -1,28 +1,49 @@
 import css from "./PetBlock.module.css";
 import Icon from "../Icon/Icon";
-import Image from "next/image";
-import type { StaticImageData } from "next/image";
-
-type ImageSrc = {
-  src: StaticImageData;
-};
+import { PETBLOCK_IMAGES } from "@/app/assets/images";
 
 type PetBlockProps = {
   alt: string;
-  mob: ImageSrc;
-  tab: ImageSrc;
-  desk: ImageSrc;
   isRegister?: boolean;
+  isAddPet?: boolean;
 };
 
 export default function PetBlock({
-  mob,
-  tab,
-  desk,
   alt,
   isRegister = true,
+  isAddPet = false,
 }: PetBlockProps) {
   const altStyles = alt.trim().toLowerCase().includes("dog");
+
+  const {
+    mobLog,
+    mobAddPet,
+    mobReg,
+    tabAddPet,
+    tabLog,
+    tabReg,
+    deskAddPet,
+    deskLog,
+    deskReg,
+  } = PETBLOCK_IMAGES;
+
+  let mob = null;
+  let tab = null;
+  let desk = null;
+
+  if (isRegister) {
+    mob = mobReg;
+    tab = tabReg;
+    desk = deskReg;
+  } else if (isAddPet) {
+    mob = mobAddPet;
+    tab = tabAddPet;
+    desk = deskAddPet;
+  } else {
+    mob = mobLog;
+    tab = tabLog;
+    desk = deskLog;
+  }
 
   return (
     <div className={`${css.background} ${altStyles ? css.altStyle : ""}`}>
@@ -46,29 +67,22 @@ export default function PetBlock({
           </div>
         </div>
       )}
-      <div className={css.picture}>
-        {/* mobile */}
-        <Image
-          className={`${css.image} ${css.mobileOnly}`}
-          src={mob.src}
-          alt={alt}
-          priority
+      <picture className={css.picture}>
+        <source
+          media="(min-width: 1280px)"
+          srcSet={`${desk.src1x} 1x, ${desk.src2x} 2x`}
         />
-        {/* tablet */}
-        <Image
-          className={`${css.image} ${css.tabletOnly}`}
-          src={tab.src}
-          alt={alt}
-          priority
+        <source
+          media="(min-width: 768px)"
+          srcSet={`${tab.src1x} 1x, ${tab.src2x} 2x`}
         />
-        {/* desktop */}
-        <Image
-          className={`${css.image} ${css.desktopOnly}`}
-          src={desk.src}
+        <img
+          className={css.image}
+          srcSet={`${mob.src1x} 1x, ${mob.src2x} 2x`}
           alt={alt}
-          priority
+          loading="eager"
         />
-      </div>
+      </picture>
     </div>
   );
 }

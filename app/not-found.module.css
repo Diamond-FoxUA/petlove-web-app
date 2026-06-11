@@ -41,11 +41,6 @@
   text-transform: none;
 }
 
-.tabletOnly,
-.desktopOnly {
-  display: none;
-}
-
 @media screen and (min-width: 768px) {
   .wrapper {
     min-height: 85dvh;
@@ -69,14 +64,6 @@
   .button {
     margin-top: 1.25rem;
   }
-
-  .mobileOnly {
-    display: none;
-  }
-
-  .tabletOnly {
-    display: block;
-  }
 }
 
 @media screen and (min-width: 1280px) {
@@ -88,11 +75,4 @@
     min-height: 79dvh;
   }
 
-  .tabletOnly {
-    display: none;
-  }
-
-  .desktopOnly {
-    display: block;
-  }
 }

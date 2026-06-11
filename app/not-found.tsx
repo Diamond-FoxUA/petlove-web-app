@@ -1,4 +1,3 @@
-import Image from "next/image";
 import css from "./not-found.module.css";
 import LinkButton from "./shared/components/LinkButton/LinkButton";
 import { NOTFOUND_CAT_IMG } from "./assets/images";
@@ -12,29 +11,22 @@ export default function NotFound() {
         <h1 className={css.heading}>
           4
           <span>
-            <div className={css.picture}>
-              {/* mobile */}
-              <Image
-                className={`${css.image} ${css.mobileOnly}`}
-                src={mob.src}
-                alt="A fluffy orange cat."
-                priority
+            <picture className={css.picture}>
+              <source
+                media="(min-width:1280px)"
+                srcSet={`${desk.src1x} 1x, ${desk.src2x} 2x`}
               />
-              {/* tablet */}
-              <Image
-                className={`${css.image} ${css.tabletOnly}`}
-                src={tab.src}
-                alt="A fluffy orange cat."
-                priority
+              <source
+                media="(min-width:768px)"
+                srcSet={`${tab.src1x} 1x, ${tab.src2x} 2x`}
               />
-              {/* desktop */}
-              <Image
-                className={`${css.image} ${css.desktopOnly}`}
-                src={desk.src}
+              <img
+                srcSet={`${mob.src1x} 1x, ${mob.src2x} 2x`}
                 alt="A fluffy orange cat."
-                priority
+                loading="eager"
+                className={css.image}
               />
-            </div>
+            </picture>
           </span>
           4
         </h1>

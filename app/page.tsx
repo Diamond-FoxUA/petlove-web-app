@@ -1,6 +1,5 @@
 import { HERO_IMAGES } from "./assets/images";
 import css from "./page.module.css";
-import Image from "next/image";
 
 export default function Home() {
   const { desk, tab, mob } = HERO_IMAGES;
@@ -16,29 +15,22 @@ export default function Home() {
           life with immeasurable joy and tenderness.
         </p>
       </div>
-      <div className={css.heroImageWrapper}>
-        {/* mobile */}
-        <Image
-          src={mob.src}
-          alt="A woman hugging her happy dog."
-          className={`${css.heroImage} ${css.mobileOnly}`}
-          priority
+      <picture className={css.heroImageWrapper}>
+        <source
+          media="(min-width:1280px)"
+          srcSet={`${desk.src1x} 1x, ${desk.src2x} 2x`}
         />
-        {/* tablet */}
-        <Image
-          src={tab.src}
-          alt="A woman hugging her happy dog."
-          className={`${css.heroImage} ${css.tabletOnly}`}
-          priority
+        <source
+          media="(min-width:768px)"
+          srcSet={`${tab.src1x} 1x, ${tab.src2x} 2x`}
         />
-        {/* desktop */}
-        <Image
-          src={desk.src}
+        <img
+          className={css.heroImage}
+          srcSet={`${mob.src1x} 1x, ${mob.src2x} 2x`}
           alt="A woman hugging her happy dog."
-          className={`${css.heroImage} ${css.desktopOnly}`}
-          priority
+          loading="eager"
         />
-      </div>
+      </picture>
     </section>
   );
 }

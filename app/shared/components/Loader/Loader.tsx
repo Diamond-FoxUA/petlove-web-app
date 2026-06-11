@@ -10,29 +10,21 @@ export default function Loader() {
   return (
     <div className={css.loaderContainer}>
       <div className={css.backgroundWrapper}>
-        <picture>
-          <Image
-            className={css.backgroundImgDesk}
-            width={1280}
-            height={800}
-            src={desk.src}
-            alt="A veterinarian checking a beagle's ear while a woman looks on and smiles."
+        <picture className={css.backgroundImg}>
+          <source
+            media="(min-width:1280px)"
+            srcSet={`${desk.src1x} 1x, ${desk.src2x} 2x`}
           />
-          <Image
-            className={css.backgroundImgTab}
-            width={768}
-            height={1024}
-            src={tab.src}
-            alt="A veterinarian checking a beagle's ear while a woman looks on and smiles."
+          <source
+            media="(min-width:768px)"
+            srcSet={`${tab.src1x} 1x, ${tab.src2x} 2x`}
           />
-          <Image
-            className={css.backgroundImgMob}
-            width={375}
-            height={812}
-            src={mob.src}
+          <img
+            srcSet={`${mob.src1x} 1x, ${mob.src2x} 2x`}
             alt="A veterinarian checking a beagle's ear while a woman looks on and smiles."
           />
         </picture>
+        
         <div className={css.loaderImg}>
           <Image
             src={loaderMob.src}
