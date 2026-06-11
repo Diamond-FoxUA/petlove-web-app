@@ -204,6 +204,8 @@ export default function RegistrationForm() {
 
       <ActionButton
         type="submit"
+        color="primary"
+        btnStyle="auth"
         className={css.submitBtn}
         disabled={isSubmitting}
       >

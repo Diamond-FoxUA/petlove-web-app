@@ -28,29 +28,8 @@
   gap: 0.5rem;
 }
 
-.btn:last-child {
-  color: var(--color-black);
-  background-color: var(--color-modalBtn-black);
-  opacity: 1;
-}
-
-.btn:last-child:hover,
-.btn:last-child:focus {
-  background-color: var(--color-black-lighter);
-}
-
-.btn {
-  width: 100%;
-  height: 2.625rem;
-  text-transform: capitalize;
-}
-
 @media screen and (min-width: 768px) {
   .title {
     font-size: 1.5rem;
-  }
-
-  .btn {
-    height: 3rem;
   }
 }

@@ -44,13 +44,13 @@ export default function ModalApproveAction({
       </h2>
       <div className={css.btnContainer}>
         <ActionButton
-          variant="primary"
+          btnStyle="modal"
           onClick={handleSignout}
           className={css.btn}
         >
           Yes
         </ActionButton>
-        <ActionButton variant="primary" onClick={onClose} className={css.btn}>
+        <ActionButton btnStyle="modal" color="gray" onClick={onClose} className={css.btn}>
           Cancel
         </ActionButton>
       </div>

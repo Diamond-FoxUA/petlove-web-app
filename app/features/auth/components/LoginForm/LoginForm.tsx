@@ -134,6 +134,8 @@ export default function LoginForm() {
       </div>
 
       <ActionButton
+        color="primary"
+        btnStyle="auth"
         type="submit"
         className={css.submitBtn}
         disabled={isSubmitting}

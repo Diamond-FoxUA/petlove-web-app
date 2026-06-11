@@ -1,33 +1,33 @@
 import { ComponentProps } from "react";
 import css from "./ActionButton.module.css";
 
-type Variant = "primary" | "secondary" | "bordered" | "circle";
+type ButtonColor = "primary" | "secondary" | "bordered" | "gray";
+type ButtonStyle = "auth" | "modal";
 
 type ActionButtonProps = {
-  variant?: Variant;
+  color?: ButtonColor;
+  btnStyle?: ButtonStyle;
 } & ComponentProps<"button">;
 
 export default function ActionButton({
-  variant = "primary",
+  color = "primary",
+  btnStyle,
   disabled,
   className = "",
   children,
   ...props
 }: ActionButtonProps) {
-  
+
   const buttonClass = [
     css.default,
-    css[variant],
+    css[color],     
+    btnStyle ? css[btnStyle] : "", 
     disabled ? css.disabled : "",
-    className 
+    className
   ].filter(Boolean).join(" ");
 
   return (
-    <button 
-      disabled={disabled} 
-      className={buttonClass} 
-      {...props}
-    >
+    <button disabled={disabled} className={buttonClass} {...props}>
       {children}
     </button>
   );

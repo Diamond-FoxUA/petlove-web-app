@@ -3,31 +3,37 @@
   justify-content: center;
   align-items: center;
 
-  height: 3.125rem;
-  border: none;
-  border-radius: 1.875rem;
-  padding: 0.9375rem 2.1875rem;
-  font-weight: 600;
-  font-size: 0.875rem;
+  min-width: 119px;
+  width: fit-content;
+  max-height: 42px;
+  padding: 15px 20px;
+
+  border: 1px solid transparent;
+  border-radius: 30px;
+
+  cursor: pointer;
+
+  color: var(--color-white);
+  background-color: var(--color-black-lighter);
+  font-weight: 400;
+  font-size: 14px;
   line-height: 129%;
   letter-spacing: -0.03em;
 
-  cursor: pointer;
   transition:
-    color 300ms ease-in,
-    background-color 300ms ease-in;
+    background-color 300ms ease,
+    opacity 300ms ease;
 }
-
 .default:active {
   opacity: 0.7;
 }
 
-.primary {
-  color: var(--color-white);
-  background-color: var(--color-main);
-  text-transform: uppercase;
-}
+/* color */
 
+.primary {
+  background-color: var(--color-main);
+  color: var(--color-white);
+}
 .primary:hover,
 .primary:focus {
   background-color: var(--color-main-darker);
@@ -43,41 +49,55 @@
 }
 
 .bordered {
-  background-color: var(--color-main);
-  border: 1px solid var(--color-gray);
-  text-transform: uppercase;
   color: var(--color-white);
+  background-color: transparent;
+  border-color: var(--color-gray);
 }
-
 .bordered:hover,
 .bordered:focus {
   color: var(--color-main);
   background-color: var(--color-secondary);
 }
 
-.disabled,
-.disabled:hover,
-.disabled:focus,
-.disabled:active {
-  background-color: gray;
-  opacity: 0.7;
+.gray {
+  color: var(--color-black);
+  background-color: var(--color-modalBtn-black);
+}
+.gray:hover,
+.gray:focus {
+  background-color: var(--color-black-lighter);
 }
 
-.circle {
-  display: flex;
-  justify-content: center;
-  align-items: center;
+/* textStyle */
 
-  width: 48px;
-  height: 48px;
-  padding: 0;
-
-  background-color: var(--color-secondary);
-  fill: transparent;
-  stroke: var(--color-main);
+.auth {
+  text-transform: uppercase;
+  font-weight: 600;
+  font-size: 16px;
+  line-height: 125%;
+  letter-spacing: -0.03em;
 }
 
-.circle:hover,
-.circle:focus {
-  background-color: var(--color-secondary-darker);
+.modal {
+  font-weight: 600;
+  font-size: 14px;
+  line-height: 129%;
+  letter-spacing: -0.03em;
+
+  max-height: 42px;
+  width: 100%;
+  max-width: 137px;
+}
+
+@media screen and (min-width:768px) {
+  .default,
+  .modal {
+    font-size: 16px;
+    line-height: 125%;
+    max-height: 48px;
+  }
+
+  .auth {
+    max-height: 50px;
+  }
 }
