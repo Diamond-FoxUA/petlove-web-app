@@ -43,8 +43,8 @@ export default function Modal({ children, onClose }: ModalProps) {
       onClick={handleBackdropClick}
     >
       <div className={css.modal}>
-        <button className={css.closeBtn}>
-          <Icon iconName="icon-cross" className={css.closeIcon}/>
+        <button className={css.closeBtn} onClick={onClose}>
+          <Icon iconName="icon-cross" className={css.closeIcon} />
         </button>
         {children}
       </div>

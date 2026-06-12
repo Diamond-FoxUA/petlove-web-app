@@ -6,7 +6,11 @@ import LogoutBtn from "../LogoutBtn/LogoutBtn";
 import ModalApproveAction from "../ModalApproveAction/ModalApproveAction";
 import css from "./UserNav.module.css";
 
-export default function UserNav() {
+type UserNavProps = {
+  btnColor?: "primary" | "secondary" | "bordered";
+}
+
+export default function UserNav({ btnColor }: UserNavProps) {
   const [isModalOpen, setIsModalOpen] = useState(false);
 
   return (
@@ -17,7 +21,7 @@ export default function UserNav() {
             <UserBar />
           </li>
           <li>
-            <LogoutBtn handleLogout={() => setIsModalOpen(true)} />
+            <LogoutBtn color={btnColor} handleLogout={() => setIsModalOpen(true)} />
           </li>
         </ul>
       </nav>

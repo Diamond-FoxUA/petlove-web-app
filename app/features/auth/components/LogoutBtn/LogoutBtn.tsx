@@ -1,16 +1,15 @@
 import ActionButton from "@/app/shared/components/ActionButton/ActionButton";
-import { usePathname } from "next/navigation";
 
 type LogoutBtnProps = {
   handleLogout: () => void;
+  color?: "primary" | "secondary" | "bordered";
 };
 
-export default function LogoutBtn({ handleLogout }: LogoutBtnProps) {
-  const pathname = usePathname();
+export default function LogoutBtn({ handleLogout, color = "bordered" }: LogoutBtnProps) {
 
   return (
     <ActionButton
-      color={pathname === "/" ? "bordered" : "primary"}
+      color={color}
       btnStyle="auth"
       onClick={handleLogout}
     >

@@ -69,7 +69,7 @@ export default function MobileMenu({ isOpen, onClose }: MobileMenuProps) {
 
       <div className={css.contentContainer}>
         <Nav variant={accentClass ? "bordered" : "borderedAlt"} />
-        {!isAuthenticated ? <AuthNav /> : <UserNav />}
+        {!isAuthenticated ? <AuthNav /> : <UserNav btnColor={accentClass ? "secondary" : "primary"} />}
       </div>
     </div>,
     document.body,

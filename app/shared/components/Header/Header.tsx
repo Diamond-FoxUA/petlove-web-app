@@ -32,10 +32,10 @@ export default function Header() {
     const timerId = setTimeout(() => {
       setIsMenuOpen(false);
     }, 100);
-    
+
     return () => {
       clearTimeout(timerId);
-    }
+    };
   }, [pathname]);
 
   if (showLoader) return <Loader />;
@@ -46,9 +46,15 @@ export default function Header() {
         <Link href="/" className={css.logoLink}>
           <Logo />
         </Link>
-        
+
         <Nav variant={navVariant} />
-        {!isAuthenticated ? <AuthNav variant={authVariant} /> : <UserNav />}
+        {!isAuthenticated ? (
+          <AuthNav variant={authVariant} />
+        ) : (
+          <UserNav
+            btnColor={backgroundClass === css.homeBg ? "bordered" : "primary"}
+          />
+        )}
 
         <button
           className={css.burgerBtn}
