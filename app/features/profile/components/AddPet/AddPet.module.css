@@ -1,11 +1,12 @@
 .link {
-  font-size: 1rem;
+  font-size: 0.875rem;
   line-height: 125%;
   min-width: 6.4375rem;
 }
 
 @media screen and (min-width: 768px) {
   .link {
+    font-size: 1rem;
     min-width: 7.375rem;
   }
 }
