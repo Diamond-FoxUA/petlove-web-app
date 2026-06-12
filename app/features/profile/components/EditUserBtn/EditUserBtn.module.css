@@ -1,0 +1,31 @@
+.editUserBtn {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  width: 2.375rem;
+  height: 2.375rem;
+
+  background-color: var(--color-secondary);
+  border-color: transparent;
+  border-radius: 50%;
+
+  cursor: pointer;
+  transition:
+    background-color 300ms ease,
+    opacity 300ms ease;
+}
+.editUserBtn:hover {
+  background-color: var(--color-secondary-darker);
+}
+.editUserBtn:active {
+  opacity: .7;
+}
+
+.editUserIcon {
+  width: 1.125rem;
+  height: 1.125rem;
+
+  stroke: var(--color-main);
+  fill: transparent;
+}
