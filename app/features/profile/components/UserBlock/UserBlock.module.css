@@ -1,0 +1,166 @@
+.userBlock {
+  display: flex;
+  flex-direction: column;
+}
+
+.avatarContainer {
+  display: flex;
+  flex-direction: column;
+}
+
+.userTag {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  padding: 0.625rem 0.875rem;
+  max-width: 5rem;
+  max-height: 2.375rem;
+  border-radius: 1.875rem;
+
+  color: var(--color-white);
+  background-color: var(--color-main);
+}
+
+.iconUser {
+  width: 1.125rem;
+  height: 1.125rem;
+
+  fill: var(--color-white);
+  stroke: var(--color-white);
+}
+
+.userAvatar {
+  border-radius: 50%;
+}
+
+.editUserAvatarBtn {
+  position: relative;
+  align-self: center;
+
+  width: 5.875rem;
+  height: 5.875rem;
+}
+.editUserAvatarBtn svg {
+  width: 2.5rem;
+  height: 2.5rem;
+
+  stroke: transparent;
+  fill: var(--color-main);
+}
+
+.editUserAvatarBtn::after {
+  content: "Upload photo";
+  text-decoration: underline;
+  color: var(--color-black);
+  font-size: 0.75rem;
+  line-height: 133%;
+  letter-spacing: -0.02em;
+
+  position: absolute;
+  bottom: -30%;
+
+  transition: color 300ms ease;
+}
+
+.editUserAvatarBtn:hover {
+  background-color: var(--color-secondary);
+}
+.editUserAvatarBtn:hover::after {
+  color: var(--color-black-placeholder);
+}
+
+.heading {
+  font-weight: 600;
+  font-size: 1rem;
+  line-height: 125%;
+  color: #2b2b2a;
+
+  margin-top: 3.25rem;
+  margin-bottom: 1.25rem;
+}
+
+.infoContainer {
+  display: flex;
+  flex-direction: column;
+  gap: 0.625rem;
+
+  margin-bottom: 2.5rem;
+}
+
+.infoContainer span {
+  display: block;
+  width: 100%;
+
+  border: 1px solid transparent;
+  padding: 0.75rem;
+  border-radius: 1.875rem;
+
+  font-size: 0.875rem;
+  line-height: 129%;
+  letter-spacing: -0.03em;
+  text-decoration-skip-ink: none;
+  color: var(--color-black);
+}
+
+.infoContainer .input {
+  border-color: var(--color-black-lighter);
+}
+.infoContainer .inputActive {
+  border-color: var(--color-main);
+}
+
+@media screen and (min-width: 768px) {
+  .editUserAvatarBtn,
+  .userAvatar {
+    width: 6.875rem;
+    height: 6.875rem;
+  }
+
+  .editUserAvatarBtn::after {
+    bottom: -25%;
+  }
+
+  .editUserAvatarBtn svg {
+    width: 3.125rem;
+    height: 3.125rem;
+  }
+
+  .infoContainer span {
+    letter-spacing: -0.02em;
+  }
+
+  .heading {
+    font-size: 1.125rem;
+    line-height: 133%;
+
+    margin-top: 2.875rem;
+  }
+
+  .infoContainer {
+    display: grid;
+    grid-template-columns: 19.0625rem 19.0625rem;
+    grid-template-rows: auto;
+    gap: 0.875rem;
+  }
+
+  .infoContainer span {
+    font-size: 1rem;
+    line-height: 125%;
+    letter-spacing: -0.03em;
+
+    padding: 1rem;
+  }
+}
+
+@media screen and (min-width: 1280px) {
+  .infoContainer {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .avatarContainer {
+    flex-direction: row;
+    gap: 5.3125rem;
+  }
+}
