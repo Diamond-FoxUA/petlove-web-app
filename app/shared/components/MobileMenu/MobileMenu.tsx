@@ -21,7 +21,7 @@ const getClientSnapshot = () => true;
 const getServerSnapshot = () => false;
 
 export default function MobileMenu({ isOpen, onClose }: MobileMenuProps) {
-  const accentPath = ["/register", "/login", "/news", "/notices", "/friends"];
+  const accentPath = ["/register", "/login", "/news", "/notices", "/friends", "/profile"];
   const pathname = usePathname();
   const accentClass = accentPath.includes(pathname);
 
