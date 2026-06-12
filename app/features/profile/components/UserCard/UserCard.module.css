@@ -1,0 +1,30 @@
+.userCardContainer {
+  position: relative;
+
+  background-color: var(--color-white);
+  border-radius: 1.875rem;
+  padding: 1.125rem 1.25rem 2.5rem 1.25rem;
+}
+
+.editUserBtn {
+  position: absolute;
+  top: 1.125rem;
+  right: 1.25rem;
+}
+
+@media screen and (min-width: 768px) {
+  .userCardContainer {
+    padding: 2.5rem;
+  }
+
+  .editUserBtn {
+    top: 2.5rem;
+    right: 2.5rem
+  }
+}
+
+@media screen and (min-width: 1280px) {
+  .userCardContainer {
+    max-width: 32.5rem;
+  }
+}
