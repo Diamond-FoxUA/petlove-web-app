@@ -211,7 +211,7 @@ export default function RegistrationForm() {
         className={css.submitBtn}
         disabled={isSubmitting}
       >
-        Registration
+        {isSubmitting ? "Registering..." : "Registration"}
       </ActionButton>
       <p className={css.loginText}>
         Already have an account?&nbsp;

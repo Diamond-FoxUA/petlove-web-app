@@ -141,7 +141,7 @@ export default function LoginForm() {
         className={css.submitBtn}
         disabled={isSubmitting}
       >
-        Log In
+        {isSubmitting ? "Logging In..." : "Log In"}
       </ActionButton>
       <p className={css.loginText}>
         Don’t have an account?&nbsp;

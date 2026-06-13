@@ -22,6 +22,7 @@ export default function Loader() {
           <img
             srcSet={`${mob.src1x} 1x, ${mob.src2x} 2x`}
             alt="A veterinarian checking a beagle's ear while a woman looks on and smiles."
+            loading="eager"
           />
         </picture>
         
@@ -32,6 +33,7 @@ export default function Loader() {
             width={190}
             height={50}
             className={css.logoImgMob}
+            loading="eager"
           />
           <Image
             src={loaderTab.src}
@@ -39,6 +41,7 @@ export default function Loader() {
             width={374}
             height={100}
             className={css.logoImgTab}
+            loading="eager"
           />
         </div>
       </div>

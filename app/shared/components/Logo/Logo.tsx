@@ -14,7 +14,7 @@ export default function Logo () {
   return (
     <picture>
       <source srcSet={desktopSrc} media="(min-width: 768px)"/>
-      <img className={css.logo} src={mobSrc} alt="Petlove Icon" />
+      <img className={css.logo} src={mobSrc} alt="Petlove Icon" loading="eager"/>
     </picture>
   )
 }
