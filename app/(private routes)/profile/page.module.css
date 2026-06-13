@@ -1,0 +1,9 @@
+.profileContainer {
+  padding-bottom: 3.5rem;
+}
+
+@media screen and (min-width: 768px) {
+  .profileContainer {
+    padding-bottom: 3.75rem;
+  }
+}
