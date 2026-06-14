@@ -25,6 +25,11 @@
   letter-spacing: -0.02em;
 }
 
+
+.friendLogoImg {
+  border-radius: 50%;
+}
+
 .title {
   font-weight: 600;
   line-height: 125%;
