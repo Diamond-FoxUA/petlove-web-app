@@ -10,13 +10,13 @@
 @media screen and (min-width: 768px) {
   .friendsContainer {
     gap: 2.75rem;
-    padding-top: 5.3125rem;
+    padding-top: 3.3125rem;
   }
 }
 
 @media screen and (min-width: 1280px) {
   .friendsContainer {
-    padding: 6rem 4rem 5rem 4rem;
+    padding: 2rem 4rem 5rem 4rem;
     gap: 3.75rem;
   }
 }
