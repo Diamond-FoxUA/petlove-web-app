@@ -74,7 +74,7 @@ export default function FriendsItem({
                   {email}
                 </Link>
               ) : (
-                <span className={css.colorText}>Phone only</span>
+                <span className={css.colorText}>phone only</span>
               )}
             </span>
           </li>
@@ -86,7 +86,7 @@ export default function FriendsItem({
                   {address.split(",")[0].trim()}
                 </Link>
               ) : (
-                <span className={css.colorText}>Website only</span>
+                <span className={css.colorText}>website only</span>
               )}
             </span>
           </li>
@@ -98,7 +98,7 @@ export default function FriendsItem({
                   {formatPhoneNumber(phone)}
                 </Link>
               ) : (
-                <span className={css.colorText}>Email only</span>
+                <span className={css.colorText}>email only</span>
               )}
             </span>
           </li>
