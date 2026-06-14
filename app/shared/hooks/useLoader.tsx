@@ -4,7 +4,7 @@ import { useState, useEffect } from "react";
 
 export default function useLoader(isLoading: boolean) {
   const [showLoader, setShowLoader] = useState(isLoading);
-
+  
   useEffect(() => {
     const timerShowLoader = setTimeout(() => {
       setShowLoader(true);

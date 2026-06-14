@@ -1,0 +1,36 @@
+.sectionContainer {
+  padding-top: 2rem;
+  padding-bottom: 5rem;
+}
+
+.newsHeader {
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+
+  margin-bottom: 1.5rem;
+}
+
+@media screen and (min-width: 768px) {
+  .sectionContainer {
+    padding-top: 4.1875rem;
+  }
+
+  .newsHeader {
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: flex-end;
+
+    margin-bottom: 2.75rem;
+  }
+}
+
+@media screen and (min-width:1280px) {
+  .sectionContainer {
+    padding: 4.3125rem 4rem 5rem 4rem;
+  }
+
+  .newsHeader {
+    margin-bottom: 3.75rem;
+  }
+}

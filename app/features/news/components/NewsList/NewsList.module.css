@@ -1,0 +1,38 @@
+.newsList {
+  display: grid;
+  gap: 24px;
+}
+
+.message,
+.message {
+  display: block;
+  max-width: 220px;
+
+  margin: 25dvh auto 0 auto;
+
+  line-height: 129%;
+  letter-spacing: -0.02em;
+  text-align: center;
+  color: var(--color-black);
+}
+
+@media screen and (min-width: 768px) {
+  .newsList {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .newsItem {
+    display: grid;
+    grid-row: span 4;
+    grid-template-rows: subgrid;
+  }
+}
+
+@media screen and (min-width: 1280px) {
+  .newsList {
+    grid-template-columns: repeat(3, 1fr);
+
+    column-gap: 2.1875rem;
+    row-gap: 2.5rem;
+  }
+}
