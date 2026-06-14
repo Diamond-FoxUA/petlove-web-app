@@ -44,7 +44,7 @@ export default function Modal({ children, onClose }: ModalProps) {
     >
       <div className={css.modal}>
         <button className={css.closeBtn} onClick={onClose}>
-          <Icon iconName="icon-cross" className={css.closeIcon} />
+          <Icon iconName="icon-cross-small" className={css.closeIcon} />
         </button>
         {children}
       </div>

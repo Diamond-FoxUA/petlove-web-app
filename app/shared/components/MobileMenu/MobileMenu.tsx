@@ -64,7 +64,7 @@ export default function MobileMenu({ isOpen, onClose }: MobileMenuProps) {
         onClick={onClose}
         aria-label="Close menu"
       >
-        <Icon iconName="icon-cross" className={css.crossIcon} />
+        <Icon iconName="icon-cross-small" className={css.crossIcon} />
       </button>
 
       <div className={css.contentContainer}>
