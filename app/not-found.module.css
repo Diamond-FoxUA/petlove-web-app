@@ -42,9 +42,18 @@
   font-weight: 500;
 }
 
+.container {
+  padding-bottom: 0.625rem;
+}
+
 @media screen and (min-width: 768px) {
+  .container {
+    padding-bottom: 2rem;
+  }
+
   .wrapper {
-    min-height: 85dvh;
+    min-height: 100dvh;
+    border-radius: 3.75rem;
   }
 
   .heading {
@@ -75,5 +84,4 @@
   .wrapper {
     min-height: 79dvh;
   }
-
 }

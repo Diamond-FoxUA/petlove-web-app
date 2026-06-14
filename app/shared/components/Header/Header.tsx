@@ -41,7 +41,7 @@ export default function Header() {
   if (showLoader) return <Loader />;
 
   return (
-    <header className="container">
+    <header className={backgroundClass === css.homeBg ? "container" : ""}>
       <div className={`${css.header} ${backgroundClass}`}>
         <Link href="/" className={css.logoLink}>
           <Logo />

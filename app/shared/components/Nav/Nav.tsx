@@ -31,8 +31,8 @@ export default function Nav({ variant, className }: NavProps) {
         <li>
           <LinkButton 
             color={variant} 
-            href="/friends" 
-            isActive={checkActive("/friends")}
+            href="/notices" 
+            isActive={checkActive("/notices")}
           >
             Find pet
           </LinkButton>
@@ -40,8 +40,8 @@ export default function Nav({ variant, className }: NavProps) {
         <li>
           <LinkButton 
             color={variant} 
-            href="/notices" 
-            isActive={checkActive("/notices")}
+            href="/friends" 
+            isActive={checkActive("/friends")}
           >
             Our friends
           </LinkButton>
