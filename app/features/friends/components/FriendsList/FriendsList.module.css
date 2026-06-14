@@ -1,0 +1,40 @@
+.message {
+  font-size: 0.875rem;
+  line-height: 129%;
+  letter-spacing: -0.02em;
+  text-align: center;
+  color: var(--color-black);
+
+  padding-top: 25dvh;
+}
+
+.textAccent {
+  color: var(--color-error);
+}
+
+.friendsList {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+@media screen and (min-width: 768px) {
+  .friendsList {
+    display: grid;
+    grid-template-columns: auto auto;
+  }
+
+  .message {
+    font-size: 1rem;
+    line-height: 125%;
+  }
+}
+
+@media screen and (min-width: 1280px) {
+  .friendsList {
+    grid-template-columns: auto auto auto;
+  }
+  .message {
+    padding-top: 20dvh;
+  }
+}

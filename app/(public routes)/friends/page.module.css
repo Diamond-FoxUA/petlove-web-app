@@ -1,0 +1,22 @@
+.friendsContainer {
+  display: flex;
+  flex-direction: column;
+  gap: 2.5rem;
+
+  padding-top: 2rem;
+  padding-bottom: 5rem;
+}
+
+@media screen and (min-width: 768px) {
+  .friendsContainer {
+    gap: 2.75rem;
+    padding-top: 5.3125rem;
+  }
+}
+
+@media screen and (min-width: 1280px) {
+  .friendsContainer {
+    padding: 6rem 4rem 5rem 4rem;
+    gap: 3.75rem;
+  }
+}
