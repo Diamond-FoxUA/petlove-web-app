@@ -7,7 +7,7 @@ export const newsApi = createApi({
   baseQuery: fetchBaseQuery({ baseUrl: process.env.NEXT_PUBLIC_API_URL }),
   endpoints: (builder) => ({
     getNews: builder.query<NewsResponse, GetNewsArgs>({
-      query: ({ keyword, page }) => `news?keyword=${keyword}&page=${page}`,
+      query: ({ keyword, page, limit }) => `news?keyword=${keyword}&page=${page}&limit=${limit}`,
       keepUnusedDataFor: 300,
     }),
   })

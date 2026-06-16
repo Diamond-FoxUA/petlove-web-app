@@ -18,4 +18,5 @@ export interface NewsResponse {
 export interface GetNewsArgs {
   keyword: string;
   page: number;
+  limit: number;
 }

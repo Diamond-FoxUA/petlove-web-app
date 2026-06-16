@@ -7,10 +7,10 @@ export default async function FriendsList() {
 
   if (data.length === 0)
     return (
-      <span className={css.message}>
-        Oops, <span className={css.textAccent}>something went wrong.</span> Try
-        again later.
-      </span>
+      <p role="status" aria-live="polite" className={css.message}>
+        Oops, <strong className={css.textAccent}>something went wrong.</strong>{" "}
+        Try again later.
+      </p>
     );
 
   return (

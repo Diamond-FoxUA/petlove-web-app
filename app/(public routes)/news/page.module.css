@@ -1,4 +1,7 @@
 .sectionContainer {
+  display: flex;
+  flex-direction: column;
+
   padding-top: 2rem;
   padding-bottom: 5rem;
 }
@@ -8,12 +11,13 @@
   flex-direction: column;
   gap: 1.25rem;
 
-  margin-bottom: 1.5rem;
+  padding-bottom: 1.5rem;
 }
 
 @media screen and (min-width: 768px) {
   .sectionContainer {
     padding-top: 4.1875rem;
+    padding-bottom: 5.5rem;
   }
 
   .newsHeader {
@@ -21,7 +25,7 @@
     justify-content: space-between;
     align-items: flex-end;
 
-    margin-bottom: 2.75rem;
+    padding-bottom: 2.75rem;
   }
 }
 
@@ -31,6 +35,6 @@
   }
 
   .newsHeader {
-    margin-bottom: 3.75rem;
+    padding-bottom: 3.75rem;
   }
 }

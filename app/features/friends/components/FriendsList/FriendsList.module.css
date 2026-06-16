@@ -10,6 +10,7 @@
 
 .textAccent {
   color: var(--color-error);
+  font-style: normal;
 }
 
 .friendsList {
