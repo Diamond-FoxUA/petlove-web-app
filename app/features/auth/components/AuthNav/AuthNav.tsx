@@ -9,19 +9,29 @@ type AuthNavProps = {
 
 export default function AuthNav({ variant }: AuthNavProps) {
   return (
-    <nav aria-label="Authentication" className={css.nav}>
+    <div className={css.authGroup}>
       <ul className={css.list}>
         <li className={css.item}>
-          <LinkButton color={variant ? variant : "primary"} btnStyle="auth" href="/login" className={css.button}>
+          <LinkButton
+            color={variant ? variant : "primary"}
+            btnStyle="auth"
+            href="/login"
+            className={css.button}
+          >
             Log in
           </LinkButton>
         </li>
         <li className={css.item}>
-          <LinkButton color="secondary" btnStyle="auth" href="/register" className={css.button}>
+          <LinkButton
+            color="secondary"
+            btnStyle="auth"
+            href="/register"
+            className={css.button}
+          >
             Registration
           </LinkButton>
         </li>
       </ul>
-    </nav>
+    </div>
   );
 }

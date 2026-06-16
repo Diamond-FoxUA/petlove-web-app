@@ -15,7 +15,7 @@ export default function UserNav({ btnColor }: UserNavProps) {
 
   return (
     <>
-      <nav aria-label="User">
+      <div className="userProfileContainer">
         <ul className={css.list}>
           <li>
             <UserBar />
@@ -24,7 +24,7 @@ export default function UserNav({ btnColor }: UserNavProps) {
             <LogoutBtn color={btnColor} handleLogout={() => setIsModalOpen(true)} />
           </li>
         </ul>
-      </nav>
+      </div>
 
       {isModalOpen && (
         <ModalApproveAction onClose={() => setIsModalOpen(false)} />

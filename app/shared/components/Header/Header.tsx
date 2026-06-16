@@ -43,7 +43,11 @@ export default function Header() {
   return (
     <header className={backgroundClass === css.homeBg ? "container" : ""}>
       <div className={`${css.header} ${backgroundClass}`}>
-        <Link href="/" className={css.logoLink}>
+        <Link
+          href="/"
+          className={css.logoLink}
+          aria-label="Go to main page Petlove"
+        >
           <Logo />
         </Link>
 
@@ -60,6 +64,9 @@ export default function Header() {
           className={css.burgerBtn}
           onClick={() => setIsMenuOpen(true)}
           type="button"
+          aria-expanded={isMenuOpen}
+          aria-controls="mobile-menu"
+          aria-label="Open mobile menu"
         >
           <Icon iconName="icon-menu" className={css.burgerIcon} />
         </button>

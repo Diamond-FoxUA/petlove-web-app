@@ -54,24 +54,26 @@ export default function MobileMenu({ isOpen, onClose }: MobileMenuProps) {
   if (!isMounted) return null;
 
   return createPortal(
-    <div
+    <aside
+      id="mobile-menu"
       ref={wrapperRef}
+      aria-hidden={!isOpen}
       className={`${css.wrapper} ${isOpen ? css.isOpen : ""} ${accentClass ? css.accentBg : css.whiteBg}`}
     >
       <button
         type="button"
         className={css.closeBtn}
         onClick={onClose}
-        aria-label="Close menu"
+        aria-label="Close mobile menu"
       >
         <Icon iconName="icon-cross-small" className={css.crossIcon} />
       </button>
 
       <div className={css.contentContainer}>
-        <Nav variant={accentClass ? "bordered" : "borderedAlt"} />
+        <Nav variant={accentClass ? "bordered" : "borderedAlt"} isMobile/>
         {!isAuthenticated ? <AuthNav /> : <UserNav btnColor={accentClass ? "secondary" : "primary"} />}
       </div>
-    </div>,
+    </aside>,
     document.body,
   );
 }

@@ -59,13 +59,13 @@
   height: 2rem;
 }
 
-.header nav[aria-label="Main"],
-.header nav[aria-label="Authentication"] {
+.header nav[aria-label="Desktop main navigation"],
+.header :global(.authGroup) {
   display: none;
 }
 
-.header nav[aria-label="User"] button,
-.header nav[aria-label="User"] span {
+.header :global(.userProfileContainer) button,
+.header :global(.userProfileContainer) span {
   display: none;
 }
 
@@ -84,7 +84,7 @@
   .homeBg {
     padding: 1.6875rem 2rem;
   }
-  .homeBg nav[aria-label="User"] span {
+  .homeBg :global(.userProfileContainer) span {
     color: var(--color-white);
   }
 
@@ -93,11 +93,11 @@
     height: 2.25rem;
   }
 
-  .header nav[aria-label="User"] button,
-  .header nav[aria-label="User"] span {
+  .header :global(.userProfileContainer) button,
+  .header :global(.userProfileContainer) span {
     display: block;
   }
-  .header nav[aria-label="User"] button {
+  .header :global(.userProfileContainer) button {
     min-width: 8.5rem;
   }
 
@@ -121,11 +121,11 @@
     display: none;
   }
 
-  .header nav[aria-label="Main"],
-  .header nav[aria-label="Authentication"] {
+  .header nav[aria-label="Desktop main navigation"],
+  .header :global(.authGroup) {
     display: flex;
   }
-  .header nav[aria-label="User"] ul button {
+  .header :global(.userProfileContainer) ul button {
     min-width: 119px;
   }
 }

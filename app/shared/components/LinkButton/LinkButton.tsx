@@ -2,7 +2,12 @@ import Link from "next/link";
 import { ReactNode } from "react";
 import css from "./LinkButton.module.css";
 
-type ButtonColor = "primary" | "secondary" | "bordered" | "borderedAlt" | "gray";
+type ButtonColor =
+  | "primary"
+  | "secondary"
+  | "bordered"
+  | "borderedAlt"
+  | "gray";
 type ButtonStyle = "auth" | "modal";
 
 type LinkButtonProps = {
@@ -12,6 +17,7 @@ type LinkButtonProps = {
   color?: ButtonColor;
   btnStyle?: ButtonStyle;
   className?: string;
+  ariaCurrent?: "page";
 };
 
 export default function LinkButton({
@@ -21,6 +27,7 @@ export default function LinkButton({
   color = "primary",
   btnStyle,
   className,
+  ariaCurrent,
 }: LinkButtonProps) {
   const btnClass = [
     css.default,
@@ -30,11 +37,15 @@ export default function LinkButton({
   ]
     .filter(Boolean)
     .join(" ");
-  
+
   const activeClass = color === "bordered" ? css.active : css.activeAlt;
 
   return (
-    <Link className={`${btnClass} ${isActive ? activeClass : ""}`} href={href}>
+    <Link
+      className={`${btnClass} ${isActive ? activeClass : ""}`}
+      href={href}
+      aria-current={ariaCurrent}
+    >
       {children}
     </Link>
   );
