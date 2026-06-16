@@ -1,0 +1,92 @@
+.petsItem {
+  position: relative;
+
+  display: flex;
+  gap: 0.875rem;
+  width: 100%;
+
+  border: 1px solid #2626261a;
+  padding: 1rem;
+  background-color: none;
+}
+
+.deleteBtn {
+  position: absolute;
+  top: 0.75rem;
+  right: 0.75rem;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  width: 1.875rem;
+  height: 1.875rem;
+
+  border: none;
+  border-radius: 50%;
+  background-color: var(--color-secondary);
+
+  transition:
+    background-color 300ms ease,
+    opacity 300ms ease;
+  cursor: pointer;
+}
+.deleteBtn:hover {
+  background-color: var(--color-secondary-darker);
+}
+.deleteBtn:active {
+  opacity: 0.7;
+}
+.deleteBtn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.trashIcon {
+  width: 1rem;
+  height: 1rem;
+
+  stroke: var(--color-main);
+}
+
+.petImage {
+  width: 66px;
+  height: 66px;
+  border-radius: 50%;
+  background-color: var(--color-black-placeholder);
+}
+
+.petTitle {
+  font-weight: 600;
+  font-size: 0.875rem;
+  line-height: 129%;
+  color: #2b2b2a;
+
+  margin-bottom: 0.5rem;
+}
+
+.petDescriptionList {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.petDescriptionItem {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+
+.descKey {
+  font-size: 0.625rem;
+  line-height: 140%;
+  letter-spacing: -0.02em;
+  color: var(--color-black-placeholder);
+}
+
+.descData {
+  font-size: 0.75rem;
+  line-height: 117%;
+  letter-spacing: -0.02em;
+  color: var(--color-black);
+}

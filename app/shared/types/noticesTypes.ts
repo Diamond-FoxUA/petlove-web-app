@@ -1,5 +1,5 @@
 export interface Notice {
-  id: string;
+  _id: string;
   species: string;
   category: string;
   title: string;
@@ -16,7 +16,7 @@ export interface Notice {
 }
 
 export interface Pet {
-  id: string;
+  _id: string;
   name: string;
   title: string;
   imgURL: string;

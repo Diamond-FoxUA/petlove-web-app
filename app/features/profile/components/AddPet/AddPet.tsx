@@ -8,7 +8,7 @@ export default function AddPet() {
       href="/add-pet"
       aria-label="Add a new pet profile"
     >
-      Add Pet <span aria-hidden="true">+</span>
+      Add Pet&nbsp;<span aria-hidden="true">+</span>
     </LinkButton>
   );
 }

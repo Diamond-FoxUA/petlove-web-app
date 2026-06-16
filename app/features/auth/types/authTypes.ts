@@ -1,7 +1,7 @@
 import type { Notice, Pet } from "@/app/shared/types/noticesTypes";
 
 export interface User {
-  id: string;
+  _id: string;
   name: string;
   token: string;
   noticesFavourites: Notice[];
