@@ -12,12 +12,10 @@
   display: flex;
   justify-content: center;
   align-items: center;
-
   padding: 0.625rem 0.875rem;
   max-width: 5rem;
   max-height: 2.375rem;
   border-radius: 1.875rem;
-
   color: var(--color-white);
   background-color: var(--color-main);
 }
@@ -25,7 +23,6 @@
 .iconUser {
   width: 1.125rem;
   height: 1.125rem;
-
   fill: var(--color-white);
   stroke: var(--color-white);
 }
@@ -37,14 +34,12 @@
 .editUserAvatarBtn {
   position: relative;
   align-self: center;
-
   width: 5.875rem;
   height: 5.875rem;
 }
 .editUserAvatarBtn svg {
   width: 2.5rem;
   height: 2.5rem;
-
   stroke: transparent;
   fill: var(--color-main);
 }
@@ -56,10 +51,8 @@
   font-size: 0.75rem;
   line-height: 133%;
   letter-spacing: -0.02em;
-
   position: absolute;
   bottom: -30%;
-
   transition: color 300ms ease;
 }
 
@@ -75,7 +68,6 @@
   font-size: 1rem;
   line-height: 125%;
   color: #2b2b2a;
-
   margin-top: 3.25rem;
   margin-bottom: 1.25rem;
 }
@@ -84,18 +76,15 @@
   display: flex;
   flex-direction: column;
   gap: 0.625rem;
-
   margin-bottom: 2.5rem;
 }
 
-.infoContainer span {
+.infoContainer dd {
   display: block;
   width: 100%;
-
   border: 1px solid transparent;
   padding: 0.75rem;
   border-radius: 1.875rem;
-
   font-size: 0.875rem;
   line-height: 129%;
   letter-spacing: -0.03em;
@@ -126,14 +115,16 @@
     height: 3.125rem;
   }
 
-  .infoContainer span {
+  .infoContainer dd {
     letter-spacing: -0.02em;
+    font-size: 1rem;
+    line-height: 125%;
+    padding: 1rem;
   }
 
   .heading {
     font-size: 1.125rem;
     line-height: 133%;
-
     margin-top: 2.875rem;
   }
 
@@ -142,14 +133,6 @@
     grid-template-columns: 19.0625rem 19.0625rem;
     grid-template-rows: auto;
     gap: 0.875rem;
-  }
-
-  .infoContainer span {
-    font-size: 1rem;
-    line-height: 125%;
-    letter-spacing: -0.03em;
-
-    padding: 1rem;
   }
 }
 

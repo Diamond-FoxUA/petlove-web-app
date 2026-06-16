@@ -38,8 +38,10 @@ export default function ModalApproveAction({
 
   return (
     <Modal onClose={onClose}>
-      <span className={css.modalIcon}>🐈</span>
-      <h2 aria-labelledby="modal-title" className={css.title}>
+      <span className={css.modalIcon} aria-hidden="true">
+        🐈
+      </span>
+      <h2 id="modal-headline" className={css.title}>
         Already leaving?
       </h2>
       <div className={css.btnContainer}>
@@ -47,10 +49,17 @@ export default function ModalApproveAction({
           btnStyle="modal"
           onClick={handleSignout}
           className={css.btn}
+          aria-label="Confirm log out and leave the platform"
         >
           Yes
         </ActionButton>
-        <ActionButton btnStyle="modal" color="gray" onClick={onClose} className={css.btn}>
+        <ActionButton
+          btnStyle="modal"
+          color="gray"
+          onClick={onClose}
+          className={css.btn}
+          aria-label="Close modal"
+        >
           Cancel
         </ActionButton>
       </div>

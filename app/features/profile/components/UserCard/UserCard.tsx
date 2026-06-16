@@ -14,11 +14,12 @@ export default function UserCard() {
   const [isEditModalOpen, setIsEditModalOpen] = useState(false);
 
   return (
-    <div className={css.userCardContainer}>
+    <article className={css.userCardContainer}>
       <EditUserBtn
         className={css.editUserBtn}
         iconName="icon-edit"
         onClick={() => setIsEditModalOpen(true)}
+        aria-label="Edit your user profile data"
       />
 
       <UserBlock />
@@ -36,6 +37,6 @@ export default function UserCard() {
       {/* {isEditModalOpen && (
         <ModalEditUser onClose={() => setIsEditModalOpen(false)}/>
       )} */}
-    </div>
+    </article>
   );
 }

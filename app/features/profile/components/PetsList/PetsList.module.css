@@ -17,6 +17,7 @@
 }
 
 .textAccent {
+  font-style: normal;
   color: var(--color-main);
 }
 

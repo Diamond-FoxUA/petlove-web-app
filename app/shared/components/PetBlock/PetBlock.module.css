@@ -59,6 +59,10 @@
   display: none;
 }
 
+.title {
+  font-style: normal;
+}
+
 @media screen and (min-width: 768px) {
   .background {
     height: 18.875rem;

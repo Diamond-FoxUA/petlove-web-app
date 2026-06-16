@@ -9,10 +9,10 @@ export default function PetsList() {
 
   if (user?.pets.length === 0)
     return (
-      <span className={css.message}>
-        It seems <span className={css.textAccent}>you haven&apos;t added any pets</span> to your profile yet. Click the
+      <p role="status" className={css.message}>
+        It seems <strong className={css.textAccent}>you haven&apos;t added any pets</strong> to your profile yet. Click the
         &quot;Add Pet&quot; button above to get started!
-      </span>
+      </p>
     );
 
   return (

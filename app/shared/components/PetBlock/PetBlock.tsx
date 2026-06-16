@@ -45,18 +45,33 @@ export default function PetBlock({
     desk = deskLog;
   }
 
+  const machineBirthday = isRegister ? "2021-10-18" : "2020-09-21";
+
   return (
-    <div className={`${css.background} ${altStyles ? css.altStyle : ""}`}>
-      <Icon className={css.backgroundElement} iconName="img-background" />
+    <aside
+      className={`${css.background} ${altStyles ? css.altStyle : ""}`}
+      aria-label="Featured pet presentation"
+    >
+      <Icon
+        className={css.backgroundElement}
+        iconName="img-background"
+        aria-hidden="true"
+      />
       {!altStyles && (
         <div className={css.infoCard}>
-          <span className={css.cardAvatar}>{isRegister ? "🐈" : "🐶"}</span>
+          <span className={css.cardAvatar} aria-hidden="true">
+            {isRegister ? "🐈" : "🐶"}
+          </span>
           <div className={css.text}>
             <div className={css.topText}>
-              <h2 className={css.heading}>{isRegister ? "Jack" : "Rich"}</h2>
+              <strong className={css.heading}>
+                {isRegister ? "Jack" : "Rich"}
+              </strong>
               <p className={css.bDay}>
-                <span className={css.accent}>Birthday:</span>
-                {isRegister ? "18.10.2021" : "21.09.2020"}
+                <span className={css.accent}>Birthday:</span>{" "}
+                <time dateTime={machineBirthday}>
+                  {isRegister ? "18.10.2021" : "21.09.2020"}
+                </time>
               </p>
             </div>
             <p className={css.paragraph}>
@@ -83,6 +98,6 @@ export default function PetBlock({
           loading="eager"
         />
       </picture>
-    </div>
+    </aside>
   );
 }

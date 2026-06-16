@@ -4,9 +4,12 @@ import FriendsList from "@/app/features/friends/components/FriendsList/FriendsLi
 
 export default function Friends() {
   return (
-    <section className={`container ${css.friendsContainer}`}>
-      <Title text="Our friends"/>
+    <section
+      className={`container ${css.friendsContainer}`}
+      aria-labelledby="friends-page-title"
+    >
+      <Title id="friends-page-title" text="Our friends" />
       <FriendsList />
     </section>
-  )
+  );
 }

@@ -61,36 +61,36 @@
   margin-top: auto;
 }
 
-.wrapper [aria-label="Authentication"] ul li a:first-child {
+.wrapper :global(.authGroup) ul li a:first-child {
   max-height: 42px;
 }
 
-.wrapper [aria-label="User"] ul  {
+.wrapper :global(.userProfileContainer) ul {
   justify-content: center;
 }
-.wrapper [aria-label="User"] ul li:first-child {
+.wrapper :global(.userProfileContainer) ul li:first-child {
   display: none;
 }
-.wrapper [aria-label="User"] ul li,
-.wrapper [aria-label="User"] ul li button {
+.wrapper :global(.userProfileContainer) ul li,
+.wrapper :global(.userProfileContainer) ul li button {
   width: 100%;
 }
 
-.wrapper.whiteBg [aria-label="User"] ul li button {
+.wrapper.whiteBg :global(.userProfileContainer) ul li button {
   font-weight: 600;
   font-size: 0.875rem;
   background-color: var(--color-main);
 }
-.wrapper.whiteBg [aria-label="User"] ul li button:hover {
+.wrapper.whiteBg :global(.userProfileContainer) ul li button:hover {
   color: var(--color-white);
   background-color: var(--color-main-darker);
 }
 
-.wrapper.accentBg [aria-label="User"] ul li button {
+.wrapper.accentBg :global(.userProfileContainer) ul li button {
   color: var(--color-main);
   background-color: var(--color-secondary);
 }
-.wrapper.accentBg [aria-label="User"] ul li button:hover {
+.wrapper.accentBg :global(.userProfileContainer) ul li button:hover {
   color: var(--color-main);
   background-color: var(--color-secondary-darker);
 }
@@ -114,7 +114,7 @@
     padding-top: 30dvh;
   }
 
-  .wrapper [aria-label="Authentication"] ul li a:first-child {
+  .wrapper :global(.authGroup) ul li a:first-child {
     max-height: 50px;
     width: fit-content;
     max-width: 149px;
