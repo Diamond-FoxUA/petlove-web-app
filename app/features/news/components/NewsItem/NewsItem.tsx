@@ -29,7 +29,7 @@ export default function NewsItem({
           src={imgUrl}
           width={335}
           height={190}
-          loading="lazy"
+          loading="eager"
           alt=""
         />
       </Link>

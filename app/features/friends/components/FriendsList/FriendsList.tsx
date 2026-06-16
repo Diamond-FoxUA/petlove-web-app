@@ -2,10 +2,19 @@ import css from "./FriendsList.module.css";
 import FriendsItem from "../FriendsItem/FriendsItem";
 import { getFriends } from "../../api/friendsHandler";
 
-export default async function FriendsList() {
-  const data = await getFriends();
+import type { Friend } from "../../types/friendsTypes";
 
-  if (data.length === 0)
+export default async function FriendsList() {
+  let data: Friend[] | [] = [];
+
+  try {
+    data = await getFriends();
+  } catch (error) {
+    console.error("Failed loading friends on server render: ", error);
+    data = [];
+  }
+
+  if (!data || data.length === 0)
     return (
       <p role="status" aria-live="polite" className={css.message}>
         Oops, <strong className={css.textAccent}>something went wrong.</strong>{" "}
@@ -16,17 +25,9 @@ export default async function FriendsList() {
   return (
     <ul className={css.friendsList}>
       {data.map((item) => (
-        <li key={item.title}>
+        <li key={item._id}>
           <FriendsItem
-            id={item.id}
-            imageUrl={item.imageUrl}
-            title={item.title}
-            email={item.email}
-            phone={item.phone}
-            url={item.url}
-            addressUrl={item.addressUrl}
-            address={item.address}
-            workDays={item.workDays}
+            friendData={item}
           />
         </li>
       ))}

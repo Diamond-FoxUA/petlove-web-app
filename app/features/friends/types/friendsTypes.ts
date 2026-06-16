@@ -6,7 +6,7 @@ export interface WorkDay {
 }
 
 export interface Friend {
-  id: string;
+  _id: string;
   title: string;
   url: string;
   addressUrl: string;

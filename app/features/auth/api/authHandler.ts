@@ -1,17 +1,19 @@
 import { nextServer } from "@/app/shared/api/nextServer";
 import { loginFormData, registrationFormData } from "../schemas/authSchema";
-import type { User, UserFull } from "../types/authTypes";
+import type { AuthResponse, User, UserFull } from "../types/authTypes";
 
-export const register = async (formData: registrationFormData) => {
+export const register = async (
+  formData: registrationFormData,
+): Promise<AuthResponse> => {
   const data = { ...formData };
   delete (data as Partial<registrationFormData>).confirmPassword;
 
-  const res = await nextServer.post<User>("users/signup", data);
+  const res = await nextServer.post<AuthResponse>("users/signup", data);
   return res.data;
 };
 
-export const login = async (data: loginFormData) => {
-  const res = await nextServer.post<User>("users/signin", data);
+export const login = async (data: loginFormData): Promise<AuthResponse> => {
+  const res = await nextServer.post<AuthResponse>("users/signin", data);
   return res.data;
 };
 
@@ -25,7 +27,7 @@ export const getCurrentUserFull = async (): Promise<UserFull> => {
   return res.data;
 };
 
-export const signoutUser = async () => {
-  const res = await nextServer.post("/users/signout");
+export const signoutUser = async (): Promise<{ message: string }> => {
+  const res = await nextServer.post<{ message: string }>("/users/signout");
   return res.data;
 };

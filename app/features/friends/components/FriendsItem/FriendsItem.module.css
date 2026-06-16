@@ -25,7 +25,6 @@
   letter-spacing: -0.02em;
 }
 
-
 .friendLogoImg {
   border-radius: 50%;
 }
@@ -50,11 +49,26 @@
   max-width: 12.25rem;
 }
 
-.infoText {
+.infoRow {
+  display: flex;
+  align-items: baseline;
+  gap: 0.25rem;
+  max-width: 100%;
+  overflow: hidden;
+}
+
+.infoLabel {
   font-size: 0.875rem;
   line-height: 129%;
   letter-spacing: -0.02em;
   color: #26262680;
+  white-space: nowrap;
+}
+
+.infoValue {
+  font-size: 0.875rem;
+  line-height: 129%;
+  letter-spacing: -0.02em;
 
   display: block;
   max-width: 100%;
@@ -70,12 +84,14 @@
 }
 
 .infoLink {
-  transform: opacity 300ms ease;
+  transition: opacity 300ms ease;
 }
+
 .infoLink:hover {
   text-decoration: underline;
   text-decoration-skip-ink: none;
 }
+
 .infoLink:active {
   opacity: 0.7;
 }
