@@ -8,7 +8,7 @@ export default function Home() {
     <section className="container">
       <div className={css.heroTextContainer}>
         <h1>
-          Take good <span className={css.accent}>care</span> of your small pets
+          Take good <em className={css.accent}>care</em> of your small pets
         </h1>
         <p>
           Choosing a pet for your home is a choice that is meant to enrich your

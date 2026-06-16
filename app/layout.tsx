@@ -50,10 +50,11 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className={`${manropeSans.variable}`}>
+    <html lang="en" className={`${manropeSans.variable}`} suppressHydrationWarning>
       <body>
         <ReduxProvider>
           <Toaster position="top-center" />
+          
           <Header />
           <main>{children}</main>
         </ReduxProvider>

@@ -22,7 +22,6 @@ export default function ActionButton({
     css.default,
     css[color],     
     btnStyle ? css[btnStyle] : "", 
-    disabled ? css.disabled : "",
     className
   ].filter(Boolean).join(" ");
 

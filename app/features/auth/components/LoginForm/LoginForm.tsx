@@ -59,10 +59,11 @@ export default function LoginForm() {
   };
 
   return (
-    <form className={css.form} onSubmit={handleSubmit(onSubmit)}>
-      <span className={css.formDescription}>
+    <form className={css.form} onSubmit={handleSubmit(onSubmit)} noValidate>
+      <p className={css.formDescription}>
         Welcome! Please enter your credentials to login to the platform:
-      </span>
+      </p>
+
       <div className={css.inputsWrapper}>
         <div>
           <div className={css.inputContainer}>
@@ -75,21 +76,34 @@ export default function LoginForm() {
               id="email"
               {...register("email")}
               placeholder=" "
+              autoComplete="username email"
+              aria-invalid={!!errors.email}
+              aria-describedby={errors.email ? "email-login-error" : undefined}
             />
-            <span className={css.floatingPlaceholder}>Email</span>
+            <span className={css.floatingPlaceholder} aria-hidden="true">
+              Email
+            </span>
             <div className={css.inputIconContainer}>
               <Icon
                 iconName="icon-cross"
                 className={`${css.statusIcon} ${css.iconError}`}
+                aria-hidden="true"
               />
               <Icon
                 iconName="icon-check"
                 className={`${css.statusIcon} ${css.iconSuccess}`}
+                aria-hidden="true"
               />
             </div>
           </div>
           {errors.email && (
-            <span className={css.errorMessage}>{errors.email?.message}</span>
+            <span
+              id="email-login-error"
+              role="alert"
+              className={css.errorMessage}
+            >
+              {errors.email?.message as string}
+            </span>
           )}
         </div>
 
@@ -104,32 +118,53 @@ export default function LoginForm() {
               id="password"
               {...register("password")}
               placeholder=" "
+              autoComplete="current-password"
+              aria-invalid={!!errors.password}
+              aria-describedby={
+                errors.password ? "password-login-error" : undefined
+              }
             />
-            <span className={css.floatingPlaceholder}>Password</span>
+            <span className={css.floatingPlaceholder} aria-hidden="true">
+              Password
+            </span>
             <div className={css.inputIconContainer}>
               <Icon
                 iconName="icon-cross"
                 className={`${css.statusIcon} ${css.iconError}`}
+                aria-hidden="true"
               />
               <Icon
                 iconName="icon-check"
                 className={`${css.statusIcon} ${css.iconSuccess}`}
+                aria-hidden="true"
               />
               <button
                 tabIndex={-1}
                 type="button"
                 className={css.hideInputbtn}
                 onClick={() => setShowPassword((prev) => !prev)}
+                aria-label={
+                  showPassword
+                    ? "Hide password string"
+                    : "Show plain text password"
+                }
               >
                 <Icon
                   iconName={showPassword ? "icon-eye" : "icon-eye-off"}
                   className={css.inputIcon}
+                  aria-hidden="true"
                 />
               </button>
             </div>
           </div>
           {errors.password && (
-            <span className={css.errorMessage}>{errors.password?.message}</span>
+            <span
+              id="password-login-error"
+              role="alert"
+              className={css.errorMessage}
+            >
+              {errors.password?.message as string}
+            </span>
           )}
         </div>
       </div>

@@ -8,7 +8,12 @@ export default function Loader() {
   const { mob, tab, desk } = LOADER_IMAGES;
 
   return (
-    <div className={css.loaderContainer}>
+    <div
+      className={css.loaderContainer}
+      role="dialog"
+      aria-modal="true"
+      aria-labelledby="loader-status"
+    >
       <div className={css.backgroundWrapper}>
         <picture className={css.backgroundImg}>
           <source
@@ -21,15 +26,19 @@ export default function Loader() {
           />
           <img
             srcSet={`${mob.src1x} 1x, ${mob.src2x} 2x`}
-            alt="A veterinarian checking a beagle's ear while a woman looks on and smiles."
+            alt=""
             loading="eager"
           />
         </picture>
-        
-        <div className={css.loaderImg}>
+
+        <div className={css.loaderImg} role="status" aria-live="polite">
+          <span id="loader-status" className="sr-only">
+            Loading Petlove application, please wait...
+          </span>
+
           <Image
             src={loaderMob.src}
-            alt="Petlove logo"
+            alt=""
             width={190}
             height={50}
             className={css.logoImgMob}
@@ -37,7 +46,7 @@ export default function Loader() {
           />
           <Image
             src={loaderTab.src}
-            alt="Petlove logo"
+            alt=""
             width={374}
             height={100}
             className={css.logoImgTab}

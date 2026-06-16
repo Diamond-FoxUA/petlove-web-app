@@ -17,6 +17,7 @@
 }
 
 .accent {
+  font-style: normal;
   color: var(--color-gray);
 }
 

@@ -6,11 +6,11 @@ export default function NotFound() {
   const { mob, tab, desk } = NOTFOUND_CAT_IMG;
 
   return (
-    <section className={`container ${css.container}`}>
+    <div className={`container ${css.container}`}>
       <div className={css.wrapper}>
-        <h1 className={css.heading}>
+        <h1 className={css.heading} aria-label="Error 404">
           4
-          <span>
+          <span aria-hidden>
             <picture className={css.picture}>
               <source
                 media="(min-width:1280px)"
@@ -35,6 +35,6 @@ export default function NotFound() {
           To home page
         </LinkButton>
       </div>
-    </section>
+    </div>
   );
 }
