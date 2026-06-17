@@ -1,0 +1,377 @@
+.fieldset {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+
+  border: none;
+}
+
+.genderWrapper {
+  position: relative;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  width: 2rem;
+  height: 2rem;
+  border-radius: 50%;
+
+  transition: opacity 300ms ease;
+  cursor: pointer;
+}
+.genderWrapper:hover {
+  opacity: 0.7;
+}
+
+.radioInput {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  border: 0;
+}
+
+.genderIcon {
+  width: 1.25rem;
+  height: 1.25rem;
+  fill: transparent;
+}
+
+.femaleInput {
+  background-color: var(--color-red-lighter);
+}
+.femaleInput:has(.radioInput:checked) {
+  background-color: var(--color-red);
+  opacity: 1 !important;
+}
+
+.femaleIcon {
+  stroke: var(--color-red);
+}
+.femaleInput:has(.radioInput:checked) .femaleIcon,
+.maleInput:has(.radioInput:checked) .maleIcon {
+  stroke: var(--color-white);
+}
+
+.maleInput {
+  background-color: var(--color-blue-lighter);
+}
+.maleInput:has(.radioInput:checked) {
+  background-color: var(--color-blue);
+  opacity: 1 !important;
+}
+
+.maleIcon {
+  stroke: var(--color-blue);
+}
+
+.multipleInput {
+  background-color: var(--color-secondary);
+}
+.multipleInput:has(.radioInput:checked) {
+  background-color: var(--color-main);
+  opacity: 1 !important;
+}
+
+.multipleIcon {
+  fill: var(--color-main);
+}
+.multipleInput:has(.radioInput:checked) .multipleIcon {
+  fill: var(--color-white);
+}
+
+.petAvatarPlaceholder {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  width: 4.25rem;
+  height: 4.25rem;
+  border: none;
+  border-radius: 50%;
+
+  background-color: var(--color-secondary);
+
+  margin: 0.5rem auto 1rem auto;
+}
+.petAvatar {
+  width: 4.25rem;
+  height: 4.25rem;
+  border: none;
+  border-radius: 50%;
+  background-color: var(--color-black-placeholder);
+
+  margin: 0.5rem auto 1rem auto;
+}
+
+.pawIcon {
+  width: 34px;
+  height: 34px;
+
+  fill: var(--color-main);
+}
+
+.inputContainer {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.inputGroup {
+  display: flex;
+  gap: 0.5rem;
+}
+
+.input,
+.visualCapsule {
+  display: flex;
+  align-items: center;
+
+  width: 100%;
+  height: 2.625rem;
+  max-height: 2.625rem;
+  padding: 0.5625rem 0.625rem;
+
+  border: 1px solid var(--color-black-lighter);
+  border-radius: 1.875rem;
+  outline: none;
+
+  background-color: transparent;
+
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 129%;
+  letter-spacing: -0.02em;
+  color: var(--color-black);
+}
+.input::placeholder {
+  color: var(--color-black-placeholder);
+}
+.input:focus {
+  border-color: var(--color-secondary-darker);
+}
+.input:not(:placeholder-shown):not(.inputError),
+.input:not(:placeholder-shown):not(.inputError):focus {
+  border-color: var(--color-main);
+}
+
+.errorMessage {
+  font-size: 0.75rem;
+  line-height: 117%;
+  letter-spacing: -0.03em;
+  color: var(--color-error);
+  margin-top: 0.25rem;
+}
+
+.urlInput {
+  height: 2.25rem;
+}
+
+.applyPhotoBtn {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+
+  width: 100%;
+  max-width: 7.3125rem;
+  height: 2.25rem;
+  padding: 0.625rem;
+
+  border: none;
+  border-radius: 30px;
+
+  font-size: 0.75rem;
+  line-height: 133%;
+  letter-spacing: -0.02em;
+  color: var(--color-black);
+  background-color: var(--color-secondary);
+
+  transition: opacity 300ms ease;
+  cursor: pointer;
+}
+.applyPhotoBtn:hover {
+  opacity: 0.7;
+}
+.applyPhotoBtn:active,
+.applyPhotoBtn:disabled {
+  opacity: 0.5;
+}
+
+.cloudIcon {
+  width: 1rem;
+  height: 1rem;
+
+  fill: transparent;
+  stroke: var(--color-main);
+}
+
+.dateInputWrapper {
+  position: relative;
+}
+
+.dateInput {
+  cursor: pointer;
+  max-width: 9rem;
+}
+
+.calendarIcon {
+  position: absolute;
+  top: 50%;
+  right: 0.75rem;
+
+  width: 1.125rem;
+  height: 1.125rem;
+
+  fill: transparent;
+  stroke: var(--color-black);
+
+  pointer-events: none;
+  transform: translateY(-50%);
+}
+
+.dateInputWrapper :global(.react-datepicker) {
+  border-radius: 1.875rem;
+  border-color: var(--color-black-lighter);
+}
+
+.dateInputWrapper :global(.react-datepicker__header) {
+  color: var(--color-white);
+  background-color: var(--color-main);
+  border-top-left-radius: 1.875rem;
+  border-top-right-radius: 1.875rem;
+  border-bottom: none;
+}
+
+.dateInputWrapper :global(.react-datepicker__navigation-icon--previous:before) {
+  top: 0.5rem;
+  border-color: var(--color-white);
+}
+.dateInputWrapper :global(.react-datepicker__navigation-icon--next:before) {
+  top: 0.5rem;
+  border-color: var(--color-white);
+  left: -0.5rem;
+}
+
+.dateInputWrapper :global(.react-datepicker__current-month) {
+  color: var(--color-white);
+  font-weight: 600;
+  font-size: 0.875rem;
+  line-height: 129%;
+  padding-top: 1px;
+}
+
+.dateInputWrapper :global(.react-datepicker__day--selected) {
+  background-color: var(--color-main);
+  transition: background-color 300ms ease;
+}
+.dateInputWrapper
+  :global(.react-datepicker__day--selected:not([aria-disabled="true"]):hover) {
+  background-color: var(--color-main-darker);
+}
+.dateInputWrapper :global(.react-datepicker__day) {
+  transition: background-color 300ms ease;
+}
+.dateInputWrapper
+  :global(.react-datepicker__day:not([aria-disabled="true"]):hover) {
+  background-color: var(--color-secondary);
+}
+
+.customDropdownWrapper {
+  position: relative;
+  background-color: var(--color-white);
+}
+
+.visualCapsule {
+  display: flex;
+  justify-content: space-between;
+
+  font-size: 0.875rem;
+  line-height: 129%;
+  letter-spacing: -0.03em;
+  color: var(--color-black-placeholder);
+
+  width: 8.9375rem;
+  max-width: 8.9375rem;
+  cursor: pointer;
+}
+.borderAccent {
+  border-color: var(--color-main);
+}
+.visualOpen .chevronIcon {
+  transform: rotate(0deg);
+}
+
+.chevronIcon {
+  fill: transparent;
+  stroke: var(--color-black);
+
+  width: 18px;
+  height: 18px;
+
+  transform: rotate(180deg);
+  transition: transform 300ms ease;
+}
+
+.dropdownMenu {
+  position: absolute;
+  top: 110%;
+
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+
+  width: 143px;
+  height: 78px;
+  padding: 12px;
+  border: 1px solid var(--color-black-lighter);
+  border-radius: 15px;
+
+  text-transform: capitalize;
+  font-size: 0.875rem;
+  line-height: 129%;
+  letter-spacing: -0.03em;
+  color: #26262699;
+
+  background-color: var(--color-white);
+  overflow-y: auto;
+}
+
+.dropdownItem {
+  text-transform: capitalize;
+  font-size: 0.875rem;
+  line-height: 129%;
+  letter-spacing: -0.03em;
+  color: #26262699;
+
+  display: flex;
+  align-items: center;
+  border: none;
+  width: 100%;
+
+  background-color: transparent;
+  transition: color 300ms ease;
+  cursor: pointer;
+}
+.dropdownItem:hover {
+  color: var(--color-black);
+}
+.valueText {
+  color: var(--color-black);
+  text-transform: capitalize;
+}
+
+.actionBtnsContainer {
+  display: flex;
+  justify-content: flex-end;
+  gap: 0.5rem;
+
+  margin-top: 2.25rem;
+}
+
+.actionBtnsContainer > * {
+  min-width: 100px;
+}

@@ -1,5 +1,5 @@
 import css from "./PetsBlock.module.css";
-import AddPet from "../AddPet/AddPet";
+import AddPet from "../../../pets/components/AddPet/AddPet";
 import PetsList from "../PetsList/PetsList";
 
 export default function PetsBlock () {

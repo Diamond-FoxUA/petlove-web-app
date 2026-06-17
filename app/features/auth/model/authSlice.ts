@@ -8,7 +8,7 @@ import {
 import {
   addUserPet as addPet,
   removeUserPet as removePet,
-} from "../../profile/api/pets/petsHandler";
+} from "../../pets/api/pets/petsHandler";
 
 import { Pet } from "@/app/shared/types/noticesTypes";
 

@@ -1,0 +1,38 @@
+.addPetContainer {
+  display: flex;
+  flex-direction: column;
+  gap: 0.625rem;
+
+  padding-bottom: 0.625rem;
+}
+
+.formContainer {
+  background-color: var(--color-white);
+  padding: 1.75rem 1.25rem 1.25rem 1.25rem;
+
+  border: none;
+  border-radius: 1.875rem;
+}
+
+.formHeader {
+  margin-bottom: 1.5rem;
+}
+
+.title {
+  display: inline;
+
+  font-weight: 600;
+  font-size: 1.75rem;
+  line-height: 100%;
+  letter-spacing: -0.03em;
+  color: var(--color-black);
+}
+
+.subTitle {
+  display: inline;
+
+  font-size: 14px;
+  font-weight: 600;
+  line-height: 129%;
+  color: #2b2b2a66;
+}

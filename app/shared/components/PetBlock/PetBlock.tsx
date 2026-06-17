@@ -31,14 +31,14 @@ export default function PetBlock({
   let tab = null;
   let desk = null;
 
-  if (isRegister) {
-    mob = mobReg;
-    tab = tabReg;
-    desk = deskReg;
-  } else if (isAddPet) {
+  if (isAddPet) {
     mob = mobAddPet;
     tab = tabAddPet;
     desk = deskAddPet;
+  } else if (isRegister) {
+    mob = mobReg;
+    tab = tabReg;
+    desk = deskReg;
   } else {
     mob = mobLog;
     tab = tabLog;
