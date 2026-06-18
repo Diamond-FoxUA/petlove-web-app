@@ -10,6 +10,6 @@ export const addUserPet = async (
 };
 
 export const removeUserPet = async (id: string): Promise<UserFull> => {
-  const res = await nextServer.delete(`/users/current/pets/remove/${id}`);
+  const res = await nextServer.delete(`/users/current/pets/remove`, { data: { id } });
   return res.data;
 }

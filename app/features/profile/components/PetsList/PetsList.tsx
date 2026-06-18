@@ -1,21 +1,32 @@
-"use client";
-
 import css from "./PetsList.module.css";
+
 import { useAppSelector } from "@/app/shared/redux/hooks";
 import { useAppDispatch } from "@/app/shared/redux/hooks";
 import { removeUserPet } from "@/app/features/auth/model/authSlice";
 
 import PetsItem from "../PetsItem/PetsItem";
+import { toast } from "sonner";
 
 export default function PetsList() {
   const { user } = useAppSelector((state) => state.auth);
   const dispatch = useAppDispatch();
 
-  const pets = user?.pets || [];
+  const handleDelete = async (id: string, title: string) => {
+    if (!id) return;
 
-  const handleDelete = (id: string) => {
-    dispatch(removeUserPet(id));
+    try {
+      await dispatch(removeUserPet(id)).unwrap();
+
+      toast.success(`Your pet profile "${title}" was deleted!`);
+    } catch (error) {
+      const errorMessage =
+        typeof error === "string" ? error : "Oops... Something went wrong";
+
+      toast.error(errorMessage);
+    }
   };
+
+  const pets = user?.pets || [];
 
   if (pets.length === 0)
     return (
@@ -31,9 +42,12 @@ export default function PetsList() {
 
   return (
     <ul className={css.petsList}>
-      {user?.pets.map((pet) => (
+      {pets.map((pet) => (
         <li key={pet._id}>
-          <PetsItem pet={pet} deleteUserPet={() => handleDelete(pet._id)} />
+          <PetsItem
+            pet={pet}
+            deleteUserPet={() => handleDelete(pet._id, pet.title)}
+          />
         </li>
       ))}
     </ul>

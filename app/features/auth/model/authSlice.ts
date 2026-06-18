@@ -145,17 +145,14 @@ const authSlice = createSlice({
         },
       )
       .addCase(addUserPet.pending, (state) => {
-        state.isLoading = true;
         state.error = null;
       })
       .addCase(addUserPet.rejected, (state, action) => {
-        state.isLoading = false;
         state.error = action.payload as string;
       })
       .addCase(
         removeUserPet.fulfilled,
         (state, action: PayloadAction<string>) => {
-          state.isLoading = false;
           if (state.user && state.user.pets) {
             state.user.pets = state.user.pets.filter(
               (pet: Pet) => pet._id !== action.payload,
@@ -164,10 +161,9 @@ const authSlice = createSlice({
         },
       )
       .addCase(removeUserPet.pending, (state) => {
-        state.isLoading = true;
+        state.error = null;
       })
       .addCase(removeUserPet.rejected, (state, action) => {
-        state.isLoading = false;
         state.error = action.payload as string;
       });
   },
