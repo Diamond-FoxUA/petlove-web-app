@@ -31,8 +31,44 @@
 .subTitle {
   display: inline;
 
-  font-size: 14px;
+  font-size: 0.875rem;
   font-weight: 600;
   line-height: 129%;
   color: #2b2b2a66;
+}
+
+@media screen and (min-width: 768px) {
+  .addPetContainer {
+    padding-top: 0.875rem;
+    padding-bottom: 2rem;
+  }
+
+  .formContainer {
+    padding: 2.5rem 8.5rem;
+    border-radius: 3.75rem;
+  }
+
+  .formHeader {
+    margin-bottom: 2.5rem;
+  }
+
+  .title {
+    font-size: 2rem;
+  }
+
+  .subTitle {
+    font-size: 1rem;
+    line-height: 125%;
+  }
+}
+
+@media screen and (min-width: 1280px) {
+  .addPetContainer {
+    flex-direction: row;
+    gap: 2rem;
+  }
+
+  .formContainer {
+    padding: 60px 80px;
+  }
 }

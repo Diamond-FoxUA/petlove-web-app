@@ -10,7 +10,6 @@ import DatePicker from "react-datepicker";
 import { useRouter } from "next/navigation";
 import Image from "next/image";
 
-
 import { addPetSchema } from "../../schemas/addPetSchema";
 import Icon from "@/app/shared/components/Icon/Icon";
 import ActionButton from "@/app/shared/components/ActionButton/ActionButton";
@@ -382,8 +381,12 @@ export default function AddPetForm({ species }: AddPetFormProps) {
       </div>
 
       <div className={css.actionBtnsContainer}>
-        <LinkButton color="gray" href="/profile">Back</LinkButton>
-        <ActionButton type="submit">Submit</ActionButton>
+        <LinkButton color="gray" href="/profile">
+          Back
+        </LinkButton>
+        <ActionButton type="submit" disabled={isSubmitting}>
+          {isSubmitting ? "Submitting..." : "Submit"}
+        </ActionButton>
       </div>
     </form>
   );
