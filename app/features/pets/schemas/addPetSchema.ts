@@ -3,7 +3,7 @@ import * as Yup from "yup";
 export const addPetSchema = Yup.object({
   title: Yup.string().trim().required("Title is required."),
   name: Yup.string().trim().required("Pet's name is required."),
-  imgUrl: Yup.string()
+  imgURL: Yup.string()
     .required("Pet image as URL is required.")
     .matches(
       /^https?:\/\/.*\.(?:png|jpg|jpeg|gif|bmp|webp)$/,

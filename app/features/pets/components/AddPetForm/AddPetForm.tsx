@@ -1,4 +1,5 @@
 "use client";
+
 import "react-datepicker/dist/react-datepicker.css";
 import css from "./AddPetForm.module.css";
 
@@ -15,13 +16,18 @@ import Icon from "@/app/shared/components/Icon/Icon";
 import ActionButton from "@/app/shared/components/ActionButton/ActionButton";
 import LinkButton from "@/app/shared/components/LinkButton/LinkButton";
 
+import { addUserPet } from "@/app/features/auth/model/authSlice";
+import { useAppDispatch } from "@/app/shared/redux/hooks";
+
 import type { AddPetFormData } from "../../schemas/addPetSchema";
+import { toast } from "sonner";
 
 type AddPetFormProps = {
   species: string[];
 };
 
 export default function AddPetForm({ species }: AddPetFormProps) {
+  const dispatch = useAppDispatch();
   const router = useRouter();
   if (species.length === 0) router.refresh();
 
@@ -47,7 +53,7 @@ export default function AddPetForm({ species }: AddPetFormProps) {
     defaultValues: {
       title: "",
       name: "",
-      imgUrl: "",
+      imgURL: "",
       species: "",
       birthday: "",
       sex: "",
@@ -76,18 +82,31 @@ export default function AddPetForm({ species }: AddPetFormProps) {
   }, [isOpen, getValues, trigger]);
 
   const handleApplyPhoto = async () => {
-    const isUrlValid = await trigger("imgUrl");
+    const isUrlValid = await trigger("imgURL");
 
     if (isUrlValid) {
-      const currentUrl = getValues("imgUrl");
+      const currentUrl = getValues("imgURL");
       setPreviewUrl(currentUrl);
     }
   };
 
-  const onSubmit = (data: AddPetFormData) => {
-    console.log(data);
-
-    reset();
+  const onSubmit = async (data: AddPetFormData) => {
+    try {
+      const res = await dispatch(addUserPet(data)).unwrap();
+      if (res) {
+        router.push("/profile");
+        toast.success("Pet profile created!");
+        reset();
+      } else {
+        toast.error(
+          "Invalid data. Check if every input is complete and try again.",
+        );
+      }
+    } catch (error) {
+      const errorMessage =
+        typeof error === "string" ? error : "Oops... Something went wrong.";
+      toast.error(errorMessage);
+    }
   };
 
   return (
@@ -178,17 +197,17 @@ export default function AddPetForm({ species }: AddPetFormProps) {
               id="pet-img-url"
               type="url"
               placeholder="Enter URL"
-              {...register("imgUrl")}
-              aria-invalid={errors.imgUrl ? "true" : "false"}
-              aria-describedby={errors.imgUrl ? "pet-imgUrl-error" : undefined}
+              {...register("imgURL")}
+              aria-invalid={errors.imgURL ? "true" : "false"}
+              aria-describedby={errors.imgURL ? "pet-imgUrl-error" : undefined}
             />
-            {errors.imgUrl && (
+            {errors.imgURL && (
               <p
                 className={css.errorMessage}
                 id="pet-imgUrl-error"
                 role="alert"
               >
-                {errors.imgUrl.message}
+                {errors.imgURL.message}
               </p>
             )}
           </div>

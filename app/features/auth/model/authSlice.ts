@@ -63,20 +63,20 @@ export const signoutUser = createAsyncThunk(
   },
 );
 
-export const addUserPet = createAsyncThunk(
-  "auth/addUserPet",
-  async (petData: Omit<Pet, "_id" | "updatedAt">, thunkAPI) => {
-    try {
-      return await addPet(petData);
-    } catch (error) {
-      const axiosError = error as ApiError;
+export const addUserPet = createAsyncThunk<
+  UserFull,
+  Omit<Pet, "_id" | "updatedAt" | "createdAt">
+>("auth/addUserPet", async (petData, thunkAPI) => {
+  try {
+    return await addPet(petData);
+  } catch (error) {
+    const axiosError = error as ApiError;
 
-      return thunkAPI.rejectWithValue(
-        axiosError.response?.data.error || "Failed adding user pet",
-      );
-    }
-  },
-);
+    return thunkAPI.rejectWithValue(
+      axiosError.response?.data.error || "Failed adding user pet",
+    );
+  }
+});
 
 export const removeUserPet = createAsyncThunk(
   "auth/removeUserPet",
