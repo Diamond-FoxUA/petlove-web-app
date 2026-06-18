@@ -5,12 +5,10 @@ import {
   signoutUser as signout,
   getCurrentUserFull as getCurrentFull,
 } from "../api/authHandler";
-import {
-  addUserPet as addPet,
-  removeUserPet as removePet,
-} from "../../pets/api/pets/petsHandler";
 
 import { Pet } from "@/app/shared/types/noticesTypes";
+
+import { addUserPet, removeUserPet } from "../../pets/model/petSlice";
 
 interface AuthState {
   user: UserFull | null;
@@ -63,37 +61,6 @@ export const signoutUser = createAsyncThunk(
   },
 );
 
-export const addUserPet = createAsyncThunk<
-  UserFull,
-  Omit<Pet, "_id" | "updatedAt" | "createdAt">
->("auth/addUserPet", async (petData, thunkAPI) => {
-  try {
-    return await addPet(petData);
-  } catch (error) {
-    const axiosError = error as ApiError;
-
-    return thunkAPI.rejectWithValue(
-      axiosError.response?.data.error || "Failed adding user pet",
-    );
-  }
-});
-
-export const removeUserPet = createAsyncThunk(
-  "auth/removeUserPet",
-  async (id: string, thunkAPI) => {
-    try {
-      await removePet(id);
-      return id;
-    } catch (error) {
-      const axiosError = error as ApiError;
-
-      return thunkAPI.rejectWithValue(
-        axiosError.response?.data.error || "Failed removing user pet",
-      );
-    }
-  },
-);
-
 const authSlice = createSlice({
   name: "auth",
   initialState,
@@ -137,7 +104,6 @@ const authSlice = createSlice({
       .addCase(
         addUserPet.fulfilled,
         (state, action: PayloadAction<UserFull>) => {
-          state.isLoading = false;
           if (state.user) {
             if (!state.user.pets) state.user.pets = [];
             state.user.pets = action.payload.pets;

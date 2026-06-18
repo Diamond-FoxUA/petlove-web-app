@@ -16,7 +16,7 @@ import Icon from "@/app/shared/components/Icon/Icon";
 import ActionButton from "@/app/shared/components/ActionButton/ActionButton";
 import LinkButton from "@/app/shared/components/LinkButton/LinkButton";
 
-import { addUserPet } from "@/app/features/auth/model/authSlice";
+import { addUserPet } from "../../model/petSlice";
 import { useAppDispatch } from "@/app/shared/redux/hooks";
 
 import type { AddPetFormData } from "../../schemas/addPetSchema";

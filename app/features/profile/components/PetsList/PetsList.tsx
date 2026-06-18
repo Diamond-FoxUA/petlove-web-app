@@ -2,7 +2,7 @@ import css from "./PetsList.module.css";
 
 import { useAppSelector } from "@/app/shared/redux/hooks";
 import { useAppDispatch } from "@/app/shared/redux/hooks";
-import { removeUserPet } from "@/app/features/auth/model/authSlice";
+import { removeUserPet } from "@/app/features/pets/model/petSlice";
 
 import PetsItem from "../PetsItem/PetsItem";
 import { toast } from "sonner";
