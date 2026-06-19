@@ -5,7 +5,7 @@ import { Pet } from "@/app/shared/types/noticesTypes";
 import {
   addUserPet as addPet,
   removeUserPet as removePet,
-} from "../../pets/api/pets/petsHandler";
+} from "../api/petsHandler";
 
 export const addUserPet = createAsyncThunk<
   UserFull,

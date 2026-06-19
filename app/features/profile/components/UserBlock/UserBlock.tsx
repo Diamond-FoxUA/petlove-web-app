@@ -8,7 +8,11 @@ import EditUserBtn from "../EditUserBtn/EditUserBtn";
 
 import { useAppSelector } from "@/app/shared/redux/hooks";
 
-export default function UserBlock() {
+type UserBlockProps = {
+  openEditModal: () => void;
+};
+
+export default function UserBlock({ openEditModal }: UserBlockProps) {
   const { user } = useAppSelector((state) => state.auth);
 
   return (
@@ -30,11 +34,14 @@ export default function UserBlock() {
             iconName="icon-user"
             className={css.editUserAvatarBtn}
             aria-label="Upload profile avatar"
+            onClick={openEditModal}
           />
         )}
       </div>
 
-      <h2 className={css.heading} id="user-info-title">My information</h2>
+      <h2 className={css.heading} id="user-info-title">
+        My information
+      </h2>
 
       <dl className={css.infoContainer}>
         <div>

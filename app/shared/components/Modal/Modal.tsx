@@ -7,9 +7,10 @@ import Icon from "../Icon/Icon";
 type ModalProps = {
   children: ReactNode;
   onClose: () => void;
+  className: string;
 };
 
-export default function Modal({ children, onClose }: ModalProps) {
+export default function Modal({ children, onClose, className }: ModalProps) {
   const dialogRef = useRef<HTMLDialogElement>(null);
 
   useEffect(() => {
@@ -44,7 +45,7 @@ export default function Modal({ children, onClose }: ModalProps) {
       onClick={handleDialogClick}
       aria-labelledby="modal-headline"
     >
-      <div className={css.modal}>
+      <div className={`${css.modal} ${className ? className : ""}`}>
         <button
           className={css.closeBtn}
           type="button"

@@ -8,6 +8,7 @@ import UserBlock from "../UserBlock/UserBlock";
 import PetsBlock from "../PetsBlock/PetsBlock";
 import LogoutBtn from "@/app/features/auth/components/LogoutBtn/LogoutBtn";
 import ModalApproveAction from "@/app/features/auth/components/ModalApproveAction/ModalApproveAction";
+import ModalEditUser from "../ModalEditUser/ModalEditUser";
 
 export default function UserCard() {
   const [isLogoutModalOpen, setIsLogoutModalOpen] = useState(false);
@@ -22,7 +23,7 @@ export default function UserCard() {
         aria-label="Edit your user profile data"
       />
 
-      <UserBlock />
+      <UserBlock openEditModal={() => setIsEditModalOpen(true)} />
       <PetsBlock />
 
       <LogoutBtn
@@ -34,9 +35,9 @@ export default function UserCard() {
         <ModalApproveAction onClose={() => setIsLogoutModalOpen(false)} />
       )}
 
-      {/* {isEditModalOpen && (
-        <ModalEditUser onClose={() => setIsEditModalOpen(false)}/>
-      )} */}
+      {isEditModalOpen && (
+        <ModalEditUser onClose={() => setIsEditModalOpen(false)} />
+      )}
     </article>
   );
 }

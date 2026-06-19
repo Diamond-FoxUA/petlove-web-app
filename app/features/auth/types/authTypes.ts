@@ -18,6 +18,13 @@ export interface UserFull extends User {
   updatedAt: string;
 }
 
+export interface EditUser {
+  name: string;
+  email: string;
+  phone?: string;
+  avatar?: string;
+}
+
 export interface AuthResponse {
   email: string;
   name: string;

@@ -5,9 +5,9 @@ import {
   signoutUser as signout,
   getCurrentUserFull as getCurrentFull,
 } from "../api/authHandler";
+import { updateUser } from "../../profile/model/profileSlice";
 
 import { Pet } from "@/app/shared/types/noticesTypes";
-
 import { addUserPet, removeUserPet } from "../../pets/model/petSlice";
 
 interface AuthState {
@@ -130,6 +130,19 @@ const authSlice = createSlice({
         state.error = null;
       })
       .addCase(removeUserPet.rejected, (state, action) => {
+        state.error = action.payload as string;
+      })
+      .addCase(
+        updateUser.fulfilled,
+        (state, action: PayloadAction<UserFull>) => {
+          state.user = action.payload;
+          state.error = null;
+        },
+      )
+      .addCase(updateUser.pending, (state) => {
+        state.error = null;
+      })
+      .addCase(updateUser.rejected, (state, action) => {
         state.error = action.payload as string;
       });
   },

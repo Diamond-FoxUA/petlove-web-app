@@ -1,0 +1,107 @@
+.formContent {
+  display: flex;
+  flex-direction: column;
+  gap: 0.625rem;
+
+  margin: 12px auto 21px auto;
+}
+
+.inputGroup {
+  display: flex;
+  gap: 0.5rem;
+}
+
+.inputRow {
+  display: flex;
+  flex-direction: column;
+
+  gap: 4px;
+}
+
+.input {
+  display: block;
+  width: 100%;
+  height: 2.625rem;
+  padding: 0.75rem;
+
+  font-size: 0.875rem;
+  line-height: 129%;
+  letter-spacing: -0.03em;
+  color: var(--color-black);
+
+  background-color: transparent;
+  border: 1px solid var(--color-main);
+  border-radius: 1.875rem;
+  outline: none;
+}
+
+.input::placeholder {
+  font-size: 0.875rem;
+  line-height: 129%;
+  letter-spacing: -0.03em;
+  color: var(--color-black-placeholder);
+}
+
+.errorMessage {
+  text-align: start;
+
+  font-size: 0.75rem;
+  line-height: 117%;
+  letter-spacing: -0.03em;
+  color: var(--color-error);
+}
+
+.photoBtn {
+  font-weight: 400;
+  font-size: 0.75rem;
+  line-height: 133%;
+  letter-spacing: -0.02em;
+  color: var(--color-black);
+
+  gap: 0.5rem;
+  padding: 0.75rem;
+  min-width: 126px;
+}
+
+.cloudIcon {
+  width: 18px;
+  height: 18px;
+
+  fill: transparent;
+  stroke: var(--color-main);
+}
+
+.avatarImg,
+.avatarPlaceholder {
+  display: block;
+  width: 80px;
+  height: 80px;
+
+  border-radius: 50%;
+  margin: auto;
+}
+
+.avatarPlaceholder {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  background-color: var(--color-secondary);
+}
+
+.userIcon {
+  width: 40px;
+  height: 40px;
+
+  fill: var(--color-main);
+}
+
+.form .submitBtn {
+  min-width: initial;
+  width: 100%;
+
+  font-weight: 600;
+  font-size: 0.875rem;
+  line-height: 129%;
+  letter-spacing: -0.03em;
+}
