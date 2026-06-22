@@ -114,11 +114,19 @@
   border: none;
   border-radius: 50%;
 
-  transition: background-color 300ms ease;
+  transition:
+    background-color 300ms ease,
+    opacity 300ms ease;
   cursor: pointer;
 }
 .favouriteBtn:hover {
   background-color: var(--color-secondary-darker);
+}
+.favouriteBtn:active {
+  opacity: 0.7;
+}
+.favouriteBtn:disabled {
+  opacity: 0.5;
 }
 
 .iconHeart {
@@ -129,7 +137,7 @@
   stroke: var(--color-main);
 }
 .isFavourite {
-  fill: var(--color-main);
+  fill: var(--color-main) !important;
 }
 
 @media screen and (min-width: 768px) {

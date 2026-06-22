@@ -7,7 +7,7 @@ import Icon from "../Icon/Icon";
 type ModalProps = {
   children: ReactNode;
   onClose: () => void;
-  className: string;
+  className?: string;
 };
 
 export default function Modal({ children, onClose, className }: ModalProps) {

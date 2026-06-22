@@ -16,6 +16,7 @@ export default function NoticesList({ data }: NoticesListProps) {
         {data?.map((n) => (
           <li key={n._id}>
             <NoticesItem
+              _id={n._id}
               name={n.name}
               title={n.title}
               birthday={n.birthday}

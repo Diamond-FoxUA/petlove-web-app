@@ -39,7 +39,7 @@ export default function Notices() {
     router.push(`${pathname}?${params.toString()}`);
   };
 
-  const showLoader = useLoader(isFetching);
+  const showLoader = useLoader(isLoading);
   if (showLoader) return <Loader />;
 
   if (!isFetching && error) {

@@ -1,5 +1,6 @@
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
-import type { GetNoticesResponse } from "../types/notices"; 
+import type { GetNoticesResponse } from "../types/notices";
+import { RootState } from "@/app/shared/redux/store";
 
 interface GetNoticesArgs {
   keyword?: string;
@@ -12,12 +13,23 @@ interface GetNoticesArgs {
 
 export const noticesApi = createApi({
   reducerPath: "noticesApi",
-  baseQuery: fetchBaseQuery({ baseUrl: process.env.NEXT_PUBLIC_API_URL }), 
+  baseQuery: fetchBaseQuery({
+    baseUrl: process.env.NEXT_PUBLIC_API_URL,
+    prepareHeaders: (headers, { getState }) => {
+      const state = getState() as RootState;
+      const token = state.auth.user?.token;
+
+      if (token) {
+        headers.set("authorization", `Bearer ${token}`);
+      }
+      return headers;
+    },
+  }),
+  tagTypes: ["Notices"],
   endpoints: (builder) => ({
-    
     getSpecies: builder.query<string[], void>({
       query: () => "notices/species",
-      keepUnusedDataFor: 600, 
+      keepUnusedDataFor: 600,
     }),
     getCategories: builder.query<string[], void>({
       query: () => "notices/categories",
@@ -29,16 +41,42 @@ export const noticesApi = createApi({
     }),
 
     getNotices: builder.query<GetNoticesResponse, GetNoticesArgs>({
-      query: ({ keyword = "", category = "", species = "", sex = "", page = 1, limit = 6 }) => 
+      query: ({
+        keyword = "",
+        category = "",
+        species = "",
+        sex = "",
+        page = 1,
+        limit = 6,
+      }) =>
         `notices?keyword=${keyword}&category=${category}&species=${species}&sex=${sex}&page=${page}&limit=${limit}`,
       keepUnusedDataFor: 300,
+      providesTags: ["Notices"],
+    }),
+
+    addFavourite: builder.mutation<string[], string>({
+      query: (noticeId) => ({
+        url: `notices/favorites/add/${noticeId}`,
+        method: "POST",
+      }),
+
+      invalidatesTags: ["Notices"],
+    }),
+    removeFavourite: builder.mutation<string[], string>({
+      query: (noticeId) => ({
+        url: `notices/favorites/remove/${noticeId}`,
+        method: "DELETE",
+      }),
+      invalidatesTags: ["Notices"],
     }),
   }),
 });
 
-export const { 
-  useGetSpeciesQuery, 
-  useGetCategoriesQuery, 
-  useGetSexQuery, 
-  useGetNoticesQuery 
+export const {
+  useGetSpeciesQuery,
+  useGetCategoriesQuery,
+  useGetSexQuery,
+  useGetNoticesQuery,
+  useAddFavouriteMutation,
+  useRemoveFavouriteMutation,
 } = noticesApi;

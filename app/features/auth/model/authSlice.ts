@@ -6,9 +6,9 @@ import {
   getCurrentUserFull as getCurrentFull,
 } from "../api/authHandler";
 import { updateUser } from "../../profile/model/profileSlice";
-
-import { Pet } from "@/app/shared/types/noticesTypes";
 import { addUserPet, removeUserPet } from "../../pets/model/petSlice";
+
+import type { Pet } from "@/app/shared/types/noticesTypes";
 
 interface AuthState {
   user: UserFull | null;
@@ -126,12 +126,14 @@ const authSlice = createSlice({
           }
         },
       )
+
       .addCase(removeUserPet.pending, (state) => {
         state.error = null;
       })
       .addCase(removeUserPet.rejected, (state, action) => {
         state.error = action.payload as string;
       })
+
       .addCase(
         updateUser.fulfilled,
         (state, action: PayloadAction<UserFull>) => {

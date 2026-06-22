@@ -12,7 +12,7 @@ export interface UserFull extends User {
   avatar: string;
   phone: string;
   noticesViewed: Notice[];
-  noticesFavourites: Notice[];
+  noticesFavorites: Notice[];
   pets: Pet[];
   createdAt: string;
   updatedAt: string;
