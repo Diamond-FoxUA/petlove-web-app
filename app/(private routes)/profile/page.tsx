@@ -1,6 +1,8 @@
 import css from "./page.module.css";
+
 import UserCard from "@/app/features/profile/components/UserCard/UserCard";
 import Title from "@/app/shared/components/Title/Title";
+import MyNotices from "@/app/features/profile/components/MyNotices/MyNotices";
 
 export default function Profile () {
   return (
@@ -9,7 +11,7 @@ export default function Profile () {
 
       <UserCard />
       
-      {/* MyNotices */}
+      <MyNotices />
     </section>
   )
 }
