@@ -21,15 +21,13 @@ import { useAppDispatch } from "@/app/shared/redux/hooks";
 
 import type { AddPetFormData } from "../../schemas/addPetSchema";
 import { toast } from "sonner";
+import { useGetSpeciesQuery } from "@/app/features/notices/model/noticesApi";
 
-type AddPetFormProps = {
-  species: string[];
-};
+export default function AddPetForm() {
+  const { data: species = [] } = useGetSpeciesQuery();
 
-export default function AddPetForm({ species }: AddPetFormProps) {
   const dispatch = useAppDispatch();
   const router = useRouter();
-  if (species.length === 0) router.refresh();
 
   const [previewUrl, setPreviewUrl] = useState("");
   const [selectedSpecies, setSelectedSpecies] = useState<string>("");

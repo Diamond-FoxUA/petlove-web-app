@@ -1,0 +1,26 @@
+.noticesList {
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+}
+
+@media screen and (min-width: 768px) {
+  .noticesList {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 2rem;
+  }
+
+  .noticesList > li {
+    display: flex;
+    flex-direction: column;
+  }
+}
+
+@media screen and (min-width:1280px) {
+  .noticesList {
+    grid-template-columns: repeat(3, 1fr);
+    row-gap: 2.5rem;
+    column-gap: 2rem;
+  }
+}

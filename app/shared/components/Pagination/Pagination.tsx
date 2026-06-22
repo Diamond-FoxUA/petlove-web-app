@@ -9,42 +9,50 @@ type PaginationProps = {
   currentPage: number;
   totalPages: number;
   onPageChange: (page: number) => void;
+  className?: string;
 };
 
 export default function Pagination({
   currentPage,
   totalPages,
   onPageChange,
+  className,
 }: PaginationProps) {
   const [isMobile, setIsMobile] = useState(false);
 
   useEffect(() => {
-  const mediaQuery = window.matchMedia("(max-width: 767px)");
-  
-  const handleResize = (e: MediaQueryListEvent | MediaQueryList) => {
-    setIsMobile(e.matches);
-  };
+    const mediaQuery = window.matchMedia("(max-width: 767px)");
 
-  setTimeout(() => handleResize(mediaQuery), 0);
+    const handleResize = (e: MediaQueryListEvent | MediaQueryList) => {
+      setIsMobile(e.matches);
+    };
 
-  mediaQuery.addEventListener("change", handleResize);
-  return () => mediaQuery.removeEventListener("change", handleResize);
-}, []);
+    setTimeout(() => handleResize(mediaQuery), 0);
 
+    mediaQuery.addEventListener("change", handleResize);
+    return () => mediaQuery.removeEventListener("change", handleResize);
+  }, []);
 
   if (totalPages <= 1) return null;
 
-  const paginationRange = generatePaginationRange(currentPage, totalPages, isMobile);
+  const paginationRange = generatePaginationRange(
+    currentPage,
+    totalPages,
+    isMobile,
+  );
 
   const goToFirst = () => currentPage > 1 && onPageChange(1);
   const goToPrev = () => currentPage > 1 && onPageChange(currentPage - 1);
-  const goToNext = () => currentPage < totalPages && onPageChange(currentPage + 1);
+  const goToNext = () =>
+    currentPage < totalPages && onPageChange(currentPage + 1);
   const goToLast = () => currentPage < totalPages && onPageChange(totalPages);
 
   return (
-    <nav className={css.nav} aria-label="Pagination navigation">
+    <nav
+      className={`${css.nav} ${className ? className : ""}`}
+      aria-label="Pagination navigation"
+    >
       <ul className={css.navList}>
-        
         <li className={css.navItem}>
           <button
             type="button"

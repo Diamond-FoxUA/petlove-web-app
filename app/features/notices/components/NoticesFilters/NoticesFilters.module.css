@@ -1,0 +1,11 @@
+.noticesFilterContainer {
+  padding: 1.25rem;
+  border-radius: 1.88rem;
+  background-color: var(--color-secondary);
+}
+
+@media screen and (min-width: 768px) {
+  .noticesFilterContainer {
+    padding: 2.5rem 2rem;
+  }
+}

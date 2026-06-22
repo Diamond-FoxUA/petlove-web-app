@@ -3,16 +3,7 @@ import css from "./page.module.css";
 import PetBlock from "@/app/shared/components/PetBlock/PetBlock";
 import AddPetForm from "@/app/features/pets/components/AddPetForm/AddPetForm";
 
-import { getSpecies } from "@/app/features/notices/api/noticesApi";
-
-export default async function AddPet() {
-  let data: string[] | [] = [];
-  try {
-    data = await getSpecies();
-  } catch (error) {
-    console.log("Failed loading species on server render: ", error);
-    data = [];
-  }
+export default function AddPet() {
 
   return (
     <section
@@ -30,7 +21,7 @@ export default async function AddPet() {
           <small className={css.subTitle}>Personal details</small>
         </header>
 
-        <AddPetForm species={data} />
+        <AddPetForm />
       </div>
     </section>
   );
