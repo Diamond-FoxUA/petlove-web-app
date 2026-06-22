@@ -25,6 +25,7 @@ export default function NoticesItem({
         alt={`${species} named ${name}`}
         width={287}
         height={178}
+        loading="eager"
       />
 
       <header className={css.articleHeader}>

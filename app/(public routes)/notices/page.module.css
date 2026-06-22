@@ -13,6 +13,25 @@
   margin-top: 0;
 }
 
+.message {
+  display: block;
+  font-size: 0.88rem;
+  line-height: 129%;
+  letter-spacing: -0.02em;
+  text-align: center;
+
+  color: var(--color-black);
+
+  margin-top: 25dvh;
+  padding: 1.5625rem;
+}
+.textAccent {
+  color: var(--color-main);
+}
+.textError {
+  color: var(--color-error);
+}
+
 @media screen and (min-width: 768px) {
   .noticesContainer {
     padding: 4.1875rem 2rem 5.5rem 2rem;

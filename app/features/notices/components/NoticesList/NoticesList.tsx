@@ -2,50 +2,18 @@
 import css from "./NoticesList.module.css";
 
 import NoticesItem from "../NoticesItem/NoticesItem";
-import { useGetNoticesQuery } from "../../model/noticesApi";
-import { useSearchParams } from "next/navigation";
+import { Notice } from "@/app/shared/types/noticesTypes";
 
-export default function NoticesList() {
-  const searchParams = useSearchParams();
+type NoticesListProps = {
+  data: Notice[];
+};
 
-  const keyword = searchParams.get("keyword") || "";
-  const category = searchParams.get("category") || "";
-  const species = searchParams.get("species") || "";
-  const sex = searchParams.get("sex") || "";
-  const page = Number(searchParams.get("page")) || 1;
-
-  const { data, isLoading, error, isFetching } = useGetNoticesQuery({
-    keyword,
-    category,
-    species,
-    sex,
-    page,
-    limit: 6,
-  });
-
-  if (!isFetching && error) {
-    return (
-      <p role="status" aria-live="polite" className={css.message}>
-        Oops, <strong className={css.textAccent}>something went wrong.</strong>{" "}
-        Try again later.
-      </p>
-    );
-  }
-
-  const hasNoResults =
-    !isLoading && !isFetching && (!data || data.results.length === 0);
-
-  if (hasNoResults) {
-    return (
-      <p role="status" aria-live="polite" className={css.message}>
-        Oops, looks like there aren&apos;t any furries on our adorable page yet.
-      </p>
-    );
-  }
-
+export default function NoticesList({ data }: NoticesListProps) {
   return (
     <section className={css.noticesListContainer}>
-      <ul className={css.noticesList}>        {data?.results.map((n) => (
+      <ul className={css.noticesList}>
+        {" "}
+        {data?.map((n) => (
           <li key={n._id}>
             <NoticesItem
               name={n.name}
