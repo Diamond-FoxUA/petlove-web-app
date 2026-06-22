@@ -69,12 +69,20 @@
   display: none;
 }
 
+.header :global(.AuthNav-module__BNf-rq__authGroup) {
+  display: none;
+}
+
 @media screen and (min-width: 768px) {
   .header {
     border-top-left-radius: 3.75rem;
     border-top-right-radius: 3.75rem;
 
     max-width: 704px;
+  }
+
+  .header :global(.AuthNav-module__BNf-rq__authGroup) {
+    display: block;
   }
 
   .innerBg {
