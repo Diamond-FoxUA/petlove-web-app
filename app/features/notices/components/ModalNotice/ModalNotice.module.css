@@ -1,0 +1,151 @@
+.iconsContainer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 0.25rem;
+
+  margin-bottom: 1.625rem;
+}
+
+.iconStar {
+  width: 16px;
+  height: 16px;
+
+  fill: #2626260d;
+}
+.starAccent {
+  fill: var(--color-main);
+}
+
+.imageWrapper {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  width: fit-content;
+
+  margin: 0 auto 20px auto;
+}
+
+.noticeImage {
+  border-radius: 50%;
+}
+
+.categoryTag {
+  position: absolute;
+  top: 0;
+  left: 0;
+
+  border-radius: 1.88rem;
+  padding: 0.5rem 0.88rem;
+
+  font-size: 0.75rem;
+  line-height: 133%;
+  letter-spacing: -0.02em;
+  color: var(--color-main);
+  background-color: var(--color-secondary);
+}
+
+.title {
+  text-align: center;
+  font-weight: 700;
+  font-size: 1rem;
+  line-height: 125%;
+  color: #2b2b2a;
+
+  margin-bottom: 0.625rem;
+}
+
+.ratingNumber {
+  font-size: 0.88rem;
+  line-height: 143%;
+  color: #2b2b2a;
+}
+
+.infoTagList {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  gap: 1.6875rem;
+}
+
+.infoTagItem {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  gap: 0.25rem;
+}
+
+.infoTagItem dt {
+  font-size: 0.63rem;
+  line-height: 140%;
+  letter-spacing: -0.02em;
+  color: rgba(38, 38, 38, 0.5);
+}
+
+.infoTagItem dd {
+  text-transform: capitalize;
+  font-size: 0.75rem;
+  line-height: 117%;
+  letter-spacing: -0.02em;
+  color: var(--color-black);
+}
+
+.paragraph {
+  text-align: center;
+  font-size: 0.88rem;
+  line-height: 129%;
+  letter-spacing: -0.02em;
+  color: #2b2b2a;
+
+  margin: 16px 0 32px 0;
+}
+
+.priceValue {
+  display: flex;
+  justify-content: center;
+
+  margin-left: auto;
+  margin-right: auto;
+  margin-bottom: 1.25rem;
+
+  font-weight: 600;
+  font-size: 1rem;
+  line-height: 125%;
+  color: #2b2b2a;
+}
+
+.btnsContainer {
+  display: flex;
+  gap: 0.625rem;
+}
+
+.btnsContainer button {
+  min-width: 8.4375rem;
+  max-height: 2.75rem;
+
+  font-size: 1rem;
+  line-height: 125%;
+  letter-spacing: -0.03em;
+}
+
+.btnsContainer button:first-child {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.iconHeart {
+  width: 18px;
+  height: 18px;
+
+  fill: transparent;
+  stroke: var(--color-white);
+}
+.iconHeartAccent {
+  fill: var(--color-white);
+}

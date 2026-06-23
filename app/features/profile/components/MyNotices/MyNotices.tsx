@@ -13,7 +13,7 @@ export default function MyNotices() {
   const [isFavActive, setIsFavActive] = useState(true);
 
   return (
-    <section aria-labelledby="my-notices-title">
+    <section aria-labelledby="my-notices-title" className={css.sectionNotices}>
       <h2 id="my-notices-title" className="sr-only">
         My viewed and saved notices
       </h2>
@@ -35,7 +35,7 @@ export default function MyNotices() {
 
       {isFavActive ? (
         favNotices?.length > 0 ? (
-          <ul>
+          <ul className={css.list}>
             {favNotices.map((n) => (
               <li key={n._id}>
                 <NoticesItem
@@ -66,7 +66,7 @@ export default function MyNotices() {
           </p>
         )
       ) : viewedNotices.length > 0 ? (
-        <ul>
+        <ul className={css.list}>
           <li>
             {viewedNotices.map((n) => (
               <li key={n._id}>
@@ -95,7 +95,7 @@ export default function MyNotices() {
             looks like there aren&apos;t any furries
           </em>{" "}
           on our adorable page yet. Do not worry! View your pets on the
-          &quot;find your favorite pet&quot; page
+          &quot;find pet&quot; page
         </p>
       )}
     </section>

@@ -11,3 +11,10 @@
     padding-bottom: 3.75rem;
   }
 }
+
+@media screen and (min-width:1280px) {
+  .profileContainer {
+    flex-direction: row;
+    gap: 32px;
+  } 
+}

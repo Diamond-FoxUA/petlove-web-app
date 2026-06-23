@@ -25,6 +25,7 @@
 
 @media screen and (min-width: 1280px) {
   .userCardContainer {
-    max-width: 32.5rem;
+    min-width: 32.5rem;
+    height: auto;
   }
 }

@@ -5,6 +5,7 @@ import Icon from "@/app/shared/components/Icon/Icon";
 import Image from "next/image";
 import ActionButton from "@/app/shared/components/ActionButton/ActionButton";
 import ModalAttention from "@/app/features/auth/components/ModalAttention/ModalAttention";
+import ModalNotice from "../ModalNotice/ModalNotice";
 
 import { useAppDispatch, useAppSelector } from "@/app/shared/redux/hooks";
 import {
@@ -33,7 +34,8 @@ export default function NoticesItem({
   const { user } = useAppSelector((state) => state.auth);
 
   const [addFavourite, { isLoading: isAdding }] = useAddFavouriteMutation();
-  const [removeFavourite, { isLoading: isRemoving }] = useRemoveFavouriteMutation();
+  const [removeFavourite, { isLoading: isRemoving }] =
+    useRemoveFavouriteMutation();
 
   const isFavourite = user?.noticesFavorites?.some((fav) => fav._id === id);
   const isUpdating = isAdding || isRemoving;
@@ -82,7 +84,9 @@ export default function NoticesItem({
         user: user._id,
       };
 
-      const currentFavorites = user.noticesFavorites ? [...user.noticesFavorites] : [];
+      const currentFavorites = user.noticesFavorites
+        ? [...user.noticesFavorites]
+        : [];
 
       const newFavoritesList = isFavourite
         ? currentFavorites.filter((fav) => fav._id !== id)
@@ -187,7 +191,20 @@ export default function NoticesItem({
       )}
 
       {isModalNoticeOpen && (
-        <ModalAttention onClose={() => setIsModalNoticeOpen(null)} />
+        <ModalNotice
+          onClose={() => setIsModalNoticeOpen(null)}
+          _id={id}
+          imgURL={imgURL}
+          title={title}
+          comment={comment}
+          name={name}
+          birthday={birthday}
+          popularity={popularity}
+          sex={sex}
+          species={species}
+          price={price}
+          category={category}
+        />
       )}
     </>
   );

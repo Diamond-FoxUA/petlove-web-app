@@ -1,0 +1,111 @@
+.btnsContainer {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  gap: 0.625rem;
+
+  margin-bottom: 1.25rem;
+}
+
+.toggleBtn {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  width: fit-content;
+  min-width: 7.6875rem;
+  height: 2.625rem;
+  padding: 0.75rem;
+
+  background-color: var(--color-white);
+  border: none;
+  border-radius: 1.88rem;
+
+  font-size: 0.88rem;
+  line-height: 129%;
+  letter-spacing: -0.03em;
+  color: var(--color-black);
+
+  transition:
+    background-color 300ms ease,
+    opacity 300ms ease;
+  cursor: pointer;
+}
+.toggleBtn:not(.activeBtn):hover {
+  background-color: var(--color-black-lighter);
+}
+.toggleBtn:not(.activeBtn):active {
+  opacity: 0.7;
+}
+
+.activeBtn {
+  cursor: auto;
+  background-color: var(--color-main);
+  color: var(--color-white);
+}
+
+.message {
+  display: block;
+  max-width: 28.625rem;
+  margin: 0 auto;
+
+  font-size: 0.88rem;
+  line-height: 129%;
+  letter-spacing: -0.02em;
+  text-align: center;
+  color: var(--color-black);
+
+  padding: 80px 20px 140px 20px;
+}
+.textAccent {
+  color: var(--color-main);
+}
+
+.list {
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+}
+
+@media screen and (min-width: 768px) {
+  .message {
+    padding-top: 11.25rem;
+  }
+
+  .profileContainer {
+    gap: 2rem;
+  }
+
+  .list {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .btnsContainer {
+    gap: 0.5rem;
+  }
+}
+
+@media screen and (min-width: 1280px) {
+  .sectionNotices {
+    flex-grow: 1;
+  }
+
+  .message {
+    font-size: 1rem;
+    line-height: 125%;
+    letter-spacing: -0.02em;
+  }
+
+  .list {
+    gap: 1.5rem;
+  }
+
+  .list li article {
+    padding: 0.875rem;
+  }
+
+  .list li article button:first-child {
+    min-width: 14.875rem;
+  }
+}
