@@ -5,8 +5,11 @@ import Image from "next/image";
 import Modal from "@/app/shared/components/Modal/Modal";
 import ActionButton from "@/app/shared/components/ActionButton/ActionButton";
 
+import { toast } from "sonner";
+
 type ModalNoticeProps = {
   onClose: () => void;
+  handleAddToFavClick: () => void;
   title: string;
   popularity: number;
   name: string;
@@ -18,10 +21,13 @@ type ModalNoticeProps = {
   _id: string;
   imgURL: string;
   category: string;
+  isFavourite: boolean | undefined;
+  isLoading: boolean;
 };
 
 export default function ModalNotice({
   onClose,
+  handleAddToFavClick,
   title,
   popularity,
   name,
@@ -30,12 +36,20 @@ export default function ModalNotice({
   species,
   comment,
   price,
-  _id,
   category,
   imgURL,
+  isFavourite,
+  isLoading,
 }: ModalNoticeProps) {
+  const handleContacting = () => {
+    toast.success(
+      "The pet owner will contact you upon reviewing your application.",
+    );
+    onClose();
+  };
+
   return (
-    <Modal onClose={onClose}>
+    <Modal onClose={onClose} className={css.modalNotice}>
       <div className={css.imageWrapper}>
         <span className={css.categoryTag}>{category}</span>
         <Image
@@ -94,7 +108,11 @@ export default function ModalNotice({
         </div>
         <div className={css.infoTagItem}>
           <dt>Birthday</dt>
-          <dd>{new Date(birthday).toLocaleDateString().split("/").join(".")}</dd>
+          <dd>
+            {birthday
+              ? new Date(birthday).toLocaleDateString().split("/").join(".")
+              : "Unknown"}
+          </dd>
         </div>
         <div className={css.infoTagItem}>
           <dt>Sex</dt>
@@ -108,13 +126,23 @@ export default function ModalNotice({
 
       <p className={css.paragraph}>{comment}</p>
 
-      <strong className={css.priceValue}>{`$${price}`}</strong>
+      <strong className={css.priceValue}>{price ? `$${price}` : "Free"}</strong>
 
       <div className={css.btnsContainer}>
-        <ActionButton color="primary">
-          Add to <Icon iconName="icon-heart" className={`${css.iconHeart} ${css.iconHeartAccent}`}/>
+        <ActionButton
+          color="primary"
+          disabled={isLoading}
+          onClick={handleAddToFavClick}
+        >
+          {!isFavourite ? "Add to" : "Remove from"}{" "}
+          <Icon
+            iconName="icon-heart"
+            className={`${css.iconHeart} ${isFavourite ? css.iconHeartAccent : ""}`}
+          />
         </ActionButton>
-        <ActionButton color="secondary">Contact</ActionButton>
+        <ActionButton color="secondary" onClick={handleContacting}>
+          Contact
+        </ActionButton>
       </div>
     </Modal>
   );

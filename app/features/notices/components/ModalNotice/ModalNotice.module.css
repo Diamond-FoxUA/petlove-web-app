@@ -30,6 +30,7 @@
 
 .noticeImage {
   border-radius: 50%;
+  background-color: var(--color-black-placeholder);
 }
 
 .categoryTag {
@@ -40,6 +41,7 @@
   border-radius: 1.88rem;
   padding: 0.5rem 0.88rem;
 
+  text-transform: capitalize;
   font-size: 0.75rem;
   line-height: 133%;
   letter-spacing: -0.02em;
@@ -148,4 +150,43 @@
 }
 .iconHeartAccent {
   fill: var(--color-white);
+}
+
+@media screen and (min-width: 768px) {
+  .modalNotice {
+    padding: 2.5rem 4.375rem;
+    min-width: 29.375rem;
+  }
+
+  .noticeImage {
+    width: 9.375rem;
+    height: 9.375rem;
+  }
+
+  .imageWrapper {
+    margin-bottom: 1rem;
+  }
+
+  .categoryTag {
+    min-width: 3.25rem;
+
+    font-size: 0.88rem;
+    line-height: 129%;
+    letter-spacing: -0.02em;
+  }
+
+  .title {
+    font-size: 1.13rem;
+    line-height: 133%;
+  }
+
+  .priceValue {
+    font-size: 1.13rem;
+    line-height: 133%;
+  }
+
+  .btnsContainer button {
+    min-width: 10rem;
+    max-height: 3rem;
+  }
 }

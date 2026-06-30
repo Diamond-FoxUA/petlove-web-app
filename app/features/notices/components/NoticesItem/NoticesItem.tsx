@@ -15,6 +15,7 @@ import {
 import { setCredentials } from "@/app/features/auth/model/authSlice";
 
 import type { Notice } from "@/app/shared/types/noticesTypes";
+import ModalCongrats from "../ModalCongrats/ModalCongrats";
 
 export default function NoticesItem({
   name,
@@ -44,6 +45,7 @@ export default function NoticesItem({
   const [isModalNoticeOpen, setIsModalNoticeOpen] = useState<null | string>(
     null,
   );
+  const [isCongratsModalOpen, setIsCongratsModalOpen] = useState(false);
 
   const handleLearnMoreClick = () => {
     if (!user) {
@@ -63,6 +65,9 @@ export default function NoticesItem({
       if (isFavourite) {
         await removeFavourite(id).unwrap();
       } else {
+        if (user.noticesFavorites.length === 0) {
+          setIsCongratsModalOpen(true);
+        }
         await addFavourite(id).unwrap();
       }
 
@@ -204,7 +209,14 @@ export default function NoticesItem({
           species={species}
           price={price}
           category={category}
+          isFavourite={isFavourite}
+          handleAddToFavClick={handleAddToFavClick}
+          isLoading={isAdding || isRemoving}
         />
+      )}
+
+      {isCongratsModalOpen && (
+        <ModalCongrats onClose={() => setIsCongratsModalOpen(false)} />
       )}
     </>
   );
