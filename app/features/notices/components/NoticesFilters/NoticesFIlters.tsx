@@ -3,15 +3,19 @@ import css from "./NoticesFilters.module.css";
 
 import { useState } from "react";
 import { useForm, Controller, useWatch } from "react-hook-form";
+import AsyncSelect from "react-select/async";
 
 import {
   useGetSpeciesQuery,
   useGetCategoriesQuery,
   useGetSexQuery,
+  useLazyGetCitiesQuery,
 } from "../../model/noticesApi";
 
 import Icon from "@/app/shared/components/Icon/Icon";
 import SearchField from "@/app/shared/components/SearchField/SearchField";
+
+import type { CityResponse } from "../../types/notices";
 
 type FormValues = {
   search: string;
@@ -19,6 +23,7 @@ type FormValues = {
   gender: string;
   type: string;
   sortTag: string;
+  location: string;
 };
 
 export default function NoticesFilters() {
@@ -28,6 +33,7 @@ export default function NoticesFilters() {
     gender: "",
     type: "",
     sortTag: "",
+    location: "",
   };
 
   const { handleSubmit, setValue, resetField, control, register } =
@@ -55,6 +61,56 @@ export default function NoticesFilters() {
   const genders = useGetSexQuery();
   const types = useGetSpeciesQuery();
   const tags = ["popular", "unpopular", "cheap", "expensive"];
+
+  const [triggerGetCities] = useLazyGetCitiesQuery();
+
+  const loadLocationOptions = async (inputValue: string) => {
+    try {
+      const result = (await triggerGetCities().unwrap()) as CityResponse[];
+
+      if (!inputValue.trim()) {
+        return result.map((city) => ({
+          value: city._id,
+          label: `${city.cityEn}, ${city.stateEn}`,
+        }));
+      }
+
+      return result
+        .filter((city) =>
+          city.cityEn.toLowerCase().includes(inputValue.toLowerCase()),
+        )
+        .map((city) => ({
+          value: city._id,
+          label: `${city.cityEn}, ${city.stateEn}`,
+        }));
+    } catch (error) {
+      console.error("Error fetching locations from Redux:", error);
+      return [];
+    }
+  };
+
+  const formatOptionLabel = ({ label }: { label: string }, { inputValue }: { inputValue: string }) => {
+    if (!inputValue.trim()) return <span>{label}</span>;
+
+    const regex = new RegExp(`(${inputValue})`, "gi");
+    const parts = label.split(regex);
+
+    return (
+      <span>
+        {parts.map((part, index) =>
+          regex.test(part) ? (
+            <strong key={index} className={css.highlightedText}>
+              {part}
+            </strong>
+          ) : (
+            <span key={index} className={css.normalText}>
+              {part}
+            </span>
+          )
+        )}
+      </span>
+    );
+  };
 
   const onSubmit = (data: FormValues) => {
     console.log("Submit filter data:", data);
@@ -194,9 +250,58 @@ export default function NoticesFilters() {
               </ul>
             )}
           </div>
+
+          <div className={css.locationSelectWrapper}>
+            <Controller
+              name="location"
+              control={control}
+              render={({ field }) => (
+                <AsyncSelect
+                  unstyled
+                  classNamePrefix="location-select"
+                  {...field}
+                  loadOptions={loadLocationOptions}
+                  formatOptionLabel={formatOptionLabel}
+                  defaultOptions
+                  cacheOptions
+                  isClearable
+                  placeholder="Location"
+                  value={
+                    field.value
+                      ? { value: field.value, label: field.value }
+                      : null
+                  }
+                  components={{
+                    DropdownIndicator: () => (
+                      <div className={css.locationSearchIndicator}>
+                        <Icon
+                          iconName="icon-search"
+                          className={css.locationSearchIcon}
+                        />
+                      </div>
+                    ),
+                    ClearIndicator: (props) => (
+                      <div
+                        {...props.innerProps}
+                        className={css.locationClearIndicator}
+                      >
+                        <Icon
+                          iconName="icon-cross-small"
+                          className={css.locationClearIcon}
+                        />
+                      </div>
+                    ),
+                  }}
+                  onChange={(option: { value: string; label: string } | null) =>
+                    field.onChange(option ? option.label : "")
+                  }
+                />
+              )}
+            />
+          </div>
         </div>
 
-        <hr className={css.hr} />
+        <div className={css.hr} />
 
         <div
           className={css.bottomFiltersWrapper}

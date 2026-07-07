@@ -6,3 +6,11 @@ export interface GetNoticesResponse {
   page: number;
   perPage: number;
 }
+
+export interface CityResponse {
+  _id: string;
+  useCounty: string;
+  stateEn: string;
+  cityEn: string;
+  countyEn: string;
+}

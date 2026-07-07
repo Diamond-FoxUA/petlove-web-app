@@ -1,6 +1,8 @@
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
-import type { GetNoticesResponse } from "../types/notices";
 import { RootState } from "@/app/shared/redux/store";
+
+import type { GetNoticesResponse } from "../types/notices";
+import type { CityResponse } from "../types/notices";
 
 interface GetNoticesArgs {
   keyword?: string;
@@ -69,6 +71,11 @@ export const noticesApi = createApi({
       }),
       invalidatesTags: ["Notices"],
     }),
+
+    getCities: builder.query<CityResponse[], void>({
+      query: () => "cities/locations",
+      keepUnusedDataFor: 600,
+    }),
   }),
 });
 
@@ -79,4 +86,5 @@ export const {
   useGetNoticesQuery,
   useAddFavouriteMutation,
   useRemoveFavouriteMutation,
+  useLazyGetCitiesQuery,
 } = noticesApi;
