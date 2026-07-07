@@ -4,7 +4,6 @@ import Icon from "../Icon/Icon";
 type SearchFieldProps = {
   value: string;
   onChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
-  onSubmit: (e: SubmitEvent) => void;
   reset: () => void;
 };
 
@@ -12,10 +11,9 @@ export default function SearchField({
   onChange,
   value,
   reset,
-  onSubmit,
 }: SearchFieldProps) {
   return (
-    <form onSubmit={(e) => onSubmit(e.nativeEvent)} className={css.searchInputContainer}>
+    <div className={css.searchInputContainer}>
       <input
         type="text"
         className={css.searchInput}
@@ -32,6 +30,6 @@ export default function SearchField({
           <Icon iconName="icon-cross-small" className={css.iconCross} />
         </button>
       )}
-    </form>
+    </div>
   );
 }

@@ -31,9 +31,10 @@ export default function News() {
     setValue(e.target.value);
   };
 
-  const handleSubmit = (e: SubmitEvent) => {
+  const handleSubmit = (e: React.SubmitEvent<HTMLFormElement>) => {
     e.preventDefault();
     setSearchQuery(value);
+    setPage(1);
   };
 
   const handleReset = () => {
@@ -51,12 +52,15 @@ export default function News() {
 
       <header className={css.newsHeader}>
         <Title text="News" id="news-page-title" />
-        <SearchField
-          onSubmit={handleSubmit}
-          value={value}
-          onChange={(e: React.ChangeEvent<HTMLInputElement>) => handleChange(e)}
-          reset={handleReset}
-        />
+        <form onSubmit={handleSubmit}>
+          <SearchField
+            value={value}
+            onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
+              handleChange(e)
+            }
+            reset={handleReset}
+          />
+        </form>
       </header>
 
       {!isFetching && error && (
