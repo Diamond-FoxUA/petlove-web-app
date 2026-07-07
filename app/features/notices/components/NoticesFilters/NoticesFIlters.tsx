@@ -1,7 +1,7 @@
 "use client";
 import css from "./NoticesFilters.module.css";
 
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { useForm, Controller, useWatch } from "react-hook-form";
 import AsyncSelect from "react-select/async";
 
@@ -64,6 +64,20 @@ export default function NoticesFilters() {
 
   const [triggerGetCities] = useLazyGetCitiesQuery();
 
+  const formRef = useRef<HTMLFormElement>(null);
+
+  useEffect(() => {
+    const handleOutsideClick = () => {
+      if (formRef.current && !formRef.current.contains(event?.target as Node)) {
+        setOpenDropdown(null);
+      }
+    };
+
+    document.addEventListener("mousedown", handleOutsideClick);
+
+    return () => document.removeEventListener("mousedown", handleOutsideClick);
+  });
+
   const loadLocationOptions = async (inputValue: string) => {
     try {
       const result = (await triggerGetCities().unwrap()) as CityResponse[];
@@ -79,6 +93,7 @@ export default function NoticesFilters() {
         .filter((city) =>
           city.cityEn.toLowerCase().includes(inputValue.toLowerCase()),
         )
+        .slice(0, 3)
         .map((city) => ({
           value: city._id,
           label: `${city.cityEn}, ${city.stateEn}`,
@@ -89,7 +104,10 @@ export default function NoticesFilters() {
     }
   };
 
-  const formatOptionLabel = ({ label }: { label: string }, { inputValue }: { inputValue: string }) => {
+  const formatOptionLabel = (
+    { label }: { label: string },
+    { inputValue }: { inputValue: string },
+  ) => {
     if (!inputValue.trim()) return <span>{label}</span>;
 
     const regex = new RegExp(`(${inputValue})`, "gi");
@@ -106,7 +124,7 @@ export default function NoticesFilters() {
             <span key={index} className={css.normalText}>
               {part}
             </span>
-          )
+          ),
         )}
       </span>
     );
@@ -121,7 +139,7 @@ export default function NoticesFilters() {
       className={css.noticesFilterContainer}
       aria-label="Notices filters"
     >
-      <form onSubmit={handleSubmit(onSubmit)}>
+      <form ref={formRef} onSubmit={handleSubmit(onSubmit)}>
         <div className={css.topFiltersWrapper}>
           <Controller
             name="search"
@@ -232,21 +250,21 @@ export default function NoticesFilters() {
             />
             {openDropdown === "type" && (
               <ul className={css.dropdownList}>
-                <li
-                  className={`${css.dropdownItem} ${!selectedType ? css.dropdownItemActive : ""}`}
-                  onClick={() => handleSelect("type", "")}
-                >
-                  Show all
-                </li>
-                {types.data?.map((t) => (
                   <li
-                    key={t}
-                    className={`${css.dropdownItem} ${selectedType === t ? css.dropdownItemActive : ""}`}
-                    onClick={() => handleSelect("type", t)}
+                    className={`${css.dropdownItem} ${!selectedType ? css.dropdownItemActive : ""}`}
+                    onClick={() => handleSelect("type", "")}
                   >
-                    {t}
+                    Show all
                   </li>
-                ))}
+                  {types.data?.map((t) => (
+                    <li
+                      key={t}
+                      className={`${css.dropdownItem} ${selectedType === t ? css.dropdownItemActive : ""}`}
+                      onClick={() => handleSelect("type", t)}
+                    >
+                      {t}
+                    </li>
+                  ))}
               </ul>
             )}
           </div>
@@ -262,7 +280,6 @@ export default function NoticesFilters() {
                   {...field}
                   loadOptions={loadLocationOptions}
                   formatOptionLabel={formatOptionLabel}
-                  defaultOptions
                   cacheOptions
                   isClearable
                   placeholder="Location"
