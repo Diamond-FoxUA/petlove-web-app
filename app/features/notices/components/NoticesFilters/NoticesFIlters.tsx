@@ -3,6 +3,7 @@ import css from "./NoticesFilters.module.css";
 
 import { useEffect, useRef, useState } from "react";
 import { useForm, Controller, useWatch } from "react-hook-form";
+import { useSearchParams, useRouter, usePathname } from "next/navigation";
 import AsyncSelect from "react-select/async";
 
 import {
@@ -14,7 +15,6 @@ import {
 
 import Icon from "@/app/shared/components/Icon/Icon";
 import SearchField from "@/app/shared/components/SearchField/SearchField";
-
 import type { CityResponse } from "../../types/notices";
 
 type FormValues = {
@@ -23,17 +23,34 @@ type FormValues = {
   gender: string;
   type: string;
   sortTag: string;
-  location: string;
+  locationId: string;
 };
 
 export default function NoticesFilters() {
+  const [selectedCityOption, setSelectedCityOption] = useState<{
+    value: string;
+    label: string;
+  } | null>(null);
+
+  const searchParams = useSearchParams();
+  const router = useRouter();
+  const pathname = usePathname();
+
+  const getInitialSortTag = () => {
+    if (searchParams.get("byPrice") === "true") return "cheap";
+    if (searchParams.get("byPrice") === "false") return "expensive";
+    if (searchParams.get("byPopularity") === "false") return "popular";
+    if (searchParams.get("byPopularity") === "true") return "unpopular";
+    return "";
+  };
+
   const defaultValues: FormValues = {
-    search: "",
-    category: "",
-    gender: "",
-    type: "",
-    sortTag: "",
-    location: "",
+    search: searchParams.get("keyword") || "",
+    category: searchParams.get("category") || "",
+    gender: searchParams.get("sex") || "",
+    type: searchParams.get("species") || "",
+    sortTag: getInitialSortTag(),
+    locationId: searchParams.get("locationId") || "",
   };
 
   const { handleSubmit, setValue, resetField, control, register } =
@@ -48,6 +65,48 @@ export default function NoticesFilters() {
 
   const [openDropdown, setOpenDropdown] = useState<string | null>(null);
 
+  const updateURLParams = (updatedFields: Partial<FormValues>) => {
+    const params = new URLSearchParams(searchParams.toString());
+    params.set("page", "1");
+
+    if (updatedFields.search !== undefined) {
+      if (updatedFields.search) params.set("keyword", updatedFields.search);
+      else params.delete("keyword");
+    }
+    if (updatedFields.category !== undefined) {
+      if (updatedFields.category)
+        params.set("category", updatedFields.category);
+      else params.delete("category");
+    }
+    if (updatedFields.gender !== undefined) {
+      if (updatedFields.gender) params.set("sex", updatedFields.gender);
+      else params.delete("sex");
+    }
+    if (updatedFields.type !== undefined) {
+      if (updatedFields.type) params.set("species", updatedFields.type);
+      else params.delete("species");
+    }
+    if (updatedFields.locationId !== undefined) {
+      if (updatedFields.locationId)
+        params.set("locationId", updatedFields.locationId);
+      else params.delete("locationId");
+    }
+    if (updatedFields.sortTag !== undefined) {
+      params.delete("byDate");
+      params.delete("byPrice");
+      params.delete("byPopularity");
+
+      const tag = updatedFields.sortTag;
+      if (tag === "cheap") params.set("byPrice", "true");
+      else if (tag === "expensive") params.set("byPrice", "false");
+      else if (tag === "popular") params.set("byPopularity", "false");
+      else if (tag === "unpopular") params.set("byPopularity", "true");
+      else params.set("byDate", "true");
+    }
+
+    router.push(`${pathname}?${params.toString()}`);
+  };
+
   const toggleDropdown = (name: string) => {
     setOpenDropdown(openDropdown === name ? null : name);
   };
@@ -55,6 +114,22 @@ export default function NoticesFilters() {
   const handleSelect = (field: keyof FormValues, value: string) => {
     setValue(field, value);
     setOpenDropdown(null);
+    updateURLParams({ [field]: value });
+  };
+
+  const handleReset = () => {
+    resetField("search");
+    setValue("category", "");
+    setValue("gender", "");
+    setValue("type", "");
+    setValue("sortTag", "");
+    setValue("locationId", "");
+
+    setSelectedCityOption(null);
+
+    const params = new URLSearchParams();
+    params.set("page", "1");
+    router.push(`${pathname}?${params.toString()}`);
   };
 
   const categories = useGetCategoriesQuery();
@@ -63,32 +138,27 @@ export default function NoticesFilters() {
   const tags = ["popular", "unpopular", "cheap", "expensive"];
 
   const [triggerGetCities] = useLazyGetCitiesQuery();
-
   const formRef = useRef<HTMLFormElement>(null);
 
   useEffect(() => {
-    const handleOutsideClick = () => {
-      if (formRef.current && !formRef.current.contains(event?.target as Node)) {
+    const handleOutsideClick = (event: MouseEvent) => {
+      if (formRef.current && !formRef.current.contains(event.target as Node)) {
         setOpenDropdown(null);
       }
     };
-
     document.addEventListener("mousedown", handleOutsideClick);
-
     return () => document.removeEventListener("mousedown", handleOutsideClick);
-  });
+  }, []);
 
   const loadLocationOptions = async (inputValue: string) => {
     try {
       const result = (await triggerGetCities().unwrap()) as CityResponse[];
-
       if (!inputValue.trim()) {
         return result.map((city) => ({
           value: city._id,
           label: `${city.cityEn}, ${city.stateEn}`,
         }));
       }
-
       return result
         .filter((city) =>
           city.cityEn.toLowerCase().includes(inputValue.toLowerCase()),
@@ -99,20 +169,26 @@ export default function NoticesFilters() {
           label: `${city.cityEn}, ${city.stateEn}`,
         }));
     } catch (error) {
-      console.error("Error fetching locations from Redux:", error);
+      console.error("Error fetching locations:", error);
       return [];
     }
   };
+
+  const hasActiveFilters = Boolean(
+    selectedCategory ||
+    selectedGender ||
+    selectedType ||
+    selectedSortTag ||
+    selectedCityOption,
+  );
 
   const formatOptionLabel = (
     { label }: { label: string },
     { inputValue }: { inputValue: string },
   ) => {
     if (!inputValue.trim()) return <span>{label}</span>;
-
     const regex = new RegExp(`(${inputValue})`, "gi");
     const parts = label.split(regex);
-
     return (
       <span>
         {parts.map((part, index) =>
@@ -130,8 +206,8 @@ export default function NoticesFilters() {
     );
   };
 
-  const onSubmit = (data: FormValues) => {
-    console.log("Submit filter data:", data);
+  const onSubmit = (formData: FormValues) => {
+    updateURLParams({ search: formData.search });
   };
 
   return (
@@ -148,7 +224,10 @@ export default function NoticesFilters() {
               <SearchField
                 value={field.value}
                 onChange={(e) => field.onChange(e.target.value)}
-                reset={() => resetField("search")}
+                reset={() => {
+                  resetField("search");
+                  updateURLParams({ search: "" });
+                }}
               />
             )}
           />
@@ -250,28 +329,28 @@ export default function NoticesFilters() {
             />
             {openDropdown === "type" && (
               <ul className={css.dropdownList}>
+                <li
+                  className={`${css.dropdownItem} ${!selectedType ? css.dropdownItemActive : ""}`}
+                  onClick={() => handleSelect("type", "")}
+                >
+                  Show all
+                </li>
+                {types.data?.map((t) => (
                   <li
-                    className={`${css.dropdownItem} ${!selectedType ? css.dropdownItemActive : ""}`}
-                    onClick={() => handleSelect("type", "")}
+                    key={t}
+                    className={`${css.dropdownItem} ${selectedType === t ? css.dropdownItemActive : ""}`}
+                    onClick={() => handleSelect("type", t)}
                   >
-                    Show all
+                    {t}
                   </li>
-                  {types.data?.map((t) => (
-                    <li
-                      key={t}
-                      className={`${css.dropdownItem} ${selectedType === t ? css.dropdownItemActive : ""}`}
-                      onClick={() => handleSelect("type", t)}
-                    >
-                      {t}
-                    </li>
-                  ))}
+                ))}
               </ul>
             )}
           </div>
 
           <div className={css.locationSelectWrapper}>
             <Controller
-              name="location"
+              name="locationId"
               control={control}
               render={({ field }) => (
                 <AsyncSelect
@@ -283,11 +362,7 @@ export default function NoticesFilters() {
                   cacheOptions
                   isClearable
                   placeholder="Location"
-                  value={
-                    field.value
-                      ? { value: field.value, label: field.value }
-                      : null
-                  }
+                  value={selectedCityOption}
                   components={{
                     DropdownIndicator: () => (
                       <div className={css.locationSearchIndicator}>
@@ -309,9 +384,15 @@ export default function NoticesFilters() {
                       </div>
                     ),
                   }}
-                  onChange={(option: { value: string; label: string } | null) =>
-                    field.onChange(option ? option.label : "")
-                  }
+                  onChange={(
+                    option: { value: string; label: string } | null,
+                  ) => {
+                    const idValue = option ? option.value : "";
+
+                    setSelectedCityOption(option);
+                    field.onChange(idValue);
+                    updateURLParams({ locationId: idValue });
+                  }}
                 />
               )}
             />
@@ -337,7 +418,10 @@ export default function NoticesFilters() {
                   value={t}
                   {...register("sortTag")}
                   checked={isActive}
-                  onChange={() => setValue("sortTag", t)}
+                  onChange={() => {
+                    setValue("sortTag", t);
+                    updateURLParams({ sortTag: t });
+                  }}
                 />
                 <span
                   className={`${css.tagText} ${isActive ? css.activeTagText : ""}`}
@@ -349,6 +433,7 @@ export default function NoticesFilters() {
                         e.preventDefault();
                         e.stopPropagation();
                         setValue("sortTag", "");
+                        updateURLParams({ sortTag: "" });
                       }}
                     >
                       <Icon iconName="icon-cross" className={css.tagIcon} />
@@ -359,6 +444,12 @@ export default function NoticesFilters() {
             );
           })}
         </div>
+
+        {hasActiveFilters && (
+          <button type="button" className={css.resetBtn} onClick={handleReset}>
+            Reset filters
+          </button>
+        )}
       </form>
     </section>
   );

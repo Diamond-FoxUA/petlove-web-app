@@ -8,6 +8,10 @@ interface GetNoticesArgs {
   keyword?: string;
   category?: string;
   species?: string;
+  locationId?: string;
+  byDate?: boolean;
+  byPrice?: boolean;
+  byPopularity?: boolean;
   sex?: string;
   page?: number;
   limit?: number;
@@ -48,10 +52,20 @@ export const noticesApi = createApi({
         category = "",
         species = "",
         sex = "",
+        locationId = "",
+        byDate = true,
+        byPrice,
+        byPopularity,
         page = 1,
         limit = 6,
-      }) =>
-        `notices?keyword=${keyword}&category=${category}&species=${species}&sex=${sex}&page=${page}&limit=${limit}`,
+      }) => {
+        let url = `notices?keyword=${keyword}&category=${category}&species=${species}&sex=${sex}&locationId=${locationId}&page=${page}&limit=${limit}&byDate=${byDate}`;
+
+        if (byPrice !== undefined) url += `&byPrice=${byPrice}`;
+        if (byPopularity !== undefined) url += `&byPopularity=${byPopularity}`;
+
+        return url;
+      },
       keepUnusedDataFor: 300,
       providesTags: ["Notices"],
     }),

@@ -2,7 +2,7 @@
 import css from "./page.module.css";
 
 import { useGetNoticesQuery } from "@/app/features/notices/model/noticesApi";
-import { useSearchParams, useRouter, usePathname } from "next/navigation"; // 1. Added router hooks
+import { useSearchParams, useRouter, usePathname } from "next/navigation";
 import useLoader from "@/app/shared/hooks/useLoader";
 import Loader from "@/app/shared/components/Loader/Loader";
 
@@ -20,15 +20,24 @@ export default function Notices() {
   const category = searchParams.get("category") || "";
   const species = searchParams.get("species") || "";
   const sex = searchParams.get("sex") || "";
+  const locationId = searchParams.get("locationId") || "";
   const page = Number(searchParams.get("page")) || 1;
+
+  const byDate = searchParams.get("byDate") === "false" ? false : true;
+  const byPrice = searchParams.get("byPrice") === "true" ? true : searchParams.get("byPrice") === "false" ? false : undefined;
+  const byPopularity = searchParams.get("byPopularity") === "true" ? true : searchParams.get("byPopularity") === "false" ? false : undefined;
 
   const { data, isLoading, error, isFetching } = useGetNoticesQuery({
     keyword,
     category,
     species,
     sex,
+    locationId,
     page,
     limit: 6,
+    byDate,
+    byPrice,
+    byPopularity,
   });
 
   const totalPages = data?.totalPages || 1;
@@ -42,28 +51,6 @@ export default function Notices() {
   const showLoader = useLoader(isLoading);
   if (showLoader) return <Loader />;
 
-  if (!isFetching && error) {
-    return (
-      <p role="status" aria-live="polite" className={css.message}>
-        Oops, <strong className={css.textError}>something went wrong.</strong>{" "}
-        Try again later.
-      </p>
-    );
-  }
-
-  const hasNoResults =
-    !isLoading &&
-    !isFetching &&
-    (!data || !data.results || data.results.length === 0);
-
-  if (hasNoResults) {
-    return (
-      <p role="status" aria-live="polite" className={css.message}>
-        Oops, <strong className={css.textAccent}>no notices found</strong>.
-      </p>
-    );
-  }
-
   return (
     <div className={`container ${css.noticesContainer}`}>
       <Title text="Find your favorite pet" />
@@ -71,17 +58,34 @@ export default function Notices() {
       <div className={css.NoticesFiltersContainer}>
         <NoticesFilters />
       </div>
-      <div className={css.NoticesListContainer}>
-        <NoticesList data={data?.results || []} />
-      </div>
-      <div className={css.paginationContainer}>
-        <Pagination
-          className={css.pagination}
-          onPageChange={handlePageChange}
-          currentPage={page}
-          totalPages={totalPages}
-        />
-      </div>
+
+      {!isFetching && error && (
+        <p role="status" aria-live="polite" className={css.message}>
+          Oops, <strong className={css.textError}>something went wrong.</strong> Try again later.
+        </p>
+      )}
+
+      {!error && !isLoading && (!data || !data.results || data.results.length === 0) && (
+        <p role="status" aria-live="polite" className={css.message}>
+          Oops, <strong className={css.textAccent}>no notices found</strong>.
+        </p>
+      )}
+
+      {data && data.results && data.results.length > 0 && (
+        <>
+          <div className={css.NoticesListContainer}>
+            <NoticesList data={data.results} />
+          </div>
+          <div className={css.paginationContainer}>
+            <Pagination
+              className={css.pagination}
+              onPageChange={handlePageChange}
+              currentPage={page}
+              totalPages={totalPages}
+            />
+          </div>
+        </>
+      )}
     </div>
   );
 }
