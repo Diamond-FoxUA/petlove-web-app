@@ -11,9 +11,9 @@ const manropeSans = Manrope({
   subsets: ["latin"],
 });
 
-const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || "http://localhost:3000";
-
 export const metadata: Metadata = {
+  metadataBase: new URL(process.env.NEXT_PUBLIC_SITE_URL || 'http://localhost:3000'),
+
   title: {
     default: "Petlove",
     template: "%s | Petlove",
@@ -27,7 +27,7 @@ export const metadata: Metadata = {
       "Find the perfect pet for your home and discover expert care tips. Explore animal adoption guides and everything you need for a happy, healthy pet.",
     images: [
       {
-        url: `${baseUrl}/og-image.jpg`,
+        url:  "/og-image.jpg",
         width: 1200,
         height: 630,
         alt: "Petlove — A happy beagle dog with its owners",
@@ -40,7 +40,7 @@ export const metadata: Metadata = {
     title: "Petlove",
     description:
       "Find the perfect pet for your home and discover expert care tips. Explore animal adoption guides and everything you need for a happy, healthy pet.",
-    images: [`${baseUrl}/og-image.jpg`],
+    images: [ "/og-image.jpg"],
   },
 };
 
