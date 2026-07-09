@@ -1,10 +1,16 @@
 import css from "./page.module.css";
+import { Metadata } from "next";
 
 import PetBlock from "@/app/shared/components/PetBlock/PetBlock";
 import AddPetForm from "@/app/features/pets/components/AddPetForm/AddPetForm";
 
-export default function AddPet() {
+export const metadata: Metadata = {
+  title: "Add pet",
+  description:
+    "Tell your pet's story. Create, customize, and publish a beautiful showcase profile on Petlove today.",
+};
 
+export default function AddPet() {
   return (
     <section
       className={`container ${css.addPetContainer}`}

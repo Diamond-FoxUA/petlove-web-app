@@ -1,6 +1,11 @@
 import css from "./page.module.css";
 import Title from "@/app/shared/components/Title/Title";
 import FriendsList from "@/app/features/friends/components/FriendsList/FriendsList";
+import { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: "Our friends"
+}
 
 export default function Friends() {
   return (

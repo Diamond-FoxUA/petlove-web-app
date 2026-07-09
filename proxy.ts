@@ -1,14 +1,10 @@
 import { NextRequest, NextResponse } from "next/server";
-import { cookies } from "next/headers";
-
-const privateRoutes = ["/profile", "add-pet"];
 
 export async function proxy(request: NextRequest) {
-  const cookieStore = await cookies();
-  const token = cookieStore.get("accessToken")?.value;
-
+  const token = request.cookies.get("accessToken")?.value;
   const { pathname } = request.nextUrl;
 
+  const privateRoutes = ["/profile", "/add-pet"];
   const isPrivateRoute = privateRoutes.some((route) =>
     pathname.startsWith(route),
   );
@@ -20,4 +16,6 @@ export async function proxy(request: NextRequest) {
   return NextResponse.next();
 }
 
-export const config = {};
+export const config = {
+  matcher: ["/profile/:path*", "/add-pet/:path*"],
+};
