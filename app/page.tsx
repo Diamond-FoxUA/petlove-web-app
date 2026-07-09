@@ -1,6 +1,15 @@
 import { HERO_IMAGES } from "./assets/images";
 import css from "./page.module.css";
 
+export const metadata = {
+  other: {
+    rel: "preload",
+    as: "image",
+    href: HERO_IMAGES.mob.src1x,
+    fetchpriority: "high",
+  },
+};
+
 export default function Home() {
   const { desk, tab, mob } = HERO_IMAGES;
 
@@ -28,7 +37,7 @@ export default function Home() {
           className={css.heroImage}
           srcSet={`${mob.src1x} 1x, ${mob.src2x} 2x`}
           alt="A woman hugging her happy dog."
-          loading="eager"
+          fetchPriority="high"
         />
       </picture>
     </section>
