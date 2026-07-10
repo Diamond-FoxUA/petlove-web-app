@@ -3,6 +3,15 @@ import { LOGO_ICONS } from "@/app/assets/images";
 import { LOADER_IMAGES } from "@/app/assets/images";
 import css from "./Loader.module.css";
 
+export const metadata = {
+  other: {
+    rel: "preload",
+    as: "image",
+    href: LOADER_IMAGES.mob.src1x,
+    fetchpriority: "high",
+  },
+};
+
 export default function Loader() {
   const { loaderTab, loaderMob } = LOGO_ICONS;
   const { mob, tab, desk } = LOADER_IMAGES;
@@ -27,7 +36,7 @@ export default function Loader() {
           <img
             srcSet={`${mob.src1x} 1x, ${mob.src2x} 2x`}
             alt=""
-            loading="eager"
+            fetchPriority="high"
           />
         </picture>
 
