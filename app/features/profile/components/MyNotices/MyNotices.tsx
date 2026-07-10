@@ -13,9 +13,7 @@ export default function MyNotices() {
   const viewedPets = useSelector(
     (state: RootState) => state.viewedPets.viewedPets,
   );
-
   const favNotices = user?.noticesFavorites || [];
-  const viewedNotices = viewedPets || [];
 
   const [isFavActive, setIsFavActive] = useState(true);
 
