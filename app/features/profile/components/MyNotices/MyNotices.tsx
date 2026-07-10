@@ -2,13 +2,20 @@
 import css from "./MyNotices.module.css";
 import { useState } from "react";
 
+import { useSelector } from "react-redux";
+import { RootState } from "@/app/shared/redux/store";
 import { useAppSelector } from "@/app/shared/redux/hooks";
+
 import NoticesItem from "@/app/features/notices/components/NoticesItem/NoticesItem";
 
 export default function MyNotices() {
-  const { user } = useAppSelector((state) => state.auth);
+  const { user } = useAppSelector((state: RootState) => state.auth);
+  const viewedPets = useSelector(
+    (state: RootState) => state.viewedPets.viewedPets,
+  );
+
   const favNotices = user?.noticesFavorites || [];
-  const viewedNotices = user?.noticesViewed || [];
+  const viewedNotices = viewedPets || [];
 
   const [isFavActive, setIsFavActive] = useState(true);
 
@@ -65,28 +72,26 @@ export default function MyNotices() {
             &quot;find your favorite pet&quot; page
           </p>
         )
-      ) : viewedNotices.length > 0 ? (
+      ) : viewedPets.length > 0 ? (
         <ul className={css.list}>
-          <li>
-            {viewedNotices.map((n) => (
-              <li key={n._id}>
-                <NoticesItem
-                  _id={n._id}
-                  name={n.name}
-                  title={n.title}
-                  birthday={n.birthday}
-                  imgURL={n.imgURL}
-                  species={n.species}
-                  sex={n.sex}
-                  price={n.price}
-                  category={n.category}
-                  comment={n.comment}
-                  location={n.location}
-                  popularity={n.popularity}
-                />
-              </li>
-            ))}
-          </li>
+          {viewedPets.map((n) => (
+            <li key={n._id}>
+              <NoticesItem
+                _id={n._id}
+                name={n.name}
+                title={n.title}
+                birthday={n.birthday}
+                imgURL={n.imgURL}
+                species={n.species}
+                sex={n.sex}
+                price={n.price}
+                category={n.category}
+                comment={n.comment}
+                location={n.location}
+                popularity={n.popularity}
+              />
+            </li>
+          ))}
         </ul>
       ) : (
         <p className={css.message}>

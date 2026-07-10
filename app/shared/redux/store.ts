@@ -1,5 +1,6 @@
 import { configureStore } from "@reduxjs/toolkit";
 import authReducer from "@/app/features/auth/model/authSlice";
+import viewedPetsReducer from "@/app/features/notices/model/viewedPetsSlice";
 import { newsApi } from "@/app/features/news/api/newsApi";
 import { noticesApi } from "@/app/features/notices/model/noticesApi";
 
@@ -7,6 +8,7 @@ export const makeStore = () => {
   return configureStore({
     reducer: {
       auth: authReducer,
+      viewedPets: viewedPetsReducer,
       [newsApi.reducerPath]: newsApi.reducer,
       [noticesApi.reducerPath]: noticesApi.reducer,
     },

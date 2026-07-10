@@ -13,6 +13,7 @@ import {
   useRemoveFavouriteMutation,
 } from "../../model/noticesApi";
 import { setCredentials } from "@/app/features/auth/model/authSlice";
+import { addViewedPet } from "../../model/viewedPetsSlice";
 
 import type { Notice } from "@/app/shared/types/noticesTypes";
 import ModalCongrats from "../ModalCongrats/ModalCongrats";
@@ -53,6 +54,26 @@ export default function NoticesItem({
       return;
     }
     setIsModalNoticeOpen(id);
+
+    const currentNotice: Notice = {
+      _id: id,
+      name,
+      title,
+      imgURL,
+      birthday,
+      species,
+      sex,
+      price,
+      location,
+      popularity,
+      comment,
+      category,
+      createdAt: new Date().toISOString(),
+      updatedAt: new Date().toISOString(),
+      user: user._id,
+    };
+
+    dispatch(addViewedPet(currentNotice));
   };
 
   const handleAddToFavClick = async () => {

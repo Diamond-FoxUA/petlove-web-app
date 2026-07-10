@@ -4,7 +4,7 @@ export interface User {
   _id: string;
   name: string;
   token: string;
-  noticesFavourites: Notice[];
+  noticesFavorites: Notice[];
 }
 
 export interface UserFull extends User {
@@ -12,7 +12,6 @@ export interface UserFull extends User {
   avatar: string;
   phone: string;
   noticesViewed: Notice[];
-  noticesFavorites: Notice[];
   pets: Pet[];
   createdAt: string;
   updatedAt: string;
