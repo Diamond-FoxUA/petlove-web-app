@@ -44,6 +44,9 @@ export default function RegistrationForm() {
       if (res) {
         router.push("/profile");
         reset();
+        setTimeout(() => {
+          window.location.reload();
+        }, 100);
       } else {
         toast.error("Invalid email or password.");
       }
@@ -248,7 +251,11 @@ export default function RegistrationForm() {
             </div>
           </div>
           {errors.confirmPassword && (
-            <span id="confirmPassword-error" role="alert" className={css.errorMessage}>
+            <span
+              id="confirmPassword-error"
+              role="alert"
+              className={css.errorMessage}
+            >
               {errors.confirmPassword?.message as string}
             </span>
           )}
