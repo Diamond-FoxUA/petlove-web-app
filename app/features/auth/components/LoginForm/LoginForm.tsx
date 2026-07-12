@@ -4,6 +4,9 @@ import { useState } from "react";
 import { useRouter } from "next/navigation";
 import type { ApiError } from "@/app/api/api";
 
+import { useAppDispatch } from "@/app/shared/redux/hooks";
+import { getCurrentUserFull } from "../../model/authSlice";
+
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { loginFormData, loginSchema } from "../../schemas/authSchema";
@@ -17,6 +20,11 @@ import css from "./LoginForm.module.css";
 import { login } from "../../api/authHandler";
 
 export default function LoginForm() {
+  const router = useRouter();
+  const dispatch = useAppDispatch();
+
+  const [showPassword, setShowPassword] = useState(false);
+
   const {
     register,
     handleSubmit,
@@ -32,19 +40,22 @@ export default function LoginForm() {
     },
   });
 
-  const router = useRouter();
-
-  const [showPassword, setShowPassword] = useState(false);
-
   const onSubmit = async (data: loginFormData) => {
     try {
       const res = await login(data);
       if (res) {
-        router.push("/profile");
-        reset();
-        setTimeout(() => {
-          window.location.reload();
-        }, 100);
+        const profileResult = await dispatch(getCurrentUserFull());
+
+        if (getCurrentUserFull.fulfilled.match(profileResult)) {
+          toast.success(`Welcome back, ${profileResult.payload.name}!`);
+          reset();
+          router.push("/profile");
+        } else {
+          const fetchError =
+            (profileResult.payload as string) ||
+            "Could not retrieve user profile.";
+          toast.error(fetchError);
+        }
       } else {
         toast.error("Invalid email or password.");
       }

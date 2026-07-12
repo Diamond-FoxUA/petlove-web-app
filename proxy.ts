@@ -13,11 +13,11 @@ export async function proxy(request: NextRequest) {
   );
 
   if (isPrivateRoute && !token) {
-    return NextResponse.redirect(new URL("/register", request.url));
+    return NextResponse.redirect(new URL("/login", request.url));
   }
 
   if (isAuthRoute && token) {
-    return NextResponse.redirect(new URL("/", request.url));
+    return NextResponse.redirect(new URL("/profile", request.url));
   }
 
   return NextResponse.next();

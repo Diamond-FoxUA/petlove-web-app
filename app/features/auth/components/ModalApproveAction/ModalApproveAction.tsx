@@ -23,6 +23,7 @@ export default function ModalApproveAction({
 
       onClose();
       router.push("/");
+      toast.success("Logout successfull!");
     } catch (error) {
       const axiosError = error as ApiError;
       console.error("Signout error: ", error);

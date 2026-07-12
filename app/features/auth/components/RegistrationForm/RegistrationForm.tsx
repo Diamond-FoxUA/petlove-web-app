@@ -6,16 +6,27 @@ import {
   registrationSchema,
 } from "../../schemas/authSchema";
 import css from "./RegistrationForm.module.css";
+
 import ActionButton from "@/app/shared/components/ActionButton/ActionButton";
 import Link from "next/link";
 import Icon from "@/app/shared/components/Icon/Icon";
+
 import { useState } from "react";
 import { register as registerUser } from "../../api/authHandler";
 import { useRouter } from "next/navigation";
 import { ApiError } from "@/app/api/api";
 import { toast } from "sonner";
 
+import { useAppDispatch } from "@/app/shared/redux/hooks";
+import { getCurrentUserFull } from "../../model/authSlice";
+
 export default function RegistrationForm() {
+  const router = useRouter();
+  const dispatch = useAppDispatch();
+
+  const [showPassword, setShowPassword] = useState(false);
+  const [showConfirmPassword, setShowConfirmPassword] = useState(false);
+
   const {
     register,
     handleSubmit,
@@ -33,20 +44,23 @@ export default function RegistrationForm() {
     },
   });
 
-  const router = useRouter();
-
-  const [showPassword, setShowPassword] = useState(false);
-  const [showConfirmPassword, setShowConfirmPassword] = useState(false);
-
   const onSubmit = async (data: registrationFormData) => {
     try {
       const res = await registerUser(data);
+
       if (res) {
-        router.push("/profile");
-        reset();
-        setTimeout(() => {
-          window.location.reload();
-        }, 100);
+        const profileResult = await dispatch(getCurrentUserFull());
+
+        if (getCurrentUserFull.fulfilled.match(profileResult)) {
+          toast.success(`Welcome to Petlove, ${profileResult.payload.name}!`);
+          reset();
+          router.push("/profile");
+        } else {
+          const fetchError =
+            (profileResult.payload as string) ||
+            "Could not initialize profile.";
+          toast.error(fetchError);
+        }
       } else {
         toast.error("Invalid email or password.");
       }

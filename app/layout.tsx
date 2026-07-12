@@ -12,7 +12,9 @@ const manropeSans = Manrope({
 });
 
 export const metadata: Metadata = {
-  metadataBase: new URL(process.env.NEXT_PUBLIC_APP_URL || 'http://localhost:3000'),
+  metadataBase: new URL(
+    process.env.NEXT_PUBLIC_APP_URL || "http://localhost:3000",
+  ),
 
   title: {
     default: "Petlove",
@@ -27,7 +29,7 @@ export const metadata: Metadata = {
       "Find the perfect pet for your home and discover expert care tips. Explore animal adoption guides and everything you need for a happy, healthy pet.",
     images: [
       {
-        url:  "/og-image.jpg",
+        url: "/og-image.jpg",
         width: 1200,
         height: 630,
         alt: "Petlove — A happy beagle dog with its owners",
@@ -40,7 +42,7 @@ export const metadata: Metadata = {
     title: "Petlove",
     description:
       "Find the perfect pet for your home and discover expert care tips. Explore animal adoption guides and everything you need for a happy, healthy pet.",
-    images: [ "/og-image.jpg"],
+    images: ["/og-image.jpg"],
   },
 };
 
@@ -57,7 +59,7 @@ export default function RootLayout({
     >
       <body>
         <ReduxProvider>
-          <Toaster position="top-center" />
+          <Toaster position="top-center" richColors />
 
           <Header />
           <main>{children}</main>

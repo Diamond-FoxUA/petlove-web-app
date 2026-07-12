@@ -6,6 +6,7 @@ import Image from "next/image";
 import ActionButton from "@/app/shared/components/ActionButton/ActionButton";
 import ModalAttention from "@/app/features/auth/components/ModalAttention/ModalAttention";
 import ModalNotice from "../ModalNotice/ModalNotice";
+import { toast } from "sonner";
 
 import { useAppDispatch, useAppSelector } from "@/app/shared/redux/hooks";
 import {
@@ -85,11 +86,13 @@ export default function NoticesItem({
     try {
       if (isFavourite) {
         await removeFavourite(id).unwrap();
+        toast.success(`Notice named "${name}" is removed from favourites!`);
       } else {
         if (user.noticesFavorites.length === 0) {
           setIsCongratsModalOpen(true);
         }
         await addFavourite(id).unwrap();
+        toast.success(`Notice named "${name}" is added to favourites!`);
       }
 
       const currentNotice: Notice = {
