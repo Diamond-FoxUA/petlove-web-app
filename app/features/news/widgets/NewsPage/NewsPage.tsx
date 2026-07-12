@@ -9,7 +9,6 @@ import Pagination from "@/app/shared/components/Pagination/Pagination";
 import Loader from "@/app/shared/components/Loader/Loader";
 
 import { useGetNewsQuery } from "@/app/features/news/api/newsApi";
-import useLoader from "@/app/shared/hooks/useLoader";
 
 export default function NewsPage() {
   const [value, setValue] = useState("");
@@ -40,14 +39,12 @@ export default function NewsPage() {
     setValue("");
   };
 
-  const showLoader = useLoader(isFetching);
-
   return (
     <section
       className={`container ${css.sectionContainer}`}
       aria-labelledby="news-page-title"
     >
-      {showLoader && <Loader />}
+      {isFetching && <Loader />}
 
       <header className={css.newsHeader}>
         <Title text="News" id="news-page-title" />

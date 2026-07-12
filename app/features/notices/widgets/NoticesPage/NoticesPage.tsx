@@ -3,9 +3,8 @@ import css from "./NoticesPage.module.css";
 
 import { useGetNoticesQuery } from "@/app/features/notices/model/noticesApi";
 import { useSearchParams, useRouter, usePathname } from "next/navigation";
-import useLoader from "@/app/shared/hooks/useLoader";
-import Loader from "@/app/shared/components/Loader/Loader";
 
+import Loader from "@/app/shared/components/Loader/Loader";
 import Title from "@/app/shared/components/Title/Title";
 import NoticesFilters from "@/app/features/notices/components/NoticesFilters/NoticesFIlters";
 import NoticesList from "@/app/features/notices/components/NoticesList/NoticesList";
@@ -24,8 +23,18 @@ export default function NoticesPage() {
   const page = Number(searchParams.get("page")) || 1;
 
   const byDate = searchParams.get("byDate") === "false" ? false : true;
-  const byPrice = searchParams.get("byPrice") === "true" ? true : searchParams.get("byPrice") === "false" ? false : undefined;
-  const byPopularity = searchParams.get("byPopularity") === "true" ? true : searchParams.get("byPopularity") === "false" ? false : undefined;
+  const byPrice =
+    searchParams.get("byPrice") === "true"
+      ? true
+      : searchParams.get("byPrice") === "false"
+        ? false
+        : undefined;
+  const byPopularity =
+    searchParams.get("byPopularity") === "true"
+      ? true
+      : searchParams.get("byPopularity") === "false"
+        ? false
+        : undefined;
 
   const { data, isLoading, error, isFetching } = useGetNoticesQuery({
     keyword,
@@ -48,8 +57,7 @@ export default function NoticesPage() {
     router.push(`${pathname}?${params.toString()}`);
   };
 
-  const showLoader = useLoader(isLoading);
-  if (showLoader) return <Loader />;
+  if (isLoading) return <Loader />;
 
   return (
     <div className={`container ${css.noticesContainer}`}>
@@ -61,15 +69,18 @@ export default function NoticesPage() {
 
       {!isFetching && error && (
         <p role="status" aria-live="polite" className={css.message}>
-          Oops, <strong className={css.textError}>something went wrong.</strong> Try again later.
+          Oops, <strong className={css.textError}>something went wrong.</strong>{" "}
+          Try again later.
         </p>
       )}
 
-      {!error && !isLoading && (!data || !data.results || data.results.length === 0) && (
-        <p role="status" aria-live="polite" className={css.message}>
-          Oops, <strong className={css.textAccent}>no notices found</strong>.
-        </p>
-      )}
+      {!error &&
+        !isLoading &&
+        (!data || !data.results || data.results.length === 0) && (
+          <p role="status" aria-live="polite" className={css.message}>
+            Oops, <strong className={css.textAccent}>no notices found</strong>.
+          </p>
+        )}
 
       {data && data.results && data.results.length > 0 && (
         <>

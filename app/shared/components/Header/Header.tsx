@@ -3,7 +3,6 @@ import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
 
 import css from "./Header.module.css";
-import useLoader from "../../hooks/useLoader";
 
 import Link from "next/link";
 import Logo from "../Logo/Logo";
@@ -26,8 +25,6 @@ export default function Header() {
 
   const { isAuthenticated, isLoading } = useAppSelector((state) => state.auth);
 
-  const showLoader = useLoader(isLoading);
-
   useEffect(() => {
     const timerId = setTimeout(() => {
       setIsMenuOpen(false);
@@ -38,7 +35,7 @@ export default function Header() {
     };
   }, [pathname]);
 
-  if (showLoader) return <Loader />;
+  if (isLoading) return <Loader />;
 
   return (
     <header className={backgroundClass === css.homeBg ? "container" : ""}>
