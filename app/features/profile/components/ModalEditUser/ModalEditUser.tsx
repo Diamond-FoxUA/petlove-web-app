@@ -16,7 +16,7 @@ export default function ModalEditUser({ onClose }: ModalEditUserProps) {
         </h1>
       </header>
 
-      <EditUserForm />
+      <EditUserForm onClose={onClose} />
     </Modal>
   );
 }

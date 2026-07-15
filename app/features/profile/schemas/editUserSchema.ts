@@ -8,12 +8,22 @@ export const editUserSchema = Yup.object({
       "Please, provide a valid email address.",
     )
     .required("This field cannot be empty."),
+
   avatar: Yup.string()
-    .matches(
-      /^https?:\/\/.*\.(?:png|jpg|jpeg|gif|bmp|webp)$/,
-      "Please, provide valid image URL.",
+    .test(
+      "is-url-or-blob",
+      "Please, provide a valid image URL or upload a file.",
+      (value) => {
+        if (!value) return true;
+
+        if (value.startsWith("blob:")) return true;
+
+        const imageUrlRegex = /^https?:\/\/.*\.(?:png|jpg|jpeg|gif|bmp|webp)$/i;
+        return imageUrlRegex.test(value);
+      },
     )
     .default(""),
+
   phone: Yup.string()
     .matches(
       /^\+38\d{10}$/,

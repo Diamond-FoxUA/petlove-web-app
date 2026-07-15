@@ -19,7 +19,7 @@ export async function PATCH(req: NextRequest) {
       },
     });
 
-    return NextResponse.json(apiRes);
+    return NextResponse.json(apiRes.data);
   } catch (error) {
     console.error("Proxy edit user error: ", error);
     const axiosError = error as ApiError;

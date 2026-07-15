@@ -32,6 +32,9 @@
   width: 24px;
   height: 24px;
 }
+.avatarImg {
+  border-radius: 50%;
+}
 
 .profileUsername {
   font-weight: 600;

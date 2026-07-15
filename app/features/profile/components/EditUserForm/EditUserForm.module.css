@@ -58,9 +58,25 @@
   letter-spacing: -0.02em;
   color: var(--color-black);
 
+  display: flex;
+  align-items: center;
   gap: 0.5rem;
-  padding: 0.75rem;
+
   min-width: 126px;
+  padding: 0.75rem;
+  background-color: var(--color-secondary);
+  border: none;
+  border-radius: 1.88rem;
+
+  transition:
+    background-color 300ms ease,
+    opacity 300ms ease;
+}
+.photoBtn:hover {
+  background-color: var(--color-secondary-darker);
+}
+.photoBtn:active {
+  opacity: 0.7;
 }
 
 .cloudIcon {

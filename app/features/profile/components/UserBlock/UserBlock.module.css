@@ -29,6 +29,7 @@
 
 .userAvatar {
   border-radius: 50%;
+  margin: 0 auto;
 }
 
 .editUserAvatarBtn {
@@ -145,5 +146,9 @@
   .avatarContainer {
     flex-direction: row;
     gap: 5.3125rem;
+  }
+
+  .userAvatar {
+    margin: 0;
   }
 }

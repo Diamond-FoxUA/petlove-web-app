@@ -5,14 +5,22 @@ import { useState, useEffect } from "react";
 import { useForm, Controller } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import Image from "next/image";
+import imageCompression from "browser-image-compression";
 
 import { editUserSchema } from "../../schemas/editUserSchema";
-import { useAppSelector } from "@/app/shared/redux/hooks";
+import { useAppSelector, useAppDispatch } from "@/app/shared/redux/hooks";
+import { updateUser } from "../../model/profileSlice";
+import { uploadToCloudinary } from "@/app/shared/api/cloudinary";
 
 import ActionButton from "@/app/shared/components/ActionButton/ActionButton";
 import Icon from "@/app/shared/components/Icon/Icon";
 
 import type { EditUserFormData } from "../../schemas/editUserSchema";
+import { toast } from "sonner";
+
+type EditUserFormProps = {
+  onClose: () => void;
+};
 
 function maskUkrainianPhone(value: string) {
   const digits = value.replace(/[^\d+]/g, "");
@@ -33,9 +41,11 @@ function maskUkrainianPhone(value: string) {
   return digits;
 }
 
-export default function EditUserForm() {
+export default function EditUserForm({ onClose }: EditUserFormProps) {
+  const dispatch = useAppDispatch();
   const { user } = useAppSelector((state) => state.auth);
   const [previewUrl, setPreviewUrl] = useState(user?.avatar || "");
+  const [rawFile, setRawFile] = useState<File | null>(null);
 
   useEffect(() => {
     let timeoutId: NodeJS.Timeout;
@@ -51,10 +61,10 @@ export default function EditUserForm() {
     register,
     handleSubmit,
     formState: { errors, isSubmitting },
-    reset,
     trigger,
     control,
     getValues,
+    setValue,
   } = useForm<EditUserFormData>({
     resolver: yupResolver(editUserSchema),
     mode: "all",
@@ -73,17 +83,71 @@ export default function EditUserForm() {
     },
   });
 
-  const handleApplyPhoto = async () => {
+  const handleUrlBlur = async () => {
     const isUrlValid = await trigger("avatar");
 
     if (isUrlValid) {
       const currentUrl = getValues("avatar");
-      setPreviewUrl(currentUrl);
+
+      if (
+        currentUrl &&
+        (currentUrl.startsWith("http://") || currentUrl.startsWith("https://"))
+      ) {
+        setPreviewUrl(currentUrl);
+        setRawFile(null);
+      }
+    } else {
+      setPreviewUrl("");
     }
   };
 
-  const onSubmit = (data: EditUserFormData) => {
-    console.log("Clean data sent to API:", data);
+  const handleFileChange = async (e: React.ChangeEvent<HTMLInputElement>) => {
+    const file = e.target.files?.[0];
+    if (!file) return;
+
+    setRawFile(file);
+
+    const localUrl = URL.createObjectURL(file);
+    setPreviewUrl(localUrl);
+
+    setValue("avatar", localUrl, { shouldValidate: true });
+  };
+
+  const onSubmit = async (data: EditUserFormData) => {
+    try {
+      let finalAvatarUrl = data.avatar;
+
+      if (rawFile) {
+        const options = {
+          maxSizeMB: 1,
+          maxWidthOrHeight: 1920,
+          useWebWorker: true,
+        };
+        const compressedFile = await imageCompression(rawFile, options);
+        const uploadedUrl = await uploadToCloudinary(compressedFile);
+
+        if (!uploadedUrl) {
+          toast.error("Failed to upload avatar image.");
+          return;
+        }
+        finalAvatarUrl = uploadedUrl;
+      }
+
+      const finalData = { ...data, avatar: finalAvatarUrl };
+
+      await dispatch(updateUser(finalData)).unwrap();
+      onClose();
+
+      toast.success("Profile updated successfully!");
+      setRawFile(null);
+    } catch (error) {
+      const errorMessage =
+        typeof error === "string"
+          ? error
+          : "Something went wrong while updating profile.";
+      toast.error(errorMessage);
+      console.error(error);
+    }
   };
 
   return (
@@ -95,6 +159,7 @@ export default function EditUserForm() {
           className={css.avatarImg}
           width={80}
           height={80}
+          unoptimized
         />
       ) : (
         <div className={css.avatarPlaceholder}>
@@ -104,31 +169,55 @@ export default function EditUserForm() {
 
       <div className={css.formContent}>
         <div className={css.inputRow}>
-          <div className={css.inputGroup}>
+          <div
+            className={css.inputGroup}
+            style={{ display: "flex", gap: "8px", width: "100%" }}
+          >
             <label htmlFor="avatar" className="sr-only">
               Profile picture
             </label>
+
             <input
-              {...register("avatar")}
               className={css.input}
               id="avatar"
               type="text"
-              aria-invalid={errors.avatar ? "true" : "false"}
-              aria-describedby={errors.name ? "name-error" : undefined}
               placeholder="Avatar URL"
+              aria-invalid={errors.avatar ? "true" : "false"}
+              aria-describedby={errors.avatar ? "avatar-error" : undefined}
+              {...register("avatar", {
+                onBlur: () => {
+                  handleUrlBlur();
+                },
+              })}
+              style={{ flexGrow: 1 }}
             />
-            <ActionButton
-              type="button"
-              color="secondary"
+
+            <label
+              htmlFor="avatar-file"
               className={css.photoBtn}
-              onClick={handleApplyPhoto}
+              style={{
+                cursor: "pointer",
+                display: "flex",
+                alignItems: "center",
+                gap: "8px",
+                margin: 0,
+              }}
             >
               Upload photo{" "}
               <Icon iconName="icon-cloud" className={css.cloudIcon} />
-            </ActionButton>
+            </label>
+
+            <input
+              id="avatar-file"
+              type="file"
+              accept="image/*"
+              style={{ display: "none" }}
+              onChange={handleFileChange}
+              disabled={isSubmitting}
+            />
           </div>
           {errors.avatar && (
-            <p id="name-error" role="alert" className={css.errorMessage}>
+            <p id="avatar-error" role="alert" className={css.errorMessage}>
               {errors.avatar.message}
             </p>
           )}

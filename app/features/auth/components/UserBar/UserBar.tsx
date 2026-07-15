@@ -12,6 +12,8 @@ export default function UserBar() {
       <Link href="/profile" className={css.profileLink}>
         {user?.avatar ? (
           <Image
+            width={50}
+            height={50}
             src={user?.avatar}
             alt="User avatar"
             className={css.avatarImg}
