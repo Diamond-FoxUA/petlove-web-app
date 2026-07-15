@@ -10,6 +10,7 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import DatePicker from "react-datepicker";
 import { useRouter } from "next/navigation";
 import Image from "next/image";
+import { uploadToCloudinary } from "@/app/shared/api/cloudinary";
 
 import { addPetSchema } from "../../schemas/addPetSchema";
 import Icon from "@/app/shared/components/Icon/Icon";
@@ -22,6 +23,7 @@ import { useAppDispatch } from "@/app/shared/redux/hooks";
 import type { AddPetFormData } from "../../schemas/addPetSchema";
 import { toast } from "sonner";
 import { useGetSpeciesQuery } from "@/app/features/notices/model/noticesApi";
+import imageCompression from "browser-image-compression";
 
 export default function AddPetForm() {
   const { data: species = [] } = useGetSpeciesQuery();
@@ -30,6 +32,7 @@ export default function AddPetForm() {
   const router = useRouter();
 
   const [previewUrl, setPreviewUrl] = useState("");
+  const [rawFile, setRawFile] = useState<File | null>(null);
   const [selectedSpecies, setSelectedSpecies] = useState<string>("");
 
   const dropdownRef = useRef<HTMLDivElement>(null);
@@ -79,22 +82,70 @@ export default function AddPetForm() {
     return () => document.removeEventListener("mousedown", handleClickOutside);
   }, [isOpen, getValues, trigger]);
 
-  const handleApplyPhoto = async () => {
+  const handleUrlBlur = async () => {
     const isUrlValid = await trigger("imgURL");
 
     if (isUrlValid) {
       const currentUrl = getValues("imgURL");
-      setPreviewUrl(currentUrl);
+
+      if (
+        currentUrl &&
+        (currentUrl.startsWith("http://") || currentUrl.startsWith("https://"))
+      ) {
+        setPreviewUrl(currentUrl);
+        setRawFile(null);
+      }
+    } else {
+      setPreviewUrl("");
     }
+  };
+
+  const handleFileChange = async (e: React.ChangeEvent<HTMLInputElement>) => {
+    const file = e.target.files?.[0];
+    if (!file) return;
+
+    setRawFile(file);
+
+    const localUrl = URL.createObjectURL(file);
+    setPreviewUrl(localUrl);
+
+    setValue("imgURL", localUrl, { shouldValidate: true });
   };
 
   const onSubmit = async (data: AddPetFormData) => {
     try {
-      const res = await dispatch(addUserPet(data)).unwrap();
+      let finalImgUrl = data.imgURL;
+
+      if (rawFile) {
+        const options = {
+          maxSizeMB: 1,
+          maxWidthOrHeight: 1920,
+          useWebWorker: true,
+        };
+
+        const compressedFile = await imageCompression(rawFile, options);
+        const uploadedUrl = await uploadToCloudinary(compressedFile);
+
+        if (!uploadedUrl) {
+          toast.error("Failed to upload image.");
+          return;
+        }
+
+        finalImgUrl = uploadedUrl;
+      }
+
+      const finalData = {
+        ...data,
+        imgURL: finalImgUrl,
+      };
+
+      const res = await dispatch(addUserPet(finalData)).unwrap();
       if (res) {
         router.push("/profile");
         toast.success("Pet profile created!");
         reset();
+        setPreviewUrl("");
+        setRawFile(null);
       } else {
         toast.error(
           "Invalid data. Check if every input is complete and try again.",
@@ -177,6 +228,7 @@ export default function AddPetForm() {
           width={68}
           height={68}
           className={css.petAvatar}
+          unoptimized
         />
       ) : (
         <div className={css.petAvatarPlaceholder} aria-hidden="true">
@@ -193,9 +245,13 @@ export default function AddPetForm() {
             <input
               className={`${css.input} ${css.urlInput}`}
               id="pet-img-url"
-              type="url"
+              type="text"
               placeholder="Enter URL"
-              {...register("imgURL")}
+              {...register("imgURL", {
+                onBlur: () => {
+                  handleUrlBlur();
+                },
+              })}
               aria-invalid={errors.imgURL ? "true" : "false"}
               aria-describedby={errors.imgURL ? "pet-imgUrl-error" : undefined}
             />
@@ -209,14 +265,18 @@ export default function AddPetForm() {
               </p>
             )}
           </div>
-          <button
-            type="button"
-            onClick={handleApplyPhoto}
-            className={css.applyPhotoBtn}
-          >
+          <label htmlFor="pet-img-file" className={css.applyPhotoBtn}>
             Upload photo{" "}
             <Icon iconName="icon-cloud" className={css.cloudIcon} />
-          </button>
+          </label>
+          <input
+            className="sr-only"
+            id="pet-img-file"
+            type="file"
+            accept="image/*"
+            onChange={handleFileChange}
+            disabled={isSubmitting}
+          />
         </div>
 
         <div>
