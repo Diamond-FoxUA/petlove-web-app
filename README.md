@@ -2,9 +2,10 @@
 
 PetLove is a modern, full-featured web application designed for pet care management, booking doctor appointments, and exploring community pet services. Built with a robust frontend architecture using **React 19**, **Next.js 16 (App Router)**, and **Redux Toolkit**, this project stands out due to its extreme focus on modern web standards: semantic HTML, comprehensive accessibility (A11y), search engine optimization (SEO), modular folder architecture, and optimized hybrid data-fetching patterns.
 
-🔗 **Live Demo:** https://petlove-web-app.vercel.app/ <br />
+🔗 **Live Demo:** https://petlove-web-app.vercel.app <br />
 📄 **Technical Assignment:** [Google Sheets Link](https://docs.google.com/spreadsheets/d/1DmQUeGZy_oaXN6yn69ORLzou1ZQRyTMlrAqPSit_clw/edit?gid=1134921873#gid=1134921873) <br />
 🎨 **Figma Design:** [Figma Link](https://www.figma.com/file/puMNfZVg4YI8UZoJ1QiLLi/Petl%F0%9F%92%9Bve?type=design&node-id=55838-750&mode=design&t=Xg1IwIcKebTl5xGs-0) <br />
+🔐 **API Documentation:** [Swagger UI](https://petlove.b.goit.study/api-docs/)
 
 ---
 
